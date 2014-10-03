@@ -1,0 +1,237 @@
+\section{Small $3$-uniform hypergraphs}
+
+A central problem in the study of hypergraph decompositions is the existence of
+$H$-designs; namely: given a $t$-uniform hypergraph $H$, for which positive
+integers $v$ does there exist an $S(t, H, v)$?
+
+In this section, we will consider this question for $3$-uniform hypergraphs $H$ of bounded size.
+If we apply Lemmas \ref{obv-necessary} and \ref{obv-order} with $t = 3$, then we have:
+
+\begin{lemma}[\cite{bryant}] \label{necessary-3-uniform}
+Let $H$ be a $3$-uniform hypergraph.
+If there exists an $H$-design of order $v \geq 3$, then $v \geq |V(H)|$, and the following conditions are satisfied:
+\begin{enumerate}
+    \item[(1)] $|E(H)|$ divides ${v \choose 3}$,
+    \item[(2)] $\gcd(\{\deg_H(x) : x \in V(H)\})$ divides ${v-1 \choose 2}$,
+    \item[(3)] $\gcd(\{\deg_H(\{x,y\}) : x, y \in V(H), x \neq y\})$ divides $v-2$.
+\end{enumerate}
+\end{lemma}
+
+\subsection{$3$-uniform hypergraphs of size at most $3$}
+
+First, we shall consider simple $3$-uniform hypergraphs containing at most three edges, by considering every possible case.
+In combination with results from \cite{baran, bryant, feng-chang2, hanani}, we shall prove the following result:
+
+\begin{theorem}
+Let $H$ be a simple $3$-uniform hypergraph containing at most three edges.
+There exists a $H$-design of order $v \geq 3$ iff the conditions of Lemma \ref{necessary-3-uniform} are satisfied.
+\end{theorem}
+
+Up to isomorphism, there are fifteen (simple) $3$-uniform hypergraphs with size at most 3 containing no isolated vertices.
+These are listed in Table \ref{table:size3} below, using the following notation: in the first row, $[1, 2, 3]_{H_{1,1}}$ is used to denote the hypergraph $(V, E)$ with $V = \{1, 2, 3\}$ and $E = \{\{1, 2, 3\}\}$, and $H_{1,1}$ is used to denote any hypergraph isomorphic to $[1, 2, 3]_{H_{1,1}}$.
+The final column indicates that the existence of $H_{1,1}$-designs is proved in Theorem \ref{baranyai}.
+The notation for the other rows is similar.
+
+\begin{table}
+\centering
+\scriptsize
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$H_{1,1}$ & $[1,2,3]_{H_{1,1}}$            & $V=\{1,2,3\}$            & $E=\{\{1,2,3\}\}$ & \ref{baranyai} \\ \hline
+$H_{2,1}$ & $[1,2,3,4,5,6]_{H_{2,1}}$      & $V=\{1,2,3,4,5,6\}$      & $E=\{\{1,2,3\},\{4,5,6\}\}$ & \ref{baranyai} \\ \hline
+$H_{2,2}$ & $[1,2,3,4,5]_{H_{2,2}}$        & $V=\{1,2,3,4,5\}$        & $E=\{\{1,2,3\},\{1,4,5\}\}$ & \\ \hline
+$H_{2,3}$ & $[1,2,3,4]_{H_{2,3}}$          & $V=\{1,2,3,4\}$          & $E=\{\{1,2,3\},\{1,2,4\}\}$ & \\ \hline
+$H_{3,1}$ & $[1,2,3,4,5,6,7,8,9]_{H_{3,1}}$& $V=\{1,2,3,4,5,6,7,8,9\}$& $E=\{\{1,2,3\},\{4,5,6\},\{7,8,9\}\}$ & \ref{baranyai} \\ \hline
+$H_{3,2}$ & $[1,2,3,4,5,6,7,8]_{H_{3,2}}$  & $V=\{1,2,3,4,5,6,7,8\}$  & $E=\{\{1,2,3\},\{1,4,5\},\{6,7,8\}\}$ & \\ \hline
+$H_{3,3}$ & $[1,2,3,4,5,6,7]_{H_{3,3}}$    & $V=\{1,2,3,4,5,6,7\}$    & $E=\{\{1,2,3\},\{1,2,4\},\{5,6,7\}\}$ & \\ \hline
+$H_{3,4}$ & $[1,2,3,4,5,6,7]_{H_{3,4}}$    & $V=\{1,2,3,4,5,6,7\}$    & $E=\{\{1,2,3\},\{1,4,5\},\{1,6,7\}\}$ & \\ \hline
+$H_{3,5}$ & $[1,2,3,4,5,6,7]_{H_{3,5}}$    & $V=\{1,2,3,4,5,6,7\}$    & $E=\{\{1,2,3\},\{1,4,5\},\{4,6,7\}\}$ & \\ \hline
+$H_{3,6}$ & $[1,2,3,4,5,6]_{H_{3,6}}$      & $V=\{1,2,3,4,5,6\}$      & $E=\{\{1,2,3\},\{1,2,4\},\{4,5,6\}\}$ & \\ \hline
+$H_{3,7}$ & $[1,2,3,4,5,6]_{H_{3,7}}$      & $V=\{1,2,3,4,5,6\}$      & $E=\{\{1,2,3\},\{1,2,4\},\{2,5,6\}\}$ & \\ \hline
+$H_{3,8}$ & $[1,2,3,4,5,6]_{H_{3,8}}$      & $V=\{1,2,3,4,5,6\}$      & $E=\{\{1,2,3\},\{1,4,5\},\{2,4,6\}\}$ & \\ \hline
+$H_{3,9}$ & $[1,2,3,4,5]_{H_{3,9}}$        & $V=\{1,2,3,4,5\}$        & $E=\{\{1,2,3\},\{1,2,4\},\{1,2,5\}\}$ & \\ \hline
+$H_{3,10}$ & $[1,2,3,4,5]_{H_{3,10}}$      & $V=\{1,2,3,4,5\}$        & $E=\{\{1,2,3\},\{1,2,4\},\{1,4,5\}\}$ & \\ \hline
+$H_{3,11}$ & $[1,2,3,4,5]_{H_{3,11}}$      & $V=\{1,2,3,4,5\}$        & $E=\{\{1,2,3\},\{1,2,4\},\{3,4,5\}\}$ & \\ \hline
+$H_{3,12}$ & $[1,2,3,4]_{H_{3,12}}$        & $V=\{1,2,3,4\}$          & $E=\{\{1,2,3\},\{1,2,4\},\{1,3,4\}\}$ & \ref{H_3,12} \\ \hline
+\end{tabular}
+\label{table:size3}
+\caption{All simple $3$-uniform hypergraphs of size at most $3$}
+\end{table}
+
+It can be verified exhaustively that these are indeed all simple $3$-uniform hypergraphs of size at most 3.
+% TODO write up the program which generates them.
+
+If $H \simeq H_{k,1}$ for $k \in \{1, 2, 3\}$, then $H$ contains $k$ pairwise disjoint edges, so $H$-designs exist iff $v \geq 3k$ and $k$ divides ${v \choose 3}$, by Theorem \ref{baranyai}.
+
+
+In \cite{feng-chang2}, the authors consider a copy of $K_4^{(3)}$ with an edge removed, denoted by $K_4^{(3)} - e$; this is isomorphic to $H_{3,12}$. They determined the following result:
+
+\begin{theorem}[\cite{feng-chang2}] \label{H_3,12}
+A $(K_4^{(3)}-e)$-design of order $v$ exists iff $v \equiv 0,1,2$ (mod $9$).
+\end{theorem}
+
+
+TODO ... prove the rest
+
+
+\subsection{Regular $3$-uniform hypergraphs}
+
+Next, we shall consider (simple) $3$-uniform hypergraphs of larger size, but impose the restriction that the hypergraph is regular.
+Recall that a hypergraph $H$ is $d$-regular if every vertex $x \in V(H)$ has degree $d$.
+
+There are nine non-isomorphic regular $3$-uniform hypergraphs of size at most $5$, three of which are $H_{1,1}$, $H_{2,1}$ and $H_{3,1}$ from Table \ref{table:size3}.
+The remaining six are listed in Table \ref{table:regular}, using the same notation as Table \ref{table:size3} (but with abbreviations for $H_{4,1}$ and $H_{5,1}$).
+
+\begin{table}
+\centering
+\scriptsize
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$H_{4,1}$ & & $V=\{1,2,\ldots,12\}$                       & $E=\{\{1,2,3\},\{4,5,6\},\{7,8,9\},\{10,11,12\}\}$ & \ref{baranyai} \\ \hline
+$H_{4,2}$ & $[1,2,3,4,5,6]_{H_{4,2}}$ & $V=\{1,2,3,4,5,6\}$ & $E=\{\{1,2,3\},\{1,5,6\},\{2,4,6\},\{3,5,6\}\}$ & \ref{thm:H_42,H_43} \\ \hline
+$H_{4,3}$ & $[1,2,3,4,5,6]_{H_{4,3}}$ & $V=\{1,2,3,4,5,6\}$ & $E=\{\{1,2,3\},\{1,5,6\},\{2,3,4\},\{4,5,6\}\}$ & \ref{thm:H_42,H_43} \\ \hline
+$H_{4,4}$ & $[1,2,3,4]_{H_{4,4}}$     & $V=\{1,2,3,4\}$     & $E=\{\{1,2,3\},\{1,2,4\},\{1,3,4\},\{2,3,4\}\}$ & \ref{thm:K4^3} \\ \hline
+$H_{5,1}$ & & $V=\{1,2,\ldots,15\}$                       & {\tiny $\{\{1,2,3\},\{4,5,6\},\{7,8,9\},\{10,11,12\},\{13,14,15\}\}$ } & \ref{baranyai} \\ \hline
+$H_{5,2}$ & $[1,2,3,4,5]_{H_{5,2}}$   & $V=\{1,2,3,4,5\}$   & {\tiny $E=\{\{1,2,3\},\{1,2,4\},\{1,3,5\},\{2,4,5\},\{3,4,5\}\}$ } & Open \\ \hline
+\end{tabular}
+\label{table:regular}
+\caption{All simple $d$-regular $3$-uniform hypergraphs with size $\in \{4, 5\}$}
+\end{table}
+
+It can be easily verified that these are indeed all regular $3$-uniform hypergraphs with size at most 5. % TODO algorithm
+In conjunction with existing results, we shall prove the following:
+
+\begin{theorem} \label{thm:regular-4}
+Let $H$ be a simple regular $3$-uniform hypergraph containing four edges.
+There exists an $H$-design of order $v \geq 3$ iff the conditions of Lemma \ref{necessary-3-uniform} are satisfied,
+  except that there is no $H_{4,2}$-design of order $6$.
+\end{theorem}
+
+Let $H$ be a $d$-regular $3$-uniform hypergraph on four edges.
+If $H \simeq H_{4,1}$ (or $H_{5,1}$), the necessary conditions are sufficient by Theorem \ref{baranyai}.
+
+If $H \simeq H_{4,4} \simeq K_4^{(3)}$, then an $H$-design of order $v$ is an $S(3, 4, v)$ Steiner system (also called a {\em Steiner quadruple system}),
+  and it can be seen that $v$ satisfied the conditions of Lemma \ref{necessary-3-uniform} if and only if $v \equiv 2$ or $4$ (mod $6$).
+The following result by Hanani establishes that these conditions are sufficient:
+
+\begin{theorem}[\cite{hanani}] \label{thm:K4^3}
+An $S(3, 4, v)$ exists iff $v \equiv 2$ or $4$ (mod $6$).
+\end{theorem}
+
+
+For $H \simeq H_{4,2}$ or $H_{4,3}$, we have the following theorem.
+The case $H \simeq H_{4,2}$ was solved by Bryant et al. in \cite{bryant}, and the proof for $H \simeq H_{4,3}$ is similar.
+
+\begin{theorem} \label{thm:H_42,H_43}
+Let $H \simeq H_{4,2}$ or $H_{4,3}$.
+An $H$-design of order $v$ exists iff $v \equiv 1$, $2$ or $6$ (mod $8$),
+  except that there is no $H_{4,2}$-design of order $6$.
+\end{theorem}
+
+\begin{proof}
+Let $H$ be a hypergraph isomorphic to either $H_{4,2}$ or $H_{4,3}$.
+
+From Lemma \ref{necessary-3-uniform}, it follows that $v \equiv 1$, $2$ or $6$ (mod $8$) is a necessary condition,
+   it remains to show that this is sufficient, and that there is no $S(3, H_{4,2}, 6)$.
+
+For $v = 6$, there exists an $H_{4,3}$-design of order 6 by Example \ref{eg:H_43-6},
+  and it was shown in \cite{bryant} that there does not exist an $H_{4,2}$-design of order 6. So, consider $v \neq 6$.
+
+Let $O$ denote the hypergraph with vertex set $\{0,1,2,3,4,5\}$ and edge set
+\[
+    \{\{0,1,2\},\{0,1,5\},\{0,2,4\},\{0,4,5\},\{1,2,3\},\{1,3,5\},\{2,3,4\},\{3,4,5\}\}.
+\]
+The edges of $O$ describe the faces of an octahedron.
+There clearly exists an $H_{4,2}$-decomposition of $O$ given by \[ \left\{ [0,1,2,3,4,5]_{H_{4,2}}, [0,1,5,3,4,2]_{H_{4,2}} \right\}, \]
+  and an $H_{4,3}$-decomposition of $O$ given by \[ \left\{[0,1,2,3,4,5]_{H_{4,3}}, [0,1,5,3,2,4]_{H_{4,3}} \right\}. \]
+In \cite{hanani}, it was shown that there exists an $O$-design of order $v$ whenever $v \equiv 2$ (mod 8),
+  so there exists a $H$-design of order $v$ whenever $v \equiv 2$ (mod 8).
+
+
+In the remaining cases, we have $v = 8n + \epsilon$ for $n \geq 1$ and $\epsilon \in \{1,6\}$.
+Construct a set of $n$ pairwise disjoint sets $V_1, \ldots, V_n$ of size 8,
+  and let $I = \{\infty_1, \infty_2, \infty_3, \infty_4, \infty_5, \infty_6\}$ be a set of six points, none of which is in $\bigcup_{i=1}^{n} V_i$.
+
+% TODO
+%Let $\mathcal{D}_\infty$ be a $H$-decomposition of $K_{I}^{(3)}$, which exists by Example \ref{eg:H_43-6}.
+
+For each $1 \leq i \leq n$, let:
+\begin{itemize}
+  \item $\mathcal{D}_i$ be a $H$-decomposition of $K_{V_i \cup \{\infty_1\}}$,
+  which exists for $H_{4,2}$ by \cite{bryant}, and for $H_{4,3}$ by Example \ref{eg:H_43-9};
+  \item $\mathcal{D}'_i$ be a $H$-decomposition of $K_{V_i \cup I}^{(3)} \setminus K_{I}^{(3)}$,
+  which exists for $H_{4,2}$ by \cite{bryant}, and for $H_{4,3}$ by Example \ref{eg:H_43-k14-k6}.
+\end{itemize}
+
+For each $1 \leq i < j \leq n$, let:
+\begin{itemize}
+  \item $\mathcal{D}_{i,j}$ be a $H$-decomposition of $L_{V_i,V_j}^{(3)} \cup K_{V_i,V_j,\{\infty_1\}}^{(3)}$,
+  which exists for $H_{4,2}$ by \cite{bryant}, and for $H_{4,3}$ by Example \ref{eg:H_43-l88-k881};
+  \item $\mathcal{D}'_{i,j}$ be a $H$-decomposition of $L_{V_i,V_j}^{(3)} \cup K_{V_i,V_j,I}^{(3)}$,
+  which exists for $H_{4,2}$ by \cite{bryant}, and for $H_{4,3}$ by Example \ref{eg:H_43-l88-k886}.
+\end{itemize}
+
+\cite{hanani} showed that there exists an $O$-decomposition of
+$K_{8,8,8}^{(3)}$, so there exists a $H$-decomposition of $K_{8,8,8}^{(3)}$.
+Then, for each $1 \leq i < j < k \leq n$, let $\mathcal{D}_{i,j,k}$ be a
+$H$-decomposition of $K_{V_i,V_j,V_k}^{(3)}$.
+
+Then, if $v \equiv 1$ (mod 8),
+\[
+    \left( \bigcup_{1 \leq i \leq n} \mathcal{D}_i \right)
+    \cup \left( \bigcup_{1 \leq i < j \leq n} \mathcal{D}_{i,j} \right)
+    \cup \left( \bigcup_{1 \leq i < j < k \leq n} \mathcal{D}_{i,j,k} \right)
+\]
+is a $H$-design of order $v = 8n+1$, and if $v \equiv 6$ (mod 8),
+\[
+    \mathcal{D}_\infty \cup \left( \bigcup_{1 \leq i \leq n}
+    \mathcal{D}'_i \right) \cup \left( \bigcup_{1 \leq i < j \leq n}
+    \mathcal{D}'_{i,j} \right) \cup \left( \bigcup_{1
+    \leq i < j < k \leq n} \mathcal{D}_{i,j,k} \right)
+\]
+is a $H$-design of order $v = 8n+6$. This completes the proof.
+
+\end{proof}
+
+This concludes the proof of Theorem \ref{thm:regular-4}. \qed
+
+Even though there is no $H_{4,2}$-design of order $6$, we can still consider the existence of $H_{4,2}$-designs of order $6$ with index $\lambda \geq 2$.
+We have the following reults:
+
+\begin{theorem} \label{thm:H_42-6-simple}
+There exists a simple $S_{\lambda}(3, H_{4,2}, 6)$ if and only if $\lambda \in \{2, 3, 4, 6\}$.
+\end{theorem}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{theorem} \label{thm:H_42-6}
+There exists a (not necessarily simple) $S_{\lambda}(3, H_{4,2}, 6)$ if and only if $\lambda \geq 2$.
+\end{theorem}
+
+\begin{proof}
+TODO
+\end{proof}
+
+
+
+
+The case $H \simeq H_{5,2}$ remains an open problem, but is discussed in \cite{mesz-rosa}.
+The necessary conditions require that $v \equiv 1, 2, 5, 7, 10$ or $11$ (mod $15$).
+However, we do have the following results:
+
+\begin{theorem}[\cite{mesz-rosa}] \label{thm:H_52}
+An $H_{5,2}$-design of order $v$ exists for all admissible $v \leq 17$, and for
+all $v = 4^m + 1$ for $m$ a positive integer.
+\end{theorem}
+
+\begin{proof}
+There is an $H_{5,2}$-design of order $5$ on the vertex set $\{0,1,2,3,4\}$
+  given by $\left\{[0,1,2,3,4]_{H_{5,2}}, [4, 0, 1, 3, 2]_{H_{5,2}} \right\}$.
+
+Hence, if there exists an $S(3, 5, v)$, then there exists an $H_{5,2}$-design of order $v$, given by replacing each block with an $H_{5,2}$-decomposition of $K_5^{(3)}$.
+It is known that there exists an $S(3, 5, v)$ for all $v = 4^m+1$, given by spherical geometries (see \cite{khos-laue}), so there is also an $H_{5,2}$-design of order $4^m+1$.
+
+Examples of $H_{5,2}$-designs of order $7$, $10$, and $11$ are given in \cite{mesz-rosa}.
+\end{proof}

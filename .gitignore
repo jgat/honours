@@ -1,0 +1,9 @@
+tmp/
+
+*.log
+*.aux
+*.toc
+
+*.swp
+
+*.pdf

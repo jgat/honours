@@ -1,0 +1,78 @@
+\section{Definitions}
+
+
+The study of hypergraph decompositions is related to the study of $t$-wise balanced designs, so there are shared definitions:
+
+\begin{definition}
+A $t$-$(v,K,\lambda)$ design (also called a {\em $t$-wise balanced design}) is a pair $(X, \mathcal{B})$ where $X$ is a set of $v$ {\em points} and $\mathcal{B}$ is a collection of subsets of $X$, called {\em blocks}, such that for each $B \in \mathcal{B}$, $|B| \in K$, and every $t$-subset of $X$ is contained in exactly $\lambda$ blocks.
+If $K$ has only one element $k$, then we write $t$-$(v, k, \lambda)$, instead of $t$-$(v,\{k\},\lambda)$.
+
+A $t$-$(v, k, \lambda)$ design can also be referred to as a {\em Steiner system} $S_{\lambda}(t, k, v)$.
+If $\lambda = 1$, then we write $S(t, k, v)$.
+
+A design is {\em simple} if no two of its blocks are identical.
+\qed
+\end{definition}
+
+There is a natural correspondence between simple $t$-designs and $K_{k}^{(t)}$-decompositions of $\lambda K_{v}^{(t)}$: given a $t$-$(v, k, \lambda)$ design $(X, \mathcal{B})$, consider the collection of hypergraphs $\mathcal{D} = \{K_{B}^{(t)} \mid B \in \mathcal{B}\}$ formed by taking the complete $t$-uniform hypergraph on each block $B$.
+Since each edge of $K_v^{(t)}$ occurs $\lambda$ times as an edge in some hypergraph of $\mathcal{D}$, it follows that $\mathcal{D}$ is a $K_{k}^{(t)}$-decomposition of $\lambda K_{v}^{(t)}$.
+In the same manner, we can construct a $t$-$(v, k, \lambda)$ design from a $K_{k}^{(t)}$-decomposition of $\lambda K_{v}^{(t)}$, in which the vertex set of each copy of $K_k^{(t)}$ forms a block of the design.
+
+We can then generalise this concept to other decompositions of $\lambda K_{v}^{(t)}$:
+
+\begin{definition}
+If $H$ is a $t$-uniform hypergraph, an {\em $H$-design} of order $v$ and index $\lambda$ is a $H$-decomposition of $\lambda K_{v}^{(t)}$.
+Each hypergraph in the decomposition is called an {\em $H$-block}.
+Such a design is sometimes denoted a $(v, H, \lambda)$-design, we may also write $S_{\lambda} (t, H, v)$.
+
+A $H$-design is {\em simple} if no two of its $H$-blocks are identical.
+\qed
+\end{definition}
+
+Unless otherwise stated, it is standard to assume that a $H$-design has index $\lambda = 1$, and we write $S(t, H, v)$ instead of $S_1(t, H, v)$.
+
+If there exists an $S_{\lambda}(t, H, v)$, then there are certain necessary divisiblity conditions to be satisfied.
+The following proof is from \cite{bryant}:
+
+\begin{lemma}[\cite{bryant}] \label{obv-necessary-1}
+Let $H$ and $K$ be hypergraphs.
+Suppose there exists a $H$-decomposition of $K$. Then, for any subset $R$ of $V(K)$,
+  $\gcd(\{\deg_H(S) : S \subseteq V(H), |S| = i\})$ divides $\deg_K(R)$.
+\end{lemma}
+
+\begin{proof}
+Let $\mathcal{D}$ be an $H$-decomposition of $K$.
+For $R \subseteq V(K)$, the $H$-blocks in $\mathcal{D}$ partition the edges of $K$ which contain $R$.
+Thus, $\deg_K(R) = \sum_{G \in \mathcal{D}} \deg_G(R)$.
+For each $G \in \mathcal{D}$, $\deg_G(R) \in \{\deg_H(S) : S \subseteq V(H), |S| = |R|\}$,
+  therefore $\gcd(\{\deg_H(S) : S \subseteq V(H), |S| = |R|\})$ divides $\deg_K(R)$.
+\end{proof}
+
+If we take $K = \lambda K_v^{(t)}$, then we have:
+
+\begin{lemma} \label{obv-necessary}
+Let $H$ be a $t$-uniform hypergraph.
+If there exists an $S_{\lambda}(t, H, v)$, then for each $0 \leq i < t$,
+  $\gcd(\{ \deg_H(S) : S \subseteq V(H), |S| = i \})$ divides $\lambda {v-i \choose t-i}$.
+\end{lemma}
+
+\begin{proof}
+Apply Lemma \ref{obv-necessary-1} with $K = \lambda K_v^{(t)}$;
+  note that for any $R \subseteq V(K)$ with $|R| = i$, $\deg_K(R) = \lambda {v-i \choose t-i}$.
+\end{proof}
+
+For example, if we take $H = K_k^{(t)}$, then we have the usual necessary divisibility conditions for $t$-designs: for each $0 \leq i < t$, ${k-i \choose t-i}$ divides $\lambda {v-i \choose t-i}$.
+
+If $v < t$, then $\lambda K_v^{(t)}$ contains no edges, and we will consider the empty set to be an $H$-decomposition of $\lambda K_v^{(t)}$, and therefore a $S_{\lambda}(t, H, v)$, for any $H$ and $\lambda$. Otherwise, if $v \geq t$ and $\mathcal{D} \neq \emptyset$ is a $H$-design, then it is necessary that there is a subgraph of $\lambda K_v^{(t)}$ isomorphic to $H$, so $|V(H)| \leq |V(\lambda K_v^{(t)})|$, hence:
+
+\begin{lemma} \label{obv-order}
+Let $H$ be a $t$-uniform hypergraph. If $\mathcal{D}$ is an $S_{\lambda}(t, H, v)$, then either $v < t$ and $\mathcal{D} = \emptyset$ or $v \geq |V(H)|$ and $\mathcal{D} \neq \emptyset$.
+\end{lemma}
+
+Since $v < t$ is trivial, we shall assume $v \geq t$ unless otherwise stated.
+
+The following necessary and sufficient condition follows immediately from Baranyai's Theorem in \cite{baran}. The necessary condition is immediate from Lemmas \ref{obv-necessary} and \ref{obv-order}, and Baranyai shows it is sufficient.
+
+\begin{theorem}[\cite{baran}] \label{baranyai}
+Let $H$ be the simple $t$-uniform hypergraph consisting of $m$ pairwise disjoint edges. There is an $H$-design of order $v$ if and only if $m$ divides ${v \choose t}$ and $mt \leq v$.
+\end{theorem}
