@@ -2,7 +2,7 @@
 
 A central problem in the study of hypergraph decompositions is the existence of
 $H$-designs; namely: given a $t$-uniform hypergraph $H$, for which positive
-integers $v$ does there exist an $S(t, H, v)$?
+integers $v$ does there exist a $(v, H, \lambda)$-design?
 
 In this section, we will consider this question for $3$-uniform hypergraphs $H$ of bounded size.
 If we apply Lemmas \ref{obv-necessary} and \ref{obv-order} with $t = 3$, then we have:
@@ -39,20 +39,20 @@ The notation for the other rows is similar.
 \hline
 $H_{1,1}$ & $[1,2,3]_{H_{1,1}}$            & $V=\{1,2,3\}$            & $E=\{\{1,2,3\}\}$ & \ref{baranyai} \\ \hline
 $H_{2,1}$ & $[1,2,3,4,5,6]_{H_{2,1}}$      & $V=\{1,2,3,4,5,6\}$      & $E=\{\{1,2,3\},\{4,5,6\}\}$ & \ref{baranyai} \\ \hline
-$H_{2,2}$ & $[1,2,3,4,5]_{H_{2,2}}$        & $V=\{1,2,3,4,5\}$        & $E=\{\{1,2,3\},\{1,4,5\}\}$ & \\ \hline
-$H_{2,3}$ & $[1,2,3,4]_{H_{2,3}}$          & $V=\{1,2,3,4\}$          & $E=\{\{1,2,3\},\{1,2,4\}\}$ & \\ \hline
+$H_{2,2}$ & $[1,2,3,4,5]_{H_{2,2}}$        & $V=\{1,2,3,4,5\}$        & $E=\{\{1,2,3\},\{1,4,5\}\}$ & \ref{thm:H_22,H_23} \\ \hline
+$H_{2,3}$ & $[1,2,3,4]_{H_{2,3}}$          & $V=\{1,2,3,4\}$          & $E=\{\{1,2,3\},\{1,2,4\}\}$ & \ref{thm:H_22,H_23} \\ \hline
 $H_{3,1}$ & $[1,2,3,4,5,6,7,8,9]_{H_{3,1}}$& $V=\{1,2,3,4,5,6,7,8,9\}$& $E=\{\{1,2,3\},\{4,5,6\},\{7,8,9\}\}$ & \ref{baranyai} \\ \hline
-$H_{3,2}$ & $[1,2,3,4,5,6,7,8]_{H_{3,2}}$  & $V=\{1,2,3,4,5,6,7,8\}$  & $E=\{\{1,2,3\},\{1,4,5\},\{6,7,8\}\}$ & \\ \hline
-$H_{3,3}$ & $[1,2,3,4,5,6,7]_{H_{3,3}}$    & $V=\{1,2,3,4,5,6,7\}$    & $E=\{\{1,2,3\},\{1,2,4\},\{5,6,7\}\}$ & \\ \hline
-$H_{3,4}$ & $[1,2,3,4,5,6,7]_{H_{3,4}}$    & $V=\{1,2,3,4,5,6,7\}$    & $E=\{\{1,2,3\},\{1,4,5\},\{1,6,7\}\}$ & \\ \hline
-$H_{3,5}$ & $[1,2,3,4,5,6,7]_{H_{3,5}}$    & $V=\{1,2,3,4,5,6,7\}$    & $E=\{\{1,2,3\},\{1,4,5\},\{4,6,7\}\}$ & \\ \hline
-$H_{3,6}$ & $[1,2,3,4,5,6]_{H_{3,6}}$      & $V=\{1,2,3,4,5,6\}$      & $E=\{\{1,2,3\},\{1,2,4\},\{4,5,6\}\}$ & \\ \hline
-$H_{3,7}$ & $[1,2,3,4,5,6]_{H_{3,7}}$      & $V=\{1,2,3,4,5,6\}$      & $E=\{\{1,2,3\},\{1,2,4\},\{2,5,6\}\}$ & \\ \hline
-$H_{3,8}$ & $[1,2,3,4,5,6]_{H_{3,8}}$      & $V=\{1,2,3,4,5,6\}$      & $E=\{\{1,2,3\},\{1,4,5\},\{2,4,6\}\}$ & \\ \hline
-$H_{3,9}$ & $[1,2,3,4,5]_{H_{3,9}}$        & $V=\{1,2,3,4,5\}$        & $E=\{\{1,2,3\},\{1,2,4\},\{1,2,5\}\}$ & \\ \hline
-$H_{3,10}$ & $[1,2,3,4,5]_{H_{3,10}}$      & $V=\{1,2,3,4,5\}$        & $E=\{\{1,2,3\},\{1,2,4\},\{1,4,5\}\}$ & \\ \hline
-$H_{3,11}$ & $[1,2,3,4,5]_{H_{3,11}}$      & $V=\{1,2,3,4,5\}$        & $E=\{\{1,2,3\},\{1,2,4\},\{3,4,5\}\}$ & \\ \hline
-$H_{3,12}$ & $[1,2,3,4]_{H_{3,12}}$        & $V=\{1,2,3,4\}$          & $E=\{\{1,2,3\},\{1,2,4\},\{1,3,4\}\}$ & \ref{H_3,12} \\ \hline
+$H_{3,2}$ & $[1,2,3,4,5,6,7,8]_{H_{3,2}}$  & $V=\{1,2,3,4,5,6,7,8\}$  & $E=\{\{1,2,3\},\{1,4,5\},\{6,7,8\}\}$ & \ref{thm:H_3,i} \\ \hline
+$H_{3,3}$ & $[1,2,3,4,5,6,7]_{H_{3,3}}$    & $V=\{1,2,3,4,5,6,7\}$    & $E=\{\{1,2,3\},\{1,2,4\},\{5,6,7\}\}$ & \ref{thm:H_3,i} \\ \hline
+$H_{3,4}$ & $[1,2,3,4,5,6,7]_{H_{3,4}}$    & $V=\{1,2,3,4,5,6,7\}$    & $E=\{\{1,2,3\},\{1,4,5\},\{1,6,7\}\}$ & \ref{thm:H_3,i} \\ \hline
+$H_{3,5}$ & $[1,2,3,4,5,6,7]_{H_{3,5}}$    & $V=\{1,2,3,4,5,6,7\}$    & $E=\{\{1,2,3\},\{1,4,5\},\{4,6,7\}\}$ & \ref{thm:H_3,i} \\ \hline
+$H_{3,6}$ & $[1,2,3,4,5,6]_{H_{3,6}}$      & $V=\{1,2,3,4,5,6\}$      & $E=\{\{1,2,3\},\{1,2,4\},\{4,5,6\}\}$ & \ref{thm:H_3,i} \\ \hline
+$H_{3,7}$ & $[1,2,3,4,5,6]_{H_{3,7}}$      & $V=\{1,2,3,4,5,6\}$      & $E=\{\{1,2,3\},\{1,2,4\},\{2,5,6\}\}$ & \ref{thm:H_3,i} \\ \hline
+$H_{3,8}$ & $[1,2,3,4,5,6]_{H_{3,8}}$      & $V=\{1,2,3,4,5,6\}$      & $E=\{\{1,2,3\},\{1,4,5\},\{2,4,6\}\}$ & \ref{thm:H_3,i} \\ \hline
+$H_{3,9}$ & $[1,2,3,4,5]_{H_{3,9}}$        & $V=\{1,2,3,4,5\}$        & $E=\{\{1,2,3\},\{1,2,4\},\{1,2,5\}\}$ & \ref{thm:H_3,i} \\ \hline
+$H_{3,10}$ & $[1,2,3,4,5]_{H_{3,10}}$      & $V=\{1,2,3,4,5\}$        & $E=\{\{1,2,3\},\{1,2,4\},\{1,4,5\}\}$ & \ref{thm:H_3,i} \\ \hline
+$H_{3,11}$ & $[1,2,3,4,5]_{H_{3,11}}$      & $V=\{1,2,3,4,5\}$        & $E=\{\{1,2,3\},\{1,2,4\},\{3,4,5\}\}$ & \ref{thm:H_3,i} \\ \hline
+$H_{3,12}$ & $[1,2,3,4]_{H_{3,12}}$        & $V=\{1,2,3,4\}$          & $E=\{\{1,2,3\},\{1,2,4\},\{1,3,4\}\}$ & \ref{thm:H_3,12} \\ \hline
 \end{tabular}
 \caption{All simple $3$-uniform hypergraphs of size at most $3$}
 \label{table:size3}
@@ -66,12 +66,24 @@ If $H \simeq H_{k,1}$ for $k \in \{1, 2, 3\}$, then $H$ contains $k$ pairwise di
 
 In \cite{feng-chang2}, the authors consider a copy of $K_4^{(3)}$ with an edge removed, denoted by $K_4^{(3)} - e$; this is isomorphic to $H_{3,12}$. They determined the following result:
 
-\begin{theorem}[\cite{feng-chang2}] \label{H_3,12}
-A $(K_4^{(3)}-e)$-design of order $v$ exists iff $v \equiv 0,1,2$ (mod $9$).
+\begin{theorem}[\cite{feng-chang2}] \label{thm:H_3,12}
+A $(K_4^{(3)}-e)$-design of order $v$ exists iff $v \equiv 0$,$1$, or $2$ (mod $9$).
 \end{theorem}
 
 
-\vspace{1cm} TODO ... prove the rest \vspace{1cm}
+\vspace{1cm} TODO ... prove the rest:
+
+\begin{theorem}[\cite{bryant}] \label{thm:H_22,H_23}
+Let $H \simeq H_{2,2}$ or $H_{2,3}$.
+An $H$-design of order $v$ exists if and only if $v \equiv 0$, $1$, or $2$ (mod $4$) and $v \geq |V(H)|$.
+\end{theorem}
+
+\begin{theorem} \label{thm:H_3,i}
+Let $H$ be a simple $3$-uniform hypergraph with three edges.
+There exists an $H$-design of order $v$ if and only if $v \equiv 0$, $1$, or $2$ (mod $9$).
+\end{theorem}
+
+\vspace{1cm}
 
 
 \subsection{Regular $3$-uniform hypergraphs}
@@ -132,7 +144,7 @@ An $H$-design of order $v$ exists iff $v \equiv 1$, $2$ or $6$ (mod $8$),
 Let $H$ be a hypergraph isomorphic to either $H_{4,2}$ or $H_{4,3}$.
 
 From Lemma \ref{necessary-3-uniform}, it follows that $v \equiv 1$, $2$ or $6$ (mod $8$) is a necessary condition,
-   it remains to show that this is sufficient, and that there is no $S(3, H_{4,2}, 6)$.
+   it remains to show that this is sufficient, and that there is no $(6, H_{4,2}, 1)$-design.
 
 For $v = 6$, there exists an $H_{4,3}$-design of order 6 by Example \ref{eg:H_43-6},
   and it was shown in \cite{bryant} that there does not exist an $H_{4,2}$-design of order 6. So, it remains to consider $v \geq 9$.
