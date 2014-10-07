@@ -31,7 +31,7 @@ A $H$-design is {\em simple} if no two of its $H$-blocks are identical.
 
 Unless otherwise stated, it is standard to assume that a $H$-design has index $\lambda = 1$, and we write $S(t, H, v)$ instead of $S_1(t, H, v)$.
 
-If there exists an $S_{\lambda}(t, H, v)$, then there are certain necessary divisiblity conditions to be satisfied.
+If there exists a $(v, H, \lambda)$-design, then there are certain necessary divisiblity conditions to be satisfied.
 The following proof is from \cite{bryant}:
 
 \begin{lemma}[\cite{bryant}] \label{obv-necessary-1}
@@ -52,7 +52,7 @@ If we take $K = \lambda K_v^{(t)}$, then we have:
 
 \begin{lemma} \label{obv-necessary}
 Let $H$ be a $t$-uniform hypergraph.
-If there exists an $S_{\lambda}(t, H, v)$, then for each $0 \leq i < t$,
+If there exists a $(v, H, \lambda)$-design, then for each $0 \leq i < t$,
   $\gcd(\{ \deg_H(S) : S \subseteq V(H), |S| = i \})$ divides $\lambda {v-i \choose t-i}$.
 \end{lemma}
 
@@ -63,10 +63,10 @@ Apply Lemma \ref{obv-necessary-1} with $K = \lambda K_v^{(t)}$;
 
 For example, if we take $H = K_k^{(t)}$, then we have the usual necessary divisibility conditions for $t$-designs: for each $0 \leq i < t$, ${k-i \choose t-i}$ divides $\lambda {v-i \choose t-i}$.
 
-If $v < t$, then $\lambda K_v^{(t)}$ contains no edges, and we will consider the empty set to be an $H$-decomposition of $\lambda K_v^{(t)}$, and therefore a $S_{\lambda}(t, H, v)$, for any $H$ and $\lambda$. Otherwise, if $v \geq t$ and $\mathcal{D} \neq \emptyset$ is a $H$-design, then it is necessary that there is a subgraph of $\lambda K_v^{(t)}$ isomorphic to $H$, so $|V(H)| \leq |V(\lambda K_v^{(t)})|$, hence:
+If $v < t$, then $\lambda K_v^{(t)}$ contains no edges, and we will consider the empty set to be an $H$-decomposition of $\lambda K_v^{(t)}$, and therefore a $(v, H, \lambda)$-design, for any $H$ and $\lambda$. Otherwise, if $v \geq t$ and $\mathcal{D} \neq \emptyset$ is a $H$-design, then it is necessary that there is a subgraph of $\lambda K_v^{(t)}$ isomorphic to $H$, so $|V(H)| \leq |V(\lambda K_v^{(t)})|$, hence:
 
 \begin{lemma} \label{obv-order}
-Let $H$ be a $t$-uniform hypergraph. If $\mathcal{D}$ is an $S_{\lambda}(t, H, v)$, then either $v < t$ and $\mathcal{D} = \emptyset$ or $v \geq |V(H)|$ and $\mathcal{D} \neq \emptyset$.
+Let $H$ be a $t$-uniform hypergraph. If $\mathcal{D}$ is a $(v, H, \lambda)$-design, then either $v < t$ and $\mathcal{D} = \emptyset$ or $v \geq |V(H)|$ and $\mathcal{D} \neq \emptyset$.
 \end{lemma}
 
 Since $v < t$ is trivial, we shall assume $v \geq t$ unless otherwise stated.
