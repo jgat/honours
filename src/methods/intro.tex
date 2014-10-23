@@ -1,0 +1,20 @@
+\section{Construction Algorithms}
+
+In this chapter, we discuss the methods used to construct the hypergraph decompositions given in section \ref{section:examples}, and present computer programs which were used to generate many of these examples.
+%Throughout this chapter, let $H$ be a $3$-uniform hypergraph unless otherwise stated.
+
+Theorems \ref{thm:H_3,i} and \ref{thm:H_42,H_43} give a construction of $H$-designs of order $v$ for certain $3$-uniform hypergraphs $H$ and all admissible $v$.
+Similar construction methods can be applied for other $3$-uniform hypergraphs $H$.
+
+In order to apply these constructions to find $H$-designs of order $v$ for all admissible $v$, we require $H$-decompositions of a finite number of hypergraphs of the form $K_{v}^{(3)}$, $K_{v,v,v}^{(3)}$, $L_{v,v}^{(3)}$, or $L_{U, V}^{(3)} \cup K_{U, V, W}^{(3)}$, where $U$, $V$, $W$ are pairwise disjoint sets with $|U| = |V|$.
+Since there are only finitely many decompositions needed, we can attempt to generate them automatically.
+
+In principle, these methods could be generalised to $t$-uniform hypergraphs with $t > 3$, and similarly the proofs in Theorems \ref{thm:H_3,i} and \ref{thm:H_42,H_43} could be similarly generalised. However, this would be a cumbersome task in practice.
+
+In constructing these $H$-decompositions, we aim to describe the decomposition as the union of orbits of a set of $H$-blocks under some given permutation $\pi$.
+It should be noted that such a method is somewhat restrictive, in particular, there may exist $H$-decompositions $\mathcal{D}$ of a hypergraph $K$ such that $\pi$ is not an automorphism of $\mathcal{D}$, in which case the method will be incapable of finding $\mathcal{D}$.
+Moreover, it is possible that a decomposition can be expressed more succinctly or elegantly by giving the orbits of a smaller number of $H$-blocks under a larger permutation group, as with Examples \ref{eg:H_43-k14-k6}, \ref{eg:H_43-l88-k886}, and \ref{eg:H_43-l88-k881}.
+
+%Given a 3-uniform hypergraph $H$, we aim to find $H$-decompositions of hypergraphs $K_{v}^{(3)}$, $K_{v, v, v}^{(3)}$ as the union of orbits of a small number of 
+
+%\ref{eg:H_3i-9}, \ref{eg:H_3i-10}, \ref{eg:H_3i-11} this section, we discuss 
