@@ -98,7 +98,7 @@ The converse is then immediate, except in the case that $n$ is even and $a + b =
 Next, if $a + b + c \equiv 0$ (mod $n$), then clearly $(b, c, a)$ and $(c, a, b)$ are difference triples equal to $(a, b, c)$. Conversely, if $a + b + c \not\equiv 0$ (mod $n$), then $a + b = c < \frac{n}{2}$, so $2 \leq 2a, 2b < n$, so $b + c = a + 2b \not\equiv a$ and $c + a = 2a + b \not\equiv b$, therefore $(b, c, a)$ and $(c, a, b)$ are not difference triples.
 \end{proof}
 
-Given $H$ and $v$, we can now describe a method of generating $H$-decompositions of $K_{v}^{(3)}$ of the form \eqref{eq:complete-decomposition-orbit}:
+Given a $3$-uniform hypergraph $H$, and $v \geq 3$, we can now describe a method of generating a $H$-decomposition of $K_{v}^{(3)}$ of the form \eqref{eq:complete-decomposition-orbit}:
 
 First, given $v$ and $n = |\pi| \in \{v-2, v-1, v\}$, Algorithm \ref{alg:get-orbits} below will compute the set of all orbit types of $\pi$ acting on $K_{v}^{(3)}$, as given in Definition \ref{def:orbit-types}.
 As a result of Lemma \ref{lem:diff-triple-existence}, we see that we have indeed generated all difference triples.
@@ -118,9 +118,9 @@ $\mathcal{O} \gets \emptyset$\;
             $\mathcal{O} \gets \mathcal{O} \cup \{(a, b, c)\}$\;
         }\uElse{
             $c \gets n - (a + b)$\;
-            \tcc{We have $(a, b, c) = (b, c, a) = (c, a, b)$. WLOG, take the lexicographically smallest one.}
+            \tcc{We have $(a, b, c) \sim (b, c, a) \sim (c, a, b)$. WLOG, take the lexicographically smallest one.}
             \If{$(a, b, c) \leq (b, c, a) \land (a, b, c) \leq (c, a, b)$}{
-                $\mathcal{O} \gets \mathcal{O} \cup \{(a, b, c)\}$
+                $\mathcal{O} \gets \mathcal{O} \cup \{(a, b, c)\}$\;
             }
         }
     }
@@ -138,7 +138,7 @@ $\mathcal{O} \gets \emptyset$\;
     $\mathcal{O} \gets \mathcal{O} \cup \{(\infty_1, \infty_2)\}$\;
 }
 
-\KwRet{$\mathcal{O}$}
+\KwRet{$\mathcal{O}$}\;
 
 \caption{Find orbit types of $K_v^{(3)}$ under a cyclic permutation.} \label{alg:get-orbits}
 \end{algorithm}
@@ -170,13 +170,13 @@ $V_{all} = \{0, 1, \ldots, n-1\} \cup \{\infty_{1}, \ldots \infty_{v-n}\}$\;
         Let $c(B) = H'$\;
     }
 }
-\KwRet{$c$}
+\KwRet{$c$}\;
 
 % TODO caption
 \caption{Finding a mapping between admissible sets of orbits and corresponding $H$-blocks} \label{alg:get-possible-blocks}
 \end{algorithm}
 
-Finally, Algorithm \ref{alg:decompose-complete} describes a method for finding an $H$-decomposition of $K_{v}^{(3)}$, satisfying \eqref{eq:complete-decomposition-orbit}, if one exists.
+Finally, Algorithm \ref{alg:decompose-complete} describes a method for finding an $H$-decomposition of $K_{v}^{(3)}$ of the form \eqref{eq:complete-decomposition-orbit}, if one exists.
 
 \begin{algorithm}
 \KwIn{$3$-uniform hypergraph $H$; $v \geq 3$}
@@ -195,18 +195,18 @@ $X \gets$ \findpartition{$\mathcal{O}$, $c$, $|E(H)|$} \tcc*{See below}
 \procedure{\findpartition{$\mathcal{O}$, $c$, $e$}}{
   \tcc{This recursive procedure will attempt to find a partition of $\mathcal{O}$ into admissible parts}
   \If{$\mathcal{O} = \emptyset$}{
-    \KwRet{$\emptyset$}
+    \KwRet{$\emptyset$}\;
   }
   \For{{\rm each} $B \subseteq \mathcal{O}$, $|B| = e$}{
     \If{$c(B)$ {\rm is defined}}{
         $X \gets$ \findpartition{$\mathcal{O} \setminus B$, $c$, $e$} \;
         \If{$X \neq$ ``No Solution''}{
             $X \gets X \cup \{c(B)\}$ \;
-            \KwRet{$X$}
+            \KwRet{$X$}\;
         }
     }
   }
-  \KwRet{``No Solution''}
+  \KwRet{``No Solution''}\;
 }
 
 \caption{Finding $H$-decompositions of $K_{v}^{(3)}$} \label{alg:decompose-complete}
@@ -214,3 +214,5 @@ $X \gets$ \findpartition{$\mathcal{O}$, $c$, $|E(H)|$} \tcc*{See below}
 \end{algorithm}
 
 These three algorithms have been implemented in Appendix \ref{appendix:code}, and were used to construct Examples \ref{eg:H_3i-9}, \ref{eg:H_3i-10}, and \ref{eg:H_3i-11}.
+
+\newpage
