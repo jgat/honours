@@ -1,6 +1,6 @@
 .PHONY: full clean
 
-all: thesis.pdf
+all: thesis.pdf ch1.pdf ch2.pdf ch3.pdf
 
 full:
 	$(MAKE) -B thesis.pdf ch1.pdf ch2.pdf ch3.pdf

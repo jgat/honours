@@ -1,0 +1,150 @@
+\section{Definitions}
+
+% TODO introductory sentence/paragraph?
+
+\begin{definition}
+A {\em decomposition} of a graph $G$ is a set $\{G_1, G_2, \ldots, G_d\}$ of
+pairwise edge-disjoint subgraphs of $G$ such that $\bigcup_{i=1}^d E(G_i) = E(G)$.
+If $\Gamma$ is a family of graphs such that each $G_i$ is isomorphic to some
+member of $\Gamma$, then the decomposition is said to be a $\Gamma$-decomposition of $G$.
+If $\Gamma$ contains one element $H$, then the decomposition is said to be an
+{\em $H$-decomposition} of $G$.
+\qed
+\end{definition}
+
+The reader is referred to \cite{bryant-graph} for a discussion on known results
+in graph decompositions.
+
+If we observe that each edge of a graph is merely a 2-element subset of the
+vertex set, it leads to a natural generalisation:
+
+\begin{definition}
+A {\em hypergraph} $H$ is a pair $(V, E)$, where $V = V(H)$ is a finite set of
+{\em vertices}, and $E = E(H)$ is a set of subsets of $V$, called {\em
+hyperedges} or {\em edges}.
+The {\em order} of $H$ is $|V|$, and the {\em size} of $H$ is $|E|$.
+$H$ is said to be {\em $t$-uniform} if each edge has size $t$.
+
+Let $S \subseteq V(H)$ be a set of vertices in $H$. The {\em degree} of $S$,
+denoted $\deg_H(S)$, is $|\{e \in E(H) : S \subseteq e\}|$, that is, the number
+of edges which contain $S$.
+For any vertex $x \in V(H)$, the degree of $x$ is $\deg_H(x) = \deg_H(\{x\})$.
+\qed
+\end{definition}
+
+For example, a $2$-uniform hypergraph is a graph, and in this case the notions
+of the degree of a vertex $x$ coincide. Note that $\deg_H(\emptyset) = |E(H)|$.
+
+\begin{definition}
+Let $H$ be a hypergraph. A {\em subhypergraph} of $H$ is a hypergraph $K$ where
+$V(K) \subseteq V(H)$ and $E(K) \subseteq E(H)$. (Note that in order for $K$
+to be a well-defined hypergraph, we must also have $\bigcup_{e \in E(K)} e
+\subseteq V(K)$.) The subhypergraph $K$ is {\em spanning} if $V(K) = V(H)$.
+\qed
+\end{definition}
+
+If $H$ and $K$ are hypergraphs, the {\em union} of $H$ and $K$, denoted
+$H \cup K$, is the hypergraph with $V(H \cup K) = V(H) \cup V(K)$ and
+$E(H \cup K) = E(H) \cup E(K)$.
+
+If $K$ is a subhypergraph of $H$, then their {\em difference}
+is the hypergraph $H \setminus K$ with $V(H \setminus K) = V(H)$ and
+$E(H \setminus K) = E(H) \setminus E(K)$.
+
+\begin{definition}
+Two hypergraphs $H$ and $K$ are {\em isomorphic} if there is a bijection
+$\varphi : V(H) \to V(K)$ such that for every edge $e \in E(H)$,
+$\varphi(e) = \{\varphi(x) : x \in e\} \in E(K)$, and for every
+$f \in E(K)$, $\varphi^{-1}(f) \in E(H)$.
+\qed
+\end{definition}
+
+\begin{definition}
+A {\em multihypergraph} $H$ is a pair $(V, E)$ where $V = V(H)$ is a finite set
+of vertices, and $E = E(H)$ is a finite multiset of subsets of $V$, called
+hyperedges or edges. That is, we allow for edges to occur multiple times in the
+edge set, but only finitely many copies of each edge.
+\qed
+\end{definition}
+
+\begin{definition}
+Given a hypergraph $K$, a {\em decomposition} of $K$ is a set $\{K_1,
+K_2, \ldots, K_d\}$ of pairwise edge-disjoint subhypergraphs of $K$ such that
+$\bigcup_{i=1}^d E(K_i) = E(K)$. If each $K_i$ is isomorphic to some member
+of a family $\Gamma$ of hypergraphs, then the decomposition is a {\em
+$\Gamma$-decomposition} of $H$. If $\Gamma$ contains one member $H$, then the
+decomposition is an {\em $H$-decomposition} of $K$.
+\qed
+\end{definition}
+
+\subsection{Examples of Hypergraphs}
+
+In this section, we will describe some families of hypergraphs which we will
+make extensive use of.
+
+\begin{definition}
+For a finite nonempty set $V$, the {\em complete $t$-uniform hypergraph on $V$}
+is the hypergraph $K_V^{(t)} = (V, E)$ with $E = \{e \in \mathcal{P}(V) : |e| = k\}$.
+For a positive integer $v$, the notation $K_v^{(t)}$ refers to any complete
+$t$-uniform hypergraph of order $v$.
+\qed
+\end{definition}
+
+For example, we identify $K_v^{(2)}$ with the complete graph $K_v$.
+
+For a finite nonempty set $V$ and a natural number $\lambda$, the {\em complete
+$t$-uniform multihypergraph}, denoted $\lambda K_{V}^{(t)}$, is the
+multihypergraph on $V$ containing $\lambda$ copies of every $t$-element subset
+of $V$. For positive $v \in \Z$, the notation $\lambda K_{v}^{(t)}$ refers to
+any complete $t$-uniform multihypergraph $\lambda K_{V}^{(t)}$ where $|V| = v$.
+
+\begin{definition}
+Given a collection of $m$ finite, nonempty, pairwise disjoint sets
+$V_1, V_2 ,\ldots, V_m$, let $V = \bigcup_{i=1}^{m} V_i$.
+The {\em complete $t$-uniform $m$-partite hypergraph} on $V$, denoted
+$K_{V_1, V_2, \ldots, V_m}^{(t)}$, is the $t$-uniform hypergraph $(V, E)$ having
+all edges which contain at most one element from each of $V_1, V_2, \ldots, V_m$.
+Formally, $e \in E$ iff $|e| = t$ and for all $i=1,\ldots,m$, $|e \cap V_i| \leq 1$.
+In such a hypergraph, the sets $V_1, V_2, \ldots, V_m$ are called the
+{\em partite sets} of the hypergraph.
+
+For positive integers $v_1, v_2, \ldots, v_m$, the notation $K_{v_1, v_2,
+\ldots, v_m}^{(t)}$ is used to denote any complete $t$-uniform $m$-partite
+hypergraph where the partite sets have order $v_1, v_2, \ldots, v_m$
+respectively.
+If $v_1 = v_2 = \cdots = v_m = v$, then we may write $K_{m[v]}^{(t)}$ to denote
+$K_{v, v, \ldots, v}^{(t)}$.
+\qed
+\end{definition}
+
+For example, we identify $K_{v_1, v_2}^{(2)}$ with the complete bipartite graph
+$K_{v_1,v_2}$.
+
+% TODO either give a name to this, or remove the 'definition' from the above.
+
+Given a collection of $m$ finite, nonempty, pairwise disjoint sets
+$V_1, V_2, \ldots, V_m$, we define
+% let $V = \bigcup_{i=1}^{m} V_i$.
+\[
+    L_{V_1, V_2, \ldots, V_m}^{(t)} = K_{V_1 \cup V_2 \cup \cdots \cup V_m}^{(t)} \setminus
+    (K_{V_1}^{(t)} \cup K_{V_2}^{(t)} \cup \cdots \cup K_{V_m}^{(t)}).
+\]
+That is, $L_{V_1, V_2, \ldots, V_m}^{(t)}$ is the $t$-uniform hypergraph with
+vertex set $V = V_1 \cup V_2 \cup \cdots \cup V_m$, and where
+$e \subseteq V$ is an edge if and only if $|e| = t$ and $|e \cap V_i| \leq t-1$
+for all $i = 1,2,\ldots,m$. By the pidgeonhole principle, we equivalently have
+that $e$ is an edge if and only if
+$|e| = t$ and $|\{ V_i : e \cap V_i \neq \emptyset \}| \geq 2$.
+
+For positive integers $v_1, v_2, \ldots, v_m$, the notation $L_{v_1, v_2,
+\ldots, v_m}^{(t)}$ is used to denote any hypergraph
+$L_{V_1, V_2, \ldots, V_m}^{(t)}$ where $|V_i| = v_i$ for $i = 1,2,\ldots,m$.
+If $v_1 = v_2 = \cdots = v_m = v$, then we may write $L_{m[v]}^{(t)}$ to denote
+$L_{v, v, \ldots, v}^{(t)}$.
+
+Given a $t$-uniform hypergraph $H$, a {\em $d$-factor} of $H$ is a spanning
+subhypergraph $K$ where each vertex of $K$ has degree $d$. For example, a
+1-factor consists of $\frac{|V(H)|}{t}$ pairwise disjoint edges from $H$. An
+obvious necessary condition then for the existence of a 1-factor of $H$ is that
+$t$ divides $|V(H)|$.
+
