@@ -24,7 +24,7 @@ In combination with results from \cite{baran, bryant, feng-chang2, hanani}, we s
 
 \begin{theorem}
 Let $H$ be a simple $3$-uniform hypergraph containing at most three edges.
-There exists a $H$-design of order $v \geq 3$ iff the conditions of Lemma \ref{necessary-3-uniform} are satisfied.
+There exists an $H$-design of order $v \geq 3$ iff the conditions of Lemma \ref{necessary-3-uniform} are satisfied.
 \end{theorem}
 
 Up to isomorphism, there are fifteen (simple) $3$-uniform hypergraphs with size at most 3 containing no isolated vertices.
@@ -37,7 +37,7 @@ The notation for the other rows is similar.
 \scriptsize
 \begin{tabular}{|c|c|c|c|c|}
 \hline
-$H_{1,1}$ & $[1,2,3]_{H_{1,1}}$            & $V=\{1,2,3\}$            & $E=\{\{1,2,3\}\}$ & \ref{baranyai} \\ \hline
+$H_{1,1}$ & $[1,2,3]_{H_{1,1}}$            & $V=\{1,2,3\}$            & $E=\{\{1,2,3\}\}$ & \ref{baranyai} \\ \hline % TODO [6pt]
 $H_{2,1}$ & $[1,2,3,4,5,6]_{H_{2,1}}$      & $V=\{1,2,3,4,5,6\}$      & $E=\{\{1,2,3\},\{4,5,6\}\}$ & \ref{baranyai} \\ \hline
 $H_{2,2}$ & $[1,2,3,4,5]_{H_{2,2}}$        & $V=\{1,2,3,4,5\}$        & $E=\{\{1,2,3\},\{1,4,5\}\}$ & \ref{thm:H_22,H_23} \\ \hline
 $H_{2,3}$ & $[1,2,3,4]_{H_{2,3}}$          & $V=\{1,2,3,4\}$          & $E=\{\{1,2,3\},\{1,2,4\}\}$ & \ref{thm:H_22,H_23} \\ \hline
@@ -71,7 +71,10 @@ A $(K_4^{(3)}-e)$-design of order $v$ exists iff $v \equiv 0$,$1$, or $2$ (mod $
 \end{theorem}
 
 
-\vspace{1cm} TODO ... prove the rest:
+\vspace{0.5cm}
+TODO ... describe/discuss the following:
+\vspace{0.5cm}
+
 
 \begin{theorem}[\cite{bryant}] \label{thm:H_22,H_23}
 Let $H \simeq H_{2,2}$ or $H_{2,3}$.
@@ -83,28 +86,25 @@ Let $H$ be a simple $3$-uniform hypergraph with three edges.
 There exists an $H$-design of order $v$ if and only if $v \equiv 0$, $1$, or $2$ (mod $9$).
 \end{theorem}
 
-\vspace{1cm}
-
-
 \subsection{Regular $3$-uniform hypergraphs}
 
 Next, we shall consider (simple) $3$-uniform hypergraphs of larger size, but impose the restriction that the hypergraph is regular.
 Recall that a hypergraph $H$ is $d$-regular if every vertex $x \in V(H)$ has degree $d$.
 
 There are nine non-isomorphic regular $3$-uniform hypergraphs of size at most $5$, three of which are $H_{1,1}$, $H_{2,1}$ and $H_{3,1}$ from Table \ref{table:size3}.
-The remaining six are listed in Table \ref{table:regular}, using the same notation as Table \ref{table:size3} (but with abbreviations for $H_{4,1}$ and $H_{5,1}$).
+The remaining six are listed in Table \ref{table:regular}, using the same notation as Table \ref{table:size3}.
 
 \begin{table}[h]
 \centering
 \scriptsize
 \begin{tabular}{|c|c|c|c|c|}
 \hline
-$H_{4,1}$ & & $V=\{1,2,\ldots,12\}$                       & $E=\{\{1,2,3\},\{4,5,6\},\{7,8,9\},\{10,11,12\}\}$ & \ref{baranyai} \\ \hline
-$H_{4,2}$ & $[1,2,3,4,5,6]_{H_{4,2}}$ & $V=\{1,2,3,4,5,6\}$ & $E=\{\{1,2,3\},\{1,5,6\},\{2,4,6\},\{3,5,6\}\}$ & \ref{thm:H_42,H_43} \\ \hline
-$H_{4,3}$ & $[1,2,3,4,5,6]_{H_{4,3}}$ & $V=\{1,2,3,4,5,6\}$ & $E=\{\{1,2,3\},\{1,5,6\},\{2,3,4\},\{4,5,6\}\}$ & \ref{thm:H_42,H_43} \\ \hline
-$H_{4,4}$ & $[1,2,3,4]_{H_{4,4}}$     & $V=\{1,2,3,4\}$     & $E=\{\{1,2,3\},\{1,2,4\},\{1,3,4\},\{2,3,4\}\}$ & \ref{thm:K4^3} \\ \hline
-$H_{5,1}$ & & $V=\{1,2,\ldots,15\}$                       & {\tiny $\{\{1,2,3\},\{4,5,6\},\{7,8,9\},\{10,11,12\},\{13,14,15\}\}$ } & \ref{baranyai} \\ \hline
-$H_{5,2}$ & $[1,2,3,4,5]_{H_{5,2}}$   & $V=\{1,2,3,4,5\}$   & {\tiny $E=\{\{1,2,3\},\{1,2,4\},\{1,3,5\},\{2,4,5\},\{3,4,5\}\}$ } & Open \\ \hline
+$H_{4,1}$ & $[1,2,\ldots,12]_{H_{4,1}}$ & $V=\{1,2,\ldots,12\}$ & $E=\{\{1,2,3\},\{4,5,6\},\{7,8,9\},\{10,11,12\}\}$ & \ref{baranyai} \\ \hline
+$H_{4,2}$ & $[1,2,3,4,5,6]_{H_{4,2}}$   & $V=\{1,2,3,4,5,6\}$ & $E=\{\{1,2,3\},\{1,5,6\},\{2,4,6\},\{3,5,6\}\}$ & \ref{thm:H_42,H_43} \\ \hline
+$H_{4,3}$ & $[1,2,3,4,5,6]_{H_{4,3}}$   & $V=\{1,2,3,4,5,6\}$ & $E=\{\{1,2,3\},\{1,5,6\},\{2,3,4\},\{4,5,6\}\}$ & \ref{thm:H_42,H_43} \\ \hline
+$H_{4,4}$ & $[1,2,3,4]_{H_{4,4}}$       & $V=\{1,2,3,4\}$     & $E=\{\{1,2,3\},\{1,2,4\},\{1,3,4\},\{2,3,4\}\}$ & \ref{thm:K4^3} \\ \hline
+$H_{5,1}$ & $[1,2,\ldots,15]_{H_{5,1}}$ & $V=\{1,2,\ldots,15\}$ & {\tiny $\{\{1,2,3\},\{4,5,6\},\{7,8,9\},\{10,11,12\},\{13,14,15\}\}$ } & \ref{baranyai} \\ \hline
+$H_{5,2}$ & $[1,2,3,4,5]_{H_{5,2}}$     & $V=\{1,2,3,4,5\}$   & {\tiny $E=\{\{1,2,3\},\{1,2,4\},\{1,3,5\},\{2,4,5\},\{3,4,5\}\}$ } & Open \\ \hline
 \end{tabular}
 \caption{All simple $d$-regular $3$-uniform hypergraphs with size $\in \{4, 5\}$}
 \label{table:regular}
@@ -120,10 +120,10 @@ There exists an $H$-design of order $v \geq 3$ iff the conditions of Lemma \ref{
 \end{theorem}
 
 Let $H$ be a $d$-regular $3$-uniform hypergraph on four edges.
-If $H \simeq H_{4,1}$ (or $H_{5,1}$), the necessary conditions are sufficient by Theorem \ref{baranyai}.
+If $H \simeq H_{4,1}$ or $H_{5,1}$, the necessary conditions are sufficient by Theorem \ref{baranyai}.
 
 If $H \simeq H_{4,4} \simeq K_4^{(3)}$, then an $H$-design of order $v$ is an $S(3, 4, v)$ Steiner system (also called a {\em Steiner quadruple system}),
-  and it can be seen that $v$ satisfied the conditions of Lemma \ref{necessary-3-uniform} if and only if $v \equiv 2$ or $4$ (mod $6$).
+  and it can be seen that $v$ satisfies the conditions of Lemma \ref{necessary-3-uniform} if and only if $v \equiv 2$ or $4$ (mod $6$).
 The following result by Hanani establishes that these conditions are sufficient:
 
 \begin{theorem}[\cite{hanani}] \label{thm:K4^3}
@@ -185,7 +185,7 @@ For each $1 \leq i < j \leq n$, let:
   which exists for $H_{4,2}$ by \cite{bryant}, and for $H_{4,3}$ by Example \ref{eg:H_43-l88-k886}.
 \end{itemize}
 
-\cite{hanani} showed that there exists an $O$-decomposition of $K_{8,8,8}^{(3)}$, so there exists a $H$-decomposition of $K_{8,8,8}^{(3)}$.
+It was shown in \cite{hanani} that there exists an $O$-decomposition of $K_{8,8,8}^{(3)}$, so there exists an $H$-decomposition of $K_{8,8,8}^{(3)}$.
 Then, for each $1 \leq i < j < k \leq n$, let $\mathcal{D}_{i,j,k}$ be an $H$-decomposition of $K_{V_i,V_j,V_k}^{(3)}$.
 
 Then, if $v \equiv 1$ (mod 8),

@@ -1,18 +1,15 @@
 \section{Definitions}
 
-
 The study of hypergraph decompositions is related to the study of $t$-wise balanced designs, so there are shared definitions:
 
 \begin{definition}
 A $t$-$(v,K,\lambda)$ design (also called a {\em $t$-wise balanced design}) is a pair $(X, \mathcal{B})$ where $X$ is a set of $v$ {\em points} and $\mathcal{B}$ is a collection of subsets of $X$, called {\em blocks}, such that for each $B \in \mathcal{B}$, $|B| \in K$, and every $t$-subset of $X$ is contained in exactly $\lambda$ blocks.
 If $K$ has only one element $k$, then we write $t$-$(v, k, \lambda)$, instead of $t$-$(v,\{k\},\lambda)$.
-
-A $t$-$(v, k, \lambda)$ design can also be referred to as a {\em Steiner system} $S_{\lambda}(t, k, v)$.
-If $\lambda = 1$, then we write $S(t, k, v)$.
-
-A design is {\em simple} if no two of its blocks are identical.
 \qed
 \end{definition}
+
+A $t$-$(v, k, 1)$ design can also be referred to as a {\em Steiner system} $S(t, k, v)$.
+A design is {\em simple} if no two of its blocks are identical.
 
 There is a natural correspondence between simple $t$-designs and $K_{k}^{(t)}$-decompositions of $\lambda K_{v}^{(t)}$: given a $t$-$(v, k, \lambda)$ design $(X, \mathcal{B})$, consider the collection of hypergraphs $\mathcal{D} = \{K_{B}^{(t)} \mid B \in \mathcal{B}\}$ formed by taking the complete $t$-uniform hypergraph on each block $B$.
 Since each edge of $K_v^{(t)}$ occurs $\lambda$ times as an edge in some hypergraph of $\mathcal{D}$, it follows that $\mathcal{D}$ is a $K_{k}^{(t)}$-decomposition of $\lambda K_{v}^{(t)}$.
@@ -21,32 +18,63 @@ In the same manner, we can construct a $t$-$(v, k, \lambda)$ design from a $K_{k
 We can then generalise this concept to other decompositions of $\lambda K_{v}^{(t)}$:
 
 \begin{definition}
-If $H$ is a $t$-uniform hypergraph, an {\em $H$-design} of order $v$ and index $\lambda$ is a $H$-decomposition of $\lambda K_{v}^{(t)}$.
+If $H$ is a $t$-uniform hypergraph, an {\em $H$-design} of order $v$ and index $\lambda$ is an $H$-decomposition of $\lambda K_{v}^{(t)}$.
 Each hypergraph in the decomposition is called an {\em $H$-block}.
-Such a design is sometimes denoted a $(v, H, \lambda)$-design, we may also write $S_{\lambda} (t, H, v)$.
-
-A $H$-design is {\em simple} if no two of its $H$-blocks are identical.
+Such a design is sometimes denoted a $(v, H, \lambda)$-design.
 \qed
 \end{definition}
 
-Unless otherwise stated, it is standard to assume that a $H$-design has index $\lambda = 1$, and we write $S(t, H, v)$ instead of $S_1(t, H, v)$.
+Unless otherwise stated, it is standard to assume that an $H$-design has index $\lambda = 1$, and we may say that the $H$-design is an $S(t, H, v)$ Steiner system.
+An $H$-design is {\em simple} if no two of its $H$-blocks are identical.
+
+If $H$ is a $t$-uniform hypergraph, the {\em complete $H$-design of order $v$} is defined to be the set of all subhypergraphs of $K_{v}^{(t)}$ which are isomorphic to $H$.
+
+%\begin{lemma}
+%The complete $H$-design of order $v$ is a simple $H$-design containing ${v \choose |V(H)|} \frac{|V(H)|!}{|\Aut(H)|}$ blocks,
+%where $\Aut(H)$ is the automorphism group of $H$.
+%Moreover, if $\lambda$ is the index of the complete $H$-design, and $\lambda' > \lambda$, then any $(v, H, \lambda')$-design is not simple.
+%\end{lemma}
+
+%\begin{proof}
+%We must show that each edge of $K_{v}^{(t)}$ occurs in $\lambda$ subhypergraphs which are isomorphic to $H$.
+%\end{proof}
 
 If there exists a $(v, H, \lambda)$-design, then there are certain necessary divisiblity conditions to be satisfied.
 The following proof is from \cite{bryant}:
 
 \begin{lemma}[\cite{bryant}] \label{obv-necessary-1}
-Let $H$ and $K$ be hypergraphs.
-Suppose there exists a $H$-decomposition of $K$. Then, for any subset $R$ of $V(K)$,
-  $\gcd(\{\deg_H(S) : S \subseteq V(H), |S| = i\})$ divides $\deg_K(R)$.
+Let $H$ and $K$ be hypergraphs. Suppose there exists an $H$-decomposition of $K$.
+Then, for any subset $R$ of $V(K)$ with $|R| \leq |V(H)|$,
+$\gcd(\{\deg_H(S) : S \subseteq V(H), |S| = |R|\})$ divides $\deg_K(R)$.
 \end{lemma}
 
+(If necessary, we define $\gcd(\{0\}) = 0$ in the above lemma.)
+
 \begin{proof}
-Let $\mathcal{D}$ be an $H$-decomposition of $K$.
-For $R \subseteq V(K)$, the $H$-blocks in $\mathcal{D}$ partition the edges of $K$ which contain $R$.
-Thus, $\deg_K(R) = \sum_{G \in \mathcal{D}} \deg_G(R)$.
-For each $G \in \mathcal{D}$, $\deg_G(R) \in \{\deg_H(S) : S \subseteq V(H), |S| = |R|\}$,
-  therefore $\gcd(\{\deg_H(S) : S \subseteq V(H), |S| = |R|\})$ divides $\deg_K(R)$.
+Let $\mathcal{D}$ be an $H$-decomposition of $K$, $R \subseteq V(K)$, and suppose that $|R| \leq |V(H)|$.
+The $H$-blocks in $\mathcal{D}$ whose vertex sets contain $R$ partition the edges of $K$ which contain $R$, so
+\begin{equation} \label{eq:degree-sum}
+    \deg_K(R) = \sum_{\substack{G \in \mathcal{D} \\ R \subseteq V(G)}} \deg_G(R).
+\end{equation}
+For each $G \in \mathcal{D}$ with $R \subseteq V(G)$, we have
+\[
+    \deg_G(R) \in \{\deg_H(S) : S \subseteq V(H), |S| = |R|\}.
+\]
+Therefore $\gcd(\{\deg_H(S) : S \subseteq V(H), |S| = |R|\})$ divides $\deg_K(R)$, by B\'{e}zout's identity.
 \end{proof}
+
+Informally, for any set $R$ of vertices in $K$, there are $\deg_K(R)$ edges incident with $R$,
+but each of these edges must occur precisely once in the design $\mathcal{D}$.
+Hence, for every $G \in \mathcal{D}$ which contains $R$, the isomorphism $G \simeq H$
+carries $R$ into some $S \subseteq V(H)$ with $|S| = |R|$, and so $G$ contains
+$\deg_H(S)$ of the $\deg_K(R)$ edges incident with $R$.
+Therefore, $\deg_K(R)$ must be given by a sum of elements in $\{\deg_H(S) : S \subseteq V(H), |S| = |R|\}$.
+So, if $\deg_H(S)$ is divisible by some $d$ for all such $S$, then $\deg_K(R)$ must also be divisible by $d$.
+
+Note that if $|R| > |V(H)|$, then there are no $G \in \mathcal{D}$ with $R \subseteq V(G)$,
+so \eqref{eq:degree-sum} is the empty sum (and so $\deg_K(R) = 0$), and the statement following holds vacuously.
+However, $\gcd(\{\deg_H(S) : S \subseteq V(H), |S| = |R|\}) = \gcd(\emptyset)$ is not defined,
+so the conclusion does not follow.
 
 If we take $K = \lambda K_v^{(t)}$, then we have:
 
