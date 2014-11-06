@@ -22,7 +22,7 @@ If there exists an $H$-design of order $v \geq 3$, then $v \geq |V(H)|$, and the
 First, we shall consider simple $3$-uniform hypergraphs containing at most three edges, by considering every possible case.
 In combination with results from \cite{baran, bryant, feng-chang2, hanani}, we shall prove the following result:
 
-\begin{theorem}
+\begin{theorem} \label{thm:size-le3}
 Let $H$ be a simple $3$-uniform hypergraph containing at most three edges.
 There exists an $H$-design of order $v \geq 3$ iff the conditions of Lemma \ref{necessary-3-uniform} are satisfied.
 \end{theorem}
@@ -83,46 +83,29 @@ To construct an $H$-design of order $v = 4n + \epsilon$, where $\epsilon \in \{0
 (excluding the case $H \simeq H_{2,2}$ and $v = 4$), construct a collection of pairwise disjoint sets
 $V_1, V_2, \ldots, V_n$, each of size 4. Let $\infty_1, \infty_2$ be two points not contained in
 $\bigcup_{i=1}^{n} V_i$, and let $I_0 = \emptyset$, $I_1 = \{\infty_1\}$, $I_2 = \{\infty_1, \infty_2\}$.
-We then require an $H$-decomposition of $K = K_{V_1 \cup V_2 \cup \cdots \cup V_n \cup I_\epsilon}^{(3)}$.
+We then require an $H$-decomposition of $K = K_{V_1 \cup V_2 \cup \cdots \cup V_n \cup I_\epsilon}^{(3)} \simeq K_{v}^{(3)}$.
 
 For each edge $e \in E(K)$, consider the sets $V_i$ which have non-empty intersection with $e$:
 \begin{itemize}
     \item If $e \subseteq V_i \cup I_\epsilon$ for some $i \in \{1,\ldots,n\}$, then $e$ is an edge of $K_{V_i \cup I_\epsilon}^{(3)} \simeq K_{4+\epsilon}^{(3)}$.
-    \item If $e \subseteq V_i \cup V_j \cup I_\epsilon$ for distinct $i, j \in \{1,\ldots,n\}$, and has at least one vertex in each of $V_i$ and $V_j$,
-        then if $\epsilon = 0$, $e$ is an edge of $L_{V_i,V_j}^{(3)} \simeq L_{4,4}^{(3)}$, and if $\epsilon > 0$, $e$ is an edge of
-        $L_{V_i,V_j}^{(3)} \cup K_{V_i,V_j,I_\epsilon}^{(3)}$.
-    \item If $e \subseteq V_i \cup V_j \cup V_k$ for distinct $i, j, k \in \{1,\ldots,n\}$, and has at least one vertex in each of $V_i$, $V_j$, and $V_k$,
-    then $e$ is an edge of $K_{V_i,V_j,V_k}^{(3)} \simeq K_{4,4,4}^{(3)}$.
+    \item If $e \subseteq V_i \cup V_j \cup I_\epsilon$ for distinct $i, j \in \{1,\ldots,n\}$, and has at least one vertex in each of $V_i$ and $V_j$, then $e$ is an edge of $L_{V_i,V_j,[I_\epsilon]}^{(3)} \simeq L_{4,4,[\epsilon]}^{(3)}$.
+    \item If $e \subseteq V_i \cup V_j \cup V_k$ for distinct $i, j, k \in \{1,\ldots,n\}$, and has at least one vertex in each of $V_i$, $V_j$, and $V_k$, then $e$ is an edge of $K_{V_i,V_j,V_k}^{(3)} \simeq K_{4,4,4}^{(3)}$.
 \end{itemize}
-%Hence, if $\epsilon = 0$,
-%\[
-%    K
-%    %= K_{V_1 \cup V_2 \cup \cdots \cup V_n \cup I_\epsilon}^{(3)}
-%    = \left( \bigcup_{1 \leq i \leq n} K_{V_i \cup I_\epsilon}^{(3)} \right)
-%    \cup \left( \bigcup_{1 \leq i < j \leq n} L_{V_i,V_j}^{(3)} \right)
-%    \cup \left( \bigcup_{1 \leq i < j < k \leq n} K_{V_i,V_j,V_k}^{(3)} \right),
-%\]
-%and if $\epsilon > 0$,
-%\[
-%    K
-%    %= K_{V_1 \cup V_2 \cup \cdots \cup V_n \cup I_\epsilon}^{(3)}
-%    = \left( \bigcup_{1 \leq i \leq n} K_{V_i \cup I_\epsilon}^{(3)} \right)
-%    \cup \left( \bigcup_{1 \leq i < j \leq n} L_{V_i,V_j}^{(3)} \cup K_{V_i,V_j,I_\epsilon}^{(3)} \right)
-%    \cup \left( \bigcup_{1 \leq i < j < k \leq n} K_{V_i,V_j,V_k}^{(3)} \right).
-%\]
-We therefore have a $\Gamma_\epsilon$-decomposition of $K = K_{V_1 \cup V_2 \cup \cdots \cup V_n \cup I_\epsilon}^{(3)}$, where
+Therefore,
 \[
-    \Gamma_0 = \left\{ K_{4}^{(3)}, L_{4,4}^{(3)}, K_{4,4,4}^{(3)} \right\}
+    K
+    %= K_{V_1 \cup \cdots \cup V_n \cup I_\epsilon}^{(3)}
+    = \left( \bigcup_{1 \leq i \leq n} K_{V_i \cup I_\epsilon}^{(3)} \right)
+    \cup \left( \bigcup_{1 \leq i < j \leq n} L_{V_i,V_j,[I_\epsilon]}^{(3)} \right)
+    \cup \left( \bigcup_{1 \leq i < j < k \leq n} K_{V_i,V_j,V_k}^{(3)} \right)
 \]
-for $\epsilon = 0$, and
+is a $\Gamma_\epsilon$-decomposition of $K$, where
 \[
-    \Gamma_\epsilon = \left\{ K_{4+\epsilon}^{(3)}, L_{U,V}^{(3)} \cup K_{U,V,I_\epsilon}^{(3)}, K_{4,4,4}^{(3)} \right\}
+    \Gamma_\epsilon = \left\{ K_{4+\epsilon}^{(3)}, L_{4,4,[\epsilon]}^{(3)}, K_{4,4,4}^{(3)} \right\}.
 \]
-for $\epsilon \in \{1,2\}$, where $U, V, I_\epsilon$ are pairwise disjoint sets with $|U| = |V| = 4$ and $|I_\epsilon| = \epsilon$.
-Hence, if we can find an $H$-decomposition of each $G \in \Gamma$, this will extend to an $H$-decomposition of $K$,
-which is the required $H$-design of order $4n+\epsilon$.
+Hence, if we can find an $H$-decomposition of each $G \in \Gamma_\epsilon$, this can be extended to an $H$-decomposition of $K$, as required.
 Examples of $H$-decompositions of $G$ for each $H \in \left\{ H_{2,2}, H_{2,3} \right\}$
-and $G \in \left\{ K_{4}^{(3)}, K_{5}^{(3)}, K_{6}^{(3)}, L_{4,4}^{(3)}, L_{U,V}^{(3)} \cup K_{U,V,I_1}^{(3)}, L_{U,V}^{(3)} \cup K_{U,V,I_2}^{(3)}, K_{4,4,4}^{(3)} \right\}$
+and $G \in \left\{ K_{4}^{(3)}, K_{5}^{(3)}, K_{6}^{(3)}, L_{4,4}^{(3)}, L_{4,4,[1]}^{(3)}, L_{4,4,[2]}^{(3)}, K_{4,4,4}^{(3)} \right\}$
 are given in \cite{bryant}, except when $H \simeq H_{2,2}$ and $G \simeq K_{4}^{(3)}$,
 so this completes the proof aside from the case $H \simeq H_{2,2}$ and $v \equiv 0$ (mod $4$), $v \geq 8$.
 
@@ -159,14 +142,12 @@ Construct $n$ pairwise disjoint sets $V_1, \ldots, V_n$ of size 9,
 and let $\infty_1, \infty_2$ be two distinct points, neither of which is in $\bigcup_{i=1}^{n} V_i$.
 Let $I_0 = \emptyset$, $I_1 = \{\infty_1\}$ and $I_2 = \{\infty_1, \infty_2\}$.
 
-For each $1 \leq i \leq n$ and for each $\epsilon \in \{0,1,2\}$, let $\mathcal{D}_i^{\epsilon}$ be an $H$-decomposition of $K_{V_i \cup I_\epsilon}^{(3)}$,
+For each $1 \leq i \leq n$ and each $\epsilon \in \{0,1,2\}$, let $\mathcal{D}_i^{\epsilon}$ be an $H$-decomposition of $K_{V_i \cup I_\epsilon}^{(3)}$,
 which exists by Examples \ref{eg:H_3i-9}, \ref{eg:H_3i-10}, and \ref{eg:H_3i-11} for $\epsilon = 0$, $1$, and $2$ respectively.
 %
-For each $1 \leq i < j \leq n$, let $\mathcal{D}_{i,j}^{0}$ be an $H$-decomposition of $L_{V_i, V_j}^{(3)}$, which exists by Example \ref{eg:H_3i-l99};
-and for each $\epsilon \in \{1,2\}$, let $\mathcal{D}_{i,j}^{\epsilon}$ be an $H$-decomposition of $L_{V_i, V_j}^{(3)} \cup K_{V_i,V_j,I_\epsilon}^{(3)}$,
-which exists by Examples \ref{eg:H_3i-l99-k991} and \ref{eg:H_3i-l99-k992} for $\epsilon = 1$ and $2$ respectively.
+For each $1 \leq i < j \leq n$ and each $\epsilon \in \{0,1,2\}$, let $\mathcal{D}_{i,j}^{\epsilon}$ be an $H$-decomposition of $L_{V_i, V_j, [I_\epsilon]}^{(3)}$, which exists by Examples \ref{eg:H_3i-l99}, \ref{eg:H_3i-l99-k991}, and \ref{eg:H_3i-l99-k992} for $\epsilon = 0$, $1$, and $2$ respectively.
 %
-For each $1 \leq i < j < k \leq n$, let $\mathcal{D}$ be an $H$-decomposition of $K_{V_i,V_j,V_k}^{(3)}$, which exists by Example \ref{eg:H_3i-k999}.
+For each $1 \leq i < j < k \leq n$, let $\mathcal{D}_{i,j,k}$ be an $H$-decomposition of $K_{V_i,V_j,V_k}^{(3)}$, which exists by Example \ref{eg:H_3i-k999}.
 
 Then,
 \[
@@ -183,41 +164,37 @@ is an $H$-design of order $v = 9n + \epsilon$, for each $n \geq 1$ and $\epsilon
 %Otherwise, it must be the case that the three vertices of $e$ are in $V_i \cup V_j \cup V_k$ for some distinct $i, j, k$, so $e$ is contained in some $H$-block of $\mathcal{D}_{i,j,k}^{\epsilon}$.
 %Precisely one of these three cases must hold, so every edge of $K_{V_1 \cup \cdots \cup V_n \cup I_\epsilon}^{(3)}$ is contained in precisely one $H$-block of $\mathcal{D}$.
 
-When $H$ is isomorphic to one of $H_{3,6}$, $H_{3,7}$, $H_{3,8}$, $H_{3,9}$ or $H_{3,10}$, the proof is essentially identical,
-since it has been shown in \cite{bryant} that there exist $H$-decompositions of $K_{v}^{(3)}$ for $v \in \{9,10,11\}$, $L_{9,9}^{(3)}$,
-$L_{U,V}^{(3)} \cup K_{U,V,W}^{(3)}$ for $|U| = |V| = 9$, $|W| \in \{1,2\}$, and of $K_{9,9,9}^{(3)}$.
+When $H$ is isomorphic to one of $H_{3,6}$, $H_{3,7}$, $H_{3,8}$, $H_{3,9}$ or $H_{3,10}$, the proof is essentially identical, since it has been shown in \cite{bryant} that there exist $H$-decompositions of $K_{v}^{(3)}$ for each $v \in \{9,10,11\}$, $L_{9,9,[\epsilon]}^{(3)}$ for each $\epsilon \in \{0,1,2\}$, and $K_{9,9,9}^{(3)}$.
 
 The case $H \simeq H_{3,11}$ must be treated differently, since there is no subgraph of $K_{9,9,9}^{(3)}$ isomorphic to $H_{3,11}$
 (and hence there does not exist an $H_{3,11}$-decomposition of $K_{9,9,9}^{(3)}$).
 
-Instead, the authors of \cite{bryant} aim to find a $\Gamma_\epsilon$-decomposition of the complete $3$-uniform hypergraph $K = K_{V_1 \cup \cdots \cup V_n \cup I_\epsilon}^{(3)}$ with
+Instead, the authors of \cite{bryant} aim to find a $\Gamma_\epsilon$-decomposition of the complete $3$-uniform hypergraph $K = K_{V_1 \cup \cdots \cup V_n \cup I_\epsilon}^{(3)}$, where
 \[
     \Gamma_\epsilon =
-    \begin{cases}
-    \left\{ K_{9}^{(3)}, L_{9,9}^{(3)}, K_{U,V,W}^{(3)} \cup L_{U,V}^{(3)}, K_{9,9,9,9}^{(3)} \right\} & \epsilon = 0 \\
-    \left\{ K_{9+\epsilon}^{(3)}, L_{U,V}^{(3)} \cup K_{U,V,I_\epsilon}^{(3)}, K_{U,V,W}^{(3)} \cup L_{U,V}^{(3)} \cup K_{U,V,I_\epsilon}^{(3)}, K_{9,9,9,9}^{(3)} \right\} & \epsilon \in \{1,2\},
-    \end{cases}
+    \left\{ K_{9}^{(3)}, L_{9,9,[\epsilon]}^{(3)}, L_{U,V,[I_\epsilon]}^{(3)} \cup K_{U,V,W}^{(3)}, K_{9,9,9,9}^{(3)} \right\},
 \]
-where $U, V, W, I_\epsilon$ are pairwise disjoint sets with $|U| = |V| = |W| = 9$ and $|I_\epsilon| = \epsilon$.
+where $U$, $V$, $W$, $I_\epsilon$ are pairwise disjoint sets with $|U| = |V| = |W| = 9$ and $|I_\epsilon| = \epsilon$.
 
-To do this, define the hypergraph $K_{\{1,2,\ldots,n\}}^{(2,3)} = (V, E)$ by $V = \{1,2,\ldots,n\}$ and $E = \{e \subseteq V : |e| \in \{2,3\}\}$.
-It can be shown that there exists a $\Lambda$-decomposition $\mathcal{D}'$ of $K_{\{1,2,\ldots,n\}}^{(2,3)}$,
-where $\Lambda = \{K_{2}^{(2)}, [1,2,3]_A, K_{4}^{(3)}\}$, and where $[1,2,3]_A$ is the hypergraph $(\{1,2,3\}, \{\{1,2\},\{1,2,3\}\})$.
-Taking $\epsilon = 0$ as an example, $\mathcal{D}'$ gives rise to a $\Gamma_0$-decomposition of $K$ given by
+To do this, define $K_{\{1,\ldots,n\}}^{(2,3)} = K_{\{1,\ldots,n\}}^{(2)} \cup K_{\{1,\ldots,n\}}^{(3)}$; that is, $V(K_{\{1,\ldots,n\}}^{(2,3)}) = \{1,2,\ldots,n\}$ and $e$ is an edge iff $|e| \in \{2,3\}$.
+It can be shown that there exists a $\Lambda$-decomposition $\mathcal{D}'$ of $K_{\{1,\ldots,n\}}^{(2,3)}$,
+where $\Lambda = \left\{ K_{2}^{(2)}, [1,2,3]_A, K_{4}^{(3)} \right\}$, and where $[1,2,3]_A$ is the hypergraph $(\{1,2,3\}, \{\{1,2\},\{1,2,3\}\})$.
+So, $\mathcal{D}'$ gives rise to a $\Gamma_\epsilon$-decomposition of $K$ given by
 \begin{align*}
-    K &= \left( \bigcup_{1 \leq i \leq n} K_{V_i}^{(3)} \right)
-    \cup \left( \bigcup_{K_{\{i,j\}}^{(2)} \in \mathcal{D}'} L_{V_i,V_j}^{(3)} \right)
+    K &= \left( \bigcup_{1 \leq i \leq n} K_{V_i \cup I_\epsilon}^{(3)} \right)
+    \cup \left( \bigcup_{K_{\{i,j\}}^{(2)} \in \mathcal{D}'} L_{V_i,V_j,[I_\epsilon]}^{(3)} \right)
     \\ & \quad \quad
-    \cup \left( \bigcup_{[i,j,k]_A \in \mathcal{D}'} L_{V_i,V_j}^{(3)} \cup K_{V_i,V_j,V_k}^{(3)} \right)
+    \cup \left( \bigcup_{[i,j,k]_A \in \mathcal{D}'} L_{V_i,V_j,[I_\epsilon]}^{(3)} \cup K_{V_i,V_j,V_k}^{(3)} \right)
     \cup \left( \bigcup_{K_{\{i,j,k,l\}}^{(3)} \in \mathcal{D}'} K_{V_i,V_j,V_k,V_l}^{(3)} \right),
 \end{align*}
-and smilarly for $\epsilon \in \{1,2\}$.
+and simlarly for $\epsilon \in \{1,2\}$.
 Informally, $\mathcal{D}'$ describes a pattern of arranging copies of $L \in \Lambda$ to give every pair and triple of points from the set $\{1,2,\ldots,n\}$,
-so we can therefore cover every $L_{V_i, V_j}^{(3)}$ and every $K_{V_i, V_j, V_k}^{(3)}$ using this pattern.
+so we can therefore cover every $L_{V_i, V_j, [I_\epsilon]}^{(3)}$ and every $K_{V_i, V_j, V_k}^{(3)}$ using this pattern.
 
-For each $\epsilon \in \{0,1,2\}$, it can be shown that there exists an $H_{3,11}$-decomposition of each $G \in \Gamma_\epsilon$,
+For each $\epsilon \in \{0,1,2\}$ and each $G \in \Gamma_\epsilon$, it can be shown that there exists an $H_{3,11}$-decomposition of $G$,
 so we can construct an $H_{3,11}$-decomposition of $K$, which completes the proof.
 
+This completes the proof of Theorem \ref{thm:size-le3}. \qed
 
 \subsection{Regular $3$-uniform hypergraphs}
 
@@ -297,12 +274,10 @@ In the remaining cases, we have $v = 8n + \epsilon$ for $n \geq 1$ and $\epsilon
 Construct a collection of $n$ pairwise disjoint sets $V_1, \ldots, V_n$ of size 8,
   and let $I = \{\infty_1, \infty_2, \infty_3, \infty_4, \infty_5, \infty_6\}$ be a set of six points, none of which is in $\bigcup_{i=1}^{n} V_i$.
 
-For each $1 \leq i \leq n$, let:
+For each $1 \leq i \leq n$:
 \begin{itemize}
-  \item $\mathcal{D}_i$ be an $H$-decomposition of $K_{V_i \cup \{\infty_1\}}$,
-  which exists for $H_{4,2}$ by \cite{bryant}, and for $H_{4,3}$ by Example \ref{eg:H_43-9};
-  \item $\mathcal{D}'_i$ be an $H$-decomposition of $K_{V_i \cup I}^{(3)} \setminus K_{I}^{(3)}$,
-  which exists for $H_{4,2}$ by \cite{bryant}, and for $H_{4,3}$ by Example \ref{eg:H_43-k14-k6}.
+  \item let $\mathcal{D}_i$ be an $H$-decomposition of $K_{V_i \cup \{\infty_1\}}$, which exists for $H_{4,2}$ by \cite{bryant}, and for $H_{4,3}$ by Example \ref{eg:H_43-9}; and
+  \item let $\mathcal{D}'_i$ be an $H$-decomposition of $K_{V_i \cup I}^{(3)} \setminus K_{I}^{(3)}$, which exists for $H_{4,2}$ by \cite{bryant}, and for $H_{4,3}$ by Example \ref{eg:H_43-k14-k6}.
 \end{itemize}
 
 Let $\mathcal{D}_\infty$ be an $H$-decomposition of $K_{V_n \cup I}^{(3)}$,
@@ -310,12 +285,10 @@ Let $\mathcal{D}_\infty$ be an $H$-decomposition of $K_{V_n \cup I}^{(3)}$,
   the union of $\mathcal{D}'_n$ and a $H_{4,3}$-decomposition of $K_{I}^{(3)}$ (which exists by example \ref{eg:H_43-6}).
 
 
-For each $1 \leq i < j \leq n$, let:
+For each $1 \leq i < j \leq n$:
 \begin{itemize}
-  \item $\mathcal{D}_{i,j}$ be an $H$-decomposition of $L_{V_i,V_j}^{(3)} \cup K_{V_i,V_j,\{\infty_1\}}^{(3)}$,
-  which exists for $H_{4,2}$ by \cite{bryant}, and for $H_{4,3}$ by Example \ref{eg:H_43-l88-k881};
-  \item $\mathcal{D}'_{i,j}$ be an $H$-decomposition of $L_{V_i,V_j}^{(3)} \cup K_{V_i,V_j,I}^{(3)}$,
-  which exists for $H_{4,2}$ by \cite{bryant}, and for $H_{4,3}$ by Example \ref{eg:H_43-l88-k886}.
+  \item let $\mathcal{D}_{i,j}$ be an $H$-decomposition of $L_{V_i,V_j,[\{\infty_1\}]}^{(3)}$, which exists for $H_{4,2}$ by \cite{bryant}, and for $H_{4,3}$ by Example \ref{eg:H_43-l88-k881}; and
+  \item let $\mathcal{D}'_{i,j}$ be an $H$-decomposition of $L_{V_i,V_j,[I]}^{(3)}$, which exists for $H_{4,2}$ by \cite{bryant}, and for $H_{4,3}$ by Example \ref{eg:H_43-l88-k886}.
 \end{itemize}
 
 It was shown in \cite{hanani} that there exists an $O$-decomposition of $K_{8,8,8}^{(3)}$, so there exists an $H$-decomposition of $K_{8,8,8}^{(3)}$.

@@ -112,8 +112,7 @@ For positive integers $v_1, v_2, \ldots, v_m$, the notation $K_{v_1, v_2,
 \ldots, v_m}^{(t)}$ is used to denote any complete $t$-uniform $m$-partite
 hypergraph where the partite sets have order $v_1, v_2, \ldots, v_m$
 respectively.
-If $v_1 = v_2 = \cdots = v_m = v$, then we may write $K_{m[v]}^{(t)}$ to denote
-$K_{v, v, \ldots, v}^{(t)}$.
+%If $v_1 = v_2 = \cdots = v_m = v$, then we may write $K_{m[v]}^{(t)}$ to denote $K_{v, v, \ldots, v}^{(t)}$.
 \qed
 \end{definition}
 
@@ -122,29 +121,21 @@ $K_{v_1,v_2}$.
 
 % TODO either give a name to this, or remove the 'definition' from the above.
 
-Given a collection of $m$ finite, nonempty, pairwise disjoint sets
-$V_1, V_2, \ldots, V_m$, we define
-% let $V = \bigcup_{i=1}^{m} V_i$.
+Given a collection of $m+1$ finite pairwise disjoint sets
+$V_1, V_2, \ldots, V_m, W$, where $V_i \neq \emptyset$ for each $i = 1, 2, \ldots, m$, we define
 \[
-    L_{V_1, V_2, \ldots, V_m}^{(t)} = K_{V_1 \cup V_2 \cup \cdots \cup V_m}^{(t)} \setminus
-    (K_{V_1}^{(t)} \cup K_{V_2}^{(t)} \cup \cdots \cup K_{V_m}^{(t)}).
+    L_{V_1, V_2, \ldots, V_m, [W]}^{(t)} = K_{V_1 \cup V_2 \cup \cdots \cup V_m \cup W}^{(t)} \setminus (K_{V_1 \cup W}^{(t)} \cup K_{V_2 \cup W}^{(t)} \cup \cdots \cup K_{V_m \cup W}^{(t)}).
 \]
-That is, $L_{V_1, V_2, \ldots, V_m}^{(t)}$ is the $t$-uniform hypergraph with
-vertex set $V = V_1 \cup V_2 \cup \cdots \cup V_m$, and where
-$e \subseteq V$ is an edge if and only if $|e| = t$ and $|e \cap V_i| \leq t-1$
-for all $i = 1,2,\ldots,m$. By the pidgeonhole principle, we equivalently have
-that $e$ is an edge if and only if
-$|e| = t$ and $|\{ V_i : e \cap V_i \neq \emptyset \}| \geq 2$.
+That is, $L_{V_1, V_2, \ldots, V_m, [W]}^{(t)}$ is the $t$-uniform hypergraph with vertex set $V = V_1 \cup V_2 \cup \cdots \cup V_m \cup W$, and where $e \subseteq V$ is an edge if and only if $|e| = t$ and $e$ has non-empty intersection with at least two of $V_1, \ldots, V_m$.
 
-For positive integers $v_1, v_2, \ldots, v_m$, the notation $L_{v_1, v_2,
-\ldots, v_m}^{(t)}$ is used to denote any hypergraph
-$L_{V_1, V_2, \ldots, V_m}^{(t)}$ where $|V_i| = v_i$ for $i = 1,2,\ldots,m$.
-If $v_1 = v_2 = \cdots = v_m = v$, then we may write $L_{m[v]}^{(t)}$ to denote
-$L_{v, v, \ldots, v}^{(t)}$.
+For integers $v_1, v_2, \ldots, v_m \geq 1$ and $w \geq 0$, the notation $L_{v_1, v_2, \ldots, v_m, [w]}^{(t)}$ is used to denote any hypergraph $L_{V_1, V_2, \ldots, V_m, [W]}^{(t)}$ where $|V_i| = v_i$ for each $i = 1, 2, \ldots, m$, and $|W| = w$.
+
+If $W = \emptyset$, we may use the notation $L_{V_1, V_2, \ldots, V_m}^{(t)} = L_{V_1, V_2, \ldots, V_m, [W]}^{(t)}$, and if $w = 0$, we may use the notation $L_{v_1, v_2, \ldots, v_m}^{(t)} = L_{v_1, v_2, \ldots, v_m, [0]}^{(t)}$.
+
+%If $v_1 = v_2 = \cdots = v_m = v$, then we may write $L_{m[v]}^{(t)}$ to denote $L_{v, v, \ldots, v}^{(t)}$.
 
 Given a $t$-uniform hypergraph $H$, a {\em $d$-factor} of $H$ is a spanning
 subhypergraph $K$ where each vertex of $K$ has degree $d$. For example, a
 1-factor consists of $\frac{|V(H)|}{t}$ pairwise disjoint edges from $H$. An
 obvious necessary condition then for the existence of a 1-factor of $H$ is that
 $t$ divides $|V(H)|$.
-

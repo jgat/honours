@@ -275,7 +275,7 @@ For each $i \in \{2,3,4,5\}$, there exists an $H_{3,i}$-decomposition of $L_{9,9
 \begin{proof}
 Let
 \[
-    U = \{u_0, u_1, u_2, u_3, u_4, u_5, u_6, u_7, u_8\} \quad \text{and} \quad
+    U = \{u_0, u_1, u_2, u_3, u_4, u_5, u_6, u_7, u_8\} \text{ and }
     V = \{v_0, v_1, v_2, v_3, v_4, v_5, v_6, v_7, v_8\}
 \]
 be two disjoint sets of size 9.
@@ -396,17 +396,19 @@ $H_{3,5}$ &
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{example} \label{eg:H_3i-l99-k991}
-Let $U$, $V$ be two disjoint sets of size 9, and let $\infty$ be a point not in $U \cup V$.
-For each $i \in \{2,3,4,5\}$, there exists an $H_{3,i}$-decomposition of $L_{U,V}^{(3)} \cup K_{U,V,\{\infty\}}^{(3)}$.
+For each $i \in \{2,3,4,5\}$, there exists an $H_{3,i}$-decomposition of $L_{9,9,[1]}^{(3)}$.
 \end{example}
 
 \begin{proof}
-Let $U$ and $V$ be given by
-    $U = \{u_0, u_1, u_2, u_3, u_4, u_5, u_6, u_7, u_8\}$ and
-    $V = \{v_0, v_1, v_2, v_3, v_4, v_5, v_6, v_7, v_8\}$.
+Let
+\[
+    U = \{u_0, u_1, u_2, u_3, u_4, u_5, u_6, u_7, u_8\} \text{ and }
+    V = \{v_0, v_1, v_2, v_3, v_4, v_5, v_6, v_7, v_8\}
+\]
+be two disjoint sets of size 9, and let $\infty$ be a point not in $U \cup V$.
 
 Let $\pi$ be the permutation which maps $u_i \mapsto u_{i+1}$, $v_i \mapsto v_{i+1}$, where addition is performed in $\Z_9$, and $\infty \mapsto \infty$.
-For each of the following hypergraphs, the union of the orbits of the following blocks under $\pi$ forms an $H_{3,i}$-decomposition of $L_{U,V}^{(3)} \cup K_{U,V,\{\infty\}}^{(3)}$.
+For each of the following hypergraphs, the union of the orbits of the following blocks under $\pi$ forms an $H_{3,i}$-decomposition of $L_{U,V,[\{\infty\}]}^{(3)}$.
 
 { \small
 \begin{longtable}{|c|l|}
@@ -534,17 +536,19 @@ $H_{3,5}$ &
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{example} \label{eg:H_3i-l99-k992}
-Let $U$, $V$ be two disjoint sets of size 9, and let $\infty_1, \infty_2$ be two points not in $U \cup V$.
-For each $i \in \{2,3,4,5\}$, there exists an $H_{3,i}$-decomposition of $L_{U,V}^{(3)} \cup K_{U,V,\{\infty_1, \infty_2\}}^{(3)}$.
+For each $i \in \{2,3,4,5\}$, there exists an $H_{3,i}$-decomposition of $L_{9,9,[2]}^{(3)}$.
 \end{example}
 
 \begin{proof}
-Let $U$ and $V$ be given by
-    $U = \{u_0, u_1, u_2, u_3, u_4, u_5, u_6, u_7, u_8\}$ and
-    $V = \{v_0, v_1, v_2, v_3, v_4, v_5, v_6, v_7, v_8\}$.
+Let
+\[
+    U = \{u_0, u_1, u_2, u_3, u_4, u_5, u_6, u_7, u_8\} \text{ and }
+    V = \{v_0, v_1, v_2, v_3, v_4, v_5, v_6, v_7, v_8\}
+\]
+be two disjoint sets of size 9, and let $\infty_1, \infty_2$ be two points not in $U \cup V$.
 
 Let $\pi$ be the permutation which maps $u_i \mapsto u_{i+1}$, $v_i \mapsto v_{i+1}$, where addition is performed in $\Z_9$, and $\infty_k \mapsto \infty_k$ for $k \in \{1,2\}$.
-For each of the following hypergraphs, the union of the orbits of the following blocks under $\pi$ forms an $H_{3,i}$-decomposition of $L_{U,V}^{(3)} \cup K_{U,V,\{\infty_1, \infty_2\}}^{(3)}$.
+For each of the following hypergraphs, the union of the orbits of the following blocks under $\pi$ forms an $H_{3,i}$-decomposition of $L_{U,V,[\{\infty_1, \infty_2\}]}^{(3)}$.
 
 { \small
 \begin{longtable}{|c|l|}
@@ -762,16 +766,16 @@ V}^{(3)} \setminus K_{U}^{(3)}$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{example} \label{eg:H_43-l88-k886}
-Let $U$, $V$, and $W$ be three pairwise disjoint sets of size 8, 8, and 6 respectively.
-There exists an $H_{4,3}$-decomposition of $L_{U,V}^{(3)} \cup K_{U,V,W}^{(3)}$.
+There exists an $H_{4,3}$-decomposition of $L_{8,8,[6]}^{(3)}$.
 \end{example}
 
 \begin{proof}
-Denote the elements of $U$, $V$, and $W$ by $U = \{u_0, u_1, u_2, u_3, u_4, u_5, u_6, u_7\}$,
+Let $U$, $V$, $W$ be three pairwise disjoint sets of size 8, 8, and 6 respectively, and denote their elements by
+  $U = \{u_0, u_1, u_2, u_3, u_4, u_5, u_6, u_7\}$,
   $V = \{v_0, v_1, v_2, v_3, v_4, v_5, v_6, v_7\}$, and
   $W = \{\infty_1, \infty_2, \infty_3, \infty_4, \infty_5, \infty_6\}$.
 
-First, consider the orbit of the seven $H_{4,3}$-blocks
+First, consider the orbits of the seven $H_{4,3}$-blocks
 \begin{align*}
     B_{1,1} &= [v_0, u_0, u_1, v_1, u_4, u_5]_{H_{4,3}} \quad
     B_{1,2} = [v_0, u_1, u_2, v_1, u_5, u_6]_{H_{4,3}} \\
@@ -803,18 +807,17 @@ Next, consider the orbit of $[\infty_1, v_0, u_0, \infty_2, v_1, u_2]_{H_{4,3}}$
     \rangle
 \end{align*}
 This orbit covers all edges of the form $\{\infty_i, v_j, u_k\}$.
-Hence, the union of these orbits give an $H_{4,3}$-decomposition of $L_{U,V}^{(3)} \cup K_{U,V,W}^{(3)}$.
+Hence, the union of these orbits give an $H_{4,3}$-decomposition of $L_{U,V,[W]}^{(3)}$.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{example} \label{eg:H_43-l88-k881}
-Let $U$, $V$ be two disjoint sets of size 8, and let $\infty$ be a point not in $U \cup V$.
-There exists an $H_{4,3}$-decomposition of $L_{U,V}^{(3)} \cup K_{U,V,\{\infty\}}^{(3)}$.
+There exists an $H_{4,3}$-decomposition of $L_{8,8,[1]}^{(3)}$.
 \end{example}
 
 \begin{proof}
-Denote the elements of $U$ and $V$ by $U = \{u_0, u_1, u_2, u_3, u_4, u_5, u_6, u_7\}$ and $V = \{v_0, v_1, v_2, v_3, v_4, v_5, v_6, v_7\}$.
+Let $U$ and $V$ be two disjoint sets of size 8, and denote their elements by $U = \{u_0, u_1, u_2, u_3, u_4, u_5, u_6, u_7\}$ and $V = \{v_0, v_1, v_2, v_3, v_4, v_5, v_6, v_7\}$. Let $\infty$ be a point not in $U \cup V$.
 Consider first the orbits of the five $H_{4,3}$-blocks
 \begin{align*}
     B_{2,1} &= [v_0, u_0, u_2, v_1, u_4, u_6]_{H_{4,3}} \quad
@@ -847,7 +850,7 @@ Finally, take the orbit of $[u_0, v_0, \infty, u_1, v_4, v_5]_{H_{4,3}}$ under t
     (u_0 \, u_2 \, u_4 \, u_6) (u_1 \, u_3 \, u_5 \, u_7)\rangle;
 \]
 this gives all edges of the form $\{v_i, v_{i+1}, u_j\}$ and $\{v_i, u_j, \infty\}$.
-The union of these orbits therefore gives an ${H_{4,3}}$-decomposition of $L_{U,V}^{(3)} \cup K_{U,V,\{\infty\}}^{(3)}$.
+The union of these orbits therefore gives an ${H_{4,3}}$-decomposition of $L_{U,V,[\{\infty\}]}^{(3)}$.
 \end{proof}
 
 \end{subappendices}
