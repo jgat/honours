@@ -10,3 +10,51 @@ TODO. Outline:
 
     The analogue of algorithm 3.3 is practically identical that it's probably not worth including (I'd simply state that the algorithm is analagous to Algorithm 3.3). Another option would be to tweak the content of Algorithm 3.3 to apply in the general case - i.e. instead of finding decompositions of $K_{v}^{(3)}$, change the wording so that it takes an arbitrary hypergraph $K$.
 \end{itemize}
+
+\begin{algorithm}
+\KwIn{$L_{v,v,[w]}^{(3)}$ with vertex set given by \eqref{eq:candelabra-vertices}}
+\KwOut{The set of all orbit types of $L_{v,v,[w]}^{(3)}$, as given by Definition \ref{def:candelabra-orbit-types}}
+
+$\mathcal{O} \gets \emptyset$\;
+
+\For{$a = 0$ \KwTo $v-2$}{
+    \For{$b = a+1$ \KwTo $v-1$}{
+        $\mathcal{O} \gets \mathcal{O} \cup \{({\tt u}, a, b)\}$\;
+        $\mathcal{O} \gets \mathcal{O} \cup \{({\tt v}, a, b)\}$\;
+    }
+}
+
+\If{$w \geq 1$}{
+    \For{$d = 0$ \KwTo $v-1$}{
+        \For{$k = 1$ \KwTo $w$}{
+            $\mathcal{O} \gets \mathcal{O} \cup \{(\infty_k, d)\}$\;
+        }
+    }
+}
+
+\KwRet{$\mathcal{O}$}\;
+
+\caption{Find orbit types of $L_{v,v,[w]}^{(3)}$.} \label{alg:get-candelabra-types}
+\end{algorithm}
+
+\begin{algorithm}
+\KwIn{A subhypergraph $H'$ of $L_{v,v,[w]}^{(3)}$, where $V(L_{v,v,[w]}^{(3)})$ is given by \eqref{eq:candelabra-vertices}}
+\KwOut{A set $B$ consisting of the types of orbits of edges in $H'$
+%(Hence if each edge of $H'$ has a different orbit, then $B$ will be admissible and $H'$ will correspond to $B$.)
+}
+$B \gets \emptyset$\;
+\For{$e \in E(H')$} {
+    \uIf{$e = \{u_i, u_j, v_k\}$: $i,j,k \in \Z_v$} {
+        $t \gets ({\tt u}, a, b)$ such that $a < b$ and $\{i, j\} = \{k+a, k+b\}$ (with addition performed in $\Z_v$)\;
+        $B \gets B \cup \{ t \}$ \;
+    } \uElseIf{$e = \{u_i, v_j, v_k\}$: $i,j,k \in \Z_v$} {
+        $t \gets ({\tt v}, a, b)$ such that $a < b$ and $\{j, k\} = \{i+a, i+b\}$ (with addition performed in $\Z_v$)\;
+        $B \gets B \cup \{ t \}$ \;
+    } \ElseIf{$e = \{\infty_k, u_i, v_j\}$: $i, j \in \Z_v$, $k \in \{1,2,\ldots,w\}$} {
+        $d \gets j-i$ (mod $v$)\;
+        $B \gets B \cup \{ (\infty_k, d) \}$ \;
+    }
+}
+\KwRet{$B$}\;
+\caption{Finding the set of orbit types described by a subhypergraph $H'$ of $L_{v,v,[w]}^{(3)}$.} \label{alg:candelabra-hypergraph-type}
+\end{algorithm}

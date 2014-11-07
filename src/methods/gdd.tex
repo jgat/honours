@@ -8,3 +8,36 @@ TODO. Outline:
     \item Describe the `orbit types': $\{u_i, v_{i+a}, w_{i+b}\} \leftrightarrow (a, b)$
     \item Again, give analogues of Algorithm 3.1 and 3.2, and state that 3.3 is practical identical.
 \end{itemize}
+
+\begin{algorithm}
+\KwIn{$K_{v,v,v}^{(3)}$ with vertex set given by \eqref{eq:gdd-vertices}}
+\KwOut{The set of all orbit types of $K_{v,v,v}^{(3)}$, as given by Definition \ref{def:gdd-orbit-types}}
+
+$\mathcal{O} \gets \emptyset$\;
+
+\For{$a = 0$ \KwTo $v-1$}{
+    \For{$b = 0$ \KwTo $v-1$}{
+        $\mathcal{O} \gets \mathcal{O} \cup \{(a, b)\}$\;
+    }
+}
+
+\KwRet{$\mathcal{O}$}\;
+
+\caption{Find orbit types of $K_{v,v,v}^{(3)}$.} \label{alg:get-gdd-types}
+\end{algorithm}
+
+\begin{algorithm}
+\KwIn{A subhypergraph $H'$ of $K_{v,v,v}^{(3)}$, where $V(K_{v,v,v}^{(3)})$ is given by \eqref{eq:gdd-vertices}}
+\KwOut{A set $B$ consisting of the types of orbits of edges in $H'$
+%(Hence if each edge of $H'$ has a different orbit, then $B$ will be admissible and $H'$ will correspond to $B$.)
+}
+$B \gets \emptyset$\;
+\For{$e = \{(u_i, v_j, w_k\} \in E(H')$} {
+    $a \gets j-i$ (mod $v$)\;
+    $b \gets k-i$ (mod $v$)\;
+    $B \gets B \cup \{(a, b)\}$\;
+    % TODO
+}
+\KwRet{$B$}\;
+\caption{Finding the set of orbit types described by a subhypergraph $H'$ of $K_{v,v,v}^{(3)}$.} \label{alg:gdd-hypergraph-type}
+\end{algorithm}
