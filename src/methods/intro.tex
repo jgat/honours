@@ -1,20 +1,83 @@
 \section{Construction Algorithms}
 
-In this chapter, we discuss the methods used to construct the hypergraph decompositions given in section \ref{section:examples}, and present computer programs which were used to generate many of these examples.
+In this chapter, we discuss the methods used to construct the hypergraph decompositions given in Section \ref{section:examples}, and present computer programs which were used to generate many of those examples.
 %Throughout this chapter, let $H$ be a $3$-uniform hypergraph unless otherwise stated.
 
-Theorems \ref{thm:H_3,i} and \ref{thm:H_42,H_43} give a construction of $H$-designs of order $v$ for certain $3$-uniform hypergraphs $H$ and all admissible $v$.
-Similar construction methods can be applied for other $3$-uniform hypergraphs $H$.
+Theorems \ref{thm:H_22,H_23}, \ref{thm:H_3,i}, and \ref{thm:H_42,H_43} give a construction of $H$-designs of order $v$ for certain $3$-uniform hypergraphs $H$ and all admissible $v$.
+The general construction method can be summarised as follows:
 
-In order to apply these constructions to find $H$-designs of order $v$ for all admissible $v$, we require $H$-decompositions of a finite number of hypergraphs of the form $K_{v}^{(3)}$, $K_{v,v,v}^{(3)}$, $L_{v,v}^{(3)}$, or $L_{U, V}^{(3)} \cup K_{U, V, W}^{(3)}$, where $U$, $V$, $W$ are pairwise disjoint sets with $|U| = |V|$.
-Since there are only finitely many decompositions needed, we can attempt to generate them automatically.
+\begin{theorem} \label{thm:design-method}
+Let $m, n_0 \geq 1$ and $\epsilon \geq 0$ be integers, and let $H$ be a $3$-uniform hypergraph.
+Suppose that there exist $H$-decompositions of the following hypergraphs:
+\begin{enumerate}
+    \item[(1)] $K_{mn_0 + \epsilon}^{(3)}$,
+    \item[(2)] if $m(n_0-1)+\epsilon \geq 1$, $K_{mn_0+\epsilon}^{(3)} \setminus K_{m(n_0-1)+\epsilon}^{(3)}$,\footnote{If $1 \leq m(n_0-1)+\epsilon < 3$, then $K_{m(n_0-1)+\epsilon}^{(3)}$ has no edges, so this is equal to $K_{mn_0 + \epsilon}^{(3)}$.}
+    \item[(3)] $L_{m,m,[\epsilon]}^{(3)}$, and
+    \item[(4)] $K_{m,m,m}^{(3)}$.
+\end{enumerate}
+Then there exists an $H$-design of order $v = mn + \epsilon$ for all $n \geq n_0$.
+\end{theorem}
 
-In principle, these methods could be generalised to $t$-uniform hypergraphs with $t > 3$, and similarly the proofs in Theorems \ref{thm:H_3,i} and \ref{thm:H_42,H_43} could be similarly generalised. However, this would be a cumbersome task in practice.
+For example:
+\begin{itemize}
+     \item In Theorem \ref{thm:H_22,H_23}, we consider $m = 4$, $\epsilon \in \{0,1,2\}$, and $n_0 = 1$, except when $H \simeq H_{2,2}$ and $\epsilon = 0$, in which case we take $n_0 = 2$.
+     \item In Theorem \ref{thm:H_3,i}, we consider $m = 9$, $\epsilon \in \{0,1,2\}$, and $n_0 = 1$.
+     \item In Theorem \ref{thm:H_42,H_43}, we consider $m = 8$, $\epsilon \in \{1,6\}$, and $n_0 = 1$.
+ \end{itemize}
 
-In constructing these $H$-decompositions, we aim to describe the decomposition as the union of orbits of a set of $H$-blocks under some given permutation $\pi$.
+\begin{proof}
+If $n = n_0$, the result holds by assumption, so consider $n > n_0$.
+Let $V_1, V_2, \ldots, V_n$ be $n$ pairwise disjoint sets of size $m$, and let $I$ be a set of size $\epsilon$, disjoint from each of $V_1, V_2, \ldots, V_n$.
+Let $K = K_{V_1 \cup V_2 \cup \cdots \cup V_n \cup I}^{(3)} \simeq K_{mn + \epsilon}^{(3)}$, and let $\Gamma$ be the set of hypergraphs listed in the statement of the theorem. We show there exists a $\Gamma$-decomposition of $K$:
+
+If $n_0 = 1$ and $\epsilon = 0$, then $m(n_0-1)+\epsilon = 0$, and
+\begin{align*}
+    K &= \left( \bigcup_{1 \leq i \leq n} K_{V_i}^{(3)} \right)
+    \cup \left( \bigcup_{1 \leq i < j \leq n} L_{V_i,V_j}^{(3)} \right)
+    \cup \left( \bigcup_{1 \leq i < j < k \leq n} K_{V_i,V_j,V_k}^{(3)} \right)
+\end{align*}
+describes a $\Gamma$-decomposition of $K$. Otherwise, if $n = n_0 + 1$, let $W = I$, or if $n > n_0 + 1$, let $W = V_{n-n_0+2} \cup \cdots \cup V_{n} \cup I$. Then $|W| = m(n_0-1)+\epsilon \geq 1$, so $W \neq \emptyset$. Therefore,
+\begin{align*}
+    K &= K_{V_{n-n_0+1} \cup W}^{(3)}
+    \cup \left( \bigcup_{1 \leq i \leq n-n_0} K_{V_i \cup W}^{(3)} \setminus K_{W}^{(3)} \right)
+    \\ & \quad \quad
+    \cup \left( \bigcup_{1 \leq i < j \leq n-n_0+1} L_{V_i,V_j,[I]}^{(3)} \right)
+    \cup \left( \bigcup_{1 \leq i < j < k \leq n} K_{V_i,V_j,V_k}^{(3)} \right)
+\end{align*}
+describes a $\Gamma$-decomposition of $K$.
+
+If $\mathcal{D}'$ is a $\Gamma$-decomposition of $K$, let $\mathcal{D}_G$ be an $H$-decomposition of $G$ for each $G \in \mathcal{D}'$.
+Then $\bigcup_{G \in \mathcal{D}'} \mathcal{D}_G$ is an $H$-decomposition of $K$.
+\end{proof}
+
+Note that this method cannot always be applied (for example, see the discussion of Theorem \ref{thm:H_3,i} in the case $H \simeq H_{3,11}$).
+
+With Theorem \ref{thm:design-method} as motivation, in particular the case that $H$ has three edges and at least seven vertices, we shall present methods of finding $H$-decompositions of $K_{v}^{(3)}$, $L_{v,v,[w]}^{(3)}$, and $K_{v,v,v}^{(3)}$, for given $v, w$.
+These methods were used to construct Examples \ref{eg:H_3i-9} through \ref{eg:H_3i-l99-k992}, which are used to prove Theorem \ref{thm:H_3,i}.
+
+Note that we omit consideration of methods to find $H$-decompositions of $K_{v}^{(3)} \setminus K_{w}^{(3)}$ for $w < v$, since these are not required to prove Theorem \ref{thm:H_3,i}.
+In principle, these methods could be generalised to $t$-uniform hypergraphs with $t > 3$, and similarly Theorem \ref{thm:design-method} could be generalised. However, this would be a cumbersome task in practice, and would require significant computation time.
+
+Let $K$ be isomorphic to one of $K_{v}^{(3)}$, $L_{v,v,[w]}^{(3)}$, or $K_{v,v,v}^{(3)}$.
+In constructing $H$-decompositions of $K$, we first fix some automorphism $\pi$ on $K$; that is, fix a permutation $\pi$ acting on $V(K)$ such that for all $e \in E(K)$, $\pi(e) \in E(K)$. We then aim to find a set $X$ of $H$-blocks such that the union of orbits of $X$ under $\pi$,
+\begin{equation} \label{eq:decomposition-orbit}
+    \mathcal{D} = \bigcup_{H' \in X} \mathcal{O}_\pi(H'),
+\end{equation}
+is an $H$-decomposition of $K$, where $\mathcal{O}_\pi(H')$ denotes the orbit of $H'$ under $\pi$. Moreover, we shall require that $\pi$ acts freely on $X$ (that is, all stabilisers are trivial).
+We shall call $X$ a set of {\em base blocks} of $\mathcal{D}$ for $\mathcal{\pi}$.
+
+Note the following immediate result:
+
+\begin{lemma} \label{lem:orbit-divisibility}
+Suppose $\mathcal{D}$ is an $H$-decomposition of $K_{v}^{(3)}$ satisfying the conditions above, and let $|\pi|$ denote the order of the permutation $\pi$.
+Then $|E(K)| = |E(H)| \cdot |X| \cdot |\pi|$.
+\end{lemma}
+
+\begin{proof}
+Since $\pi$ acts freely on $X$, the number of $H$-blocks in $\mathcal{D}$ is $|X| \cdot |\pi|$. The edge sets of these $H$-blocks partition $E(K)$, so $|E(K)| = |E(H)| \cdot |X| \cdot |\pi|$.
+\end{proof}
+
+Hence, when we fix $\pi$, we must ensure that $|\pi|$ divides $|E(K)|/|E(H)|$, and then we will know in advance the size of the set $X$ which we are required to find.
+
 It should be noted that such a method is somewhat restrictive, in particular, there may exist $H$-decompositions $\mathcal{D}$ of a hypergraph $K$ such that $\pi$ is not an automorphism of $\mathcal{D}$, in which case the method will be incapable of finding $\mathcal{D}$.
 Moreover, it is possible that a decomposition can be expressed more succinctly or elegantly by giving the orbits of a smaller number of $H$-blocks under a larger permutation group, as with Examples \ref{eg:H_43-k14-k6}, \ref{eg:H_43-l88-k886}, and \ref{eg:H_43-l88-k881}.
-
-%Given a 3-uniform hypergraph $H$, we aim to find $H$-decompositions of hypergraphs $K_{v}^{(3)}$, $K_{v, v, v}^{(3)}$ as the union of orbits of a small number of 
-
-%\ref{eg:H_3i-9}, \ref{eg:H_3i-10}, \ref{eg:H_3i-11} this section, we discuss 

@@ -1,46 +1,40 @@
 \section{Decompositions of $K_{v}^{(3)}$}
 
-Let $H$ be a $3$-uniform hypergraph, and let $v \geq 3$ satisfy the conditions of Lemma \ref{necessary-3-uniform}. We would like to construct a $H$-decomposition $\mathcal{D}$ of $K_{v}^{(3)}$ (if one exists), with the condition that there is a set $X$ of $H$-blocks, and a non-trivial permutation $\pi$ acting on $V(K_{v}^{(3)})$ such that
-\begin{equation} \label{eq:complete-decomposition-orbit}
-    \mathcal{D} = \bigcup_{H' \in X} \mathcal{O}_\pi(H'),
-\end{equation}
-where $\mathcal{O}_{\pi}(H')$ denotes the orbit of $H'$ under $\pi$.
-Moreover, we shall require that $\pi$ is a cyclic permutation (possibly containing fixed points), and that $\pi$ acts freely on $X$ (that is, all stabilisers are trivial).
+Let $H$ be a $3$-uniform hypergraph, and let $v \geq 3$ be an admissible parameter for the existence of an $H$-design of order $v$.
+We would like to fix a permutation $\pi$, and then aim to find an $H$-decomposition $\mathcal{D}$ of $K_{v}^{(3)}$ given by \eqref{eq:decomposition-orbit} (if one exists).
 
-We shall call $X$ a set of {\em base blocks} of $\mathcal{D}$ for $\mathcal{\pi}$.
-
-If such a decomposition $\mathcal{D}$ exists, the following criteria must be satisfied:
+We shall choose $\pi$ to be a cyclic permutation (possibly containing fixed points). The following result restricts $\pi$ to having at most two fixed points:
 
 \begin{lemma}
-Suppose $\mathcal{D}$ is an $H$-decomposition of $K_{v}^{(3)}$ satisfying the conditions above, and let $|\pi|$ denote the order of the permutation $\pi$.
-Then, ${v \choose 3} = |E(H)| \cdot |X| \cdot |\pi|$, and $v-2 \leq |\pi| \leq v$ (that is, $\pi$ has at most two fixed points).
+Suppose $\mathcal{D}$ is an $H$-decomposition of $K_{v}^{(3)}$ given by \eqref{eq:decomposition-orbit}, where $\pi$ is a non-trivial cyclic permutation. Then $v-2 \leq |\pi| \leq v$.
 \end{lemma}
 
-\begin{proof} % TODO
-Since $\pi$ acts freely on $X$, the total number of $H$-blocks in $\mathcal{D}$ is $|X| \cdot |\pi|$. The edge sets of these $H$-blocks partition $E(K_{v}^{(3)})$, so therefore
-\[
-    |E(K_{v}^{(3)})| = {v \choose 3} = |E(H)| \cdot |X| \cdot |\pi|.
-\]
-
+\begin{proof}
 Since $\pi$ acts on $|V(K_{v}^{(3)})| = v$ elements, $|\pi| \leq v$.
 To show that $|\pi| \geq v-2$, it suffices to show that $\pi$ has at most two fixed points.
 
-Suppose for contradiction that $\pi$ has at least three fixed points, and let $\infty_1, \infty_2, \infty_3$ be fixed points of $\pi$. Let $H_0$ be the unique $H$-block of $\mathcal{D}$ which contains the edge $e = \{\infty_1, \infty_2, \infty_3\}$.
+Suppose for contradiction that $\pi$ has at least three fixed points, and let $\infty_1, \infty_2, \infty_3$ be distinct fixed points of $\pi$. Let $H_0$ be the unique $H$-block of $\mathcal{D}$ which contains the edge $e = \{\infty_1, \infty_2, \infty_3\}$.
 Since $\pi(e) = e$, $e$ is an edge of $\pi(H_0)$. But $H_0$ is unique, so $\pi(H_0) = H_0$, and since $\pi$ acts freely on $X$, $\pi$ is the identity permutation.
 Since $\pi$ was assumed to be non-trivial, we have a contradiction, so $\pi$ has at most two fixed points.
 \end{proof}
 
-This gives us a method to find suitable permutations $\pi$, and to know in advance the value of $|X|$. Given $H$ and $v$, let $n = |\pi| \in \{v-2, v-1, v\}$ such that $n$ divides ${v \choose 3}/|E(H)|$. WLOG, we can label the vertices of $K_{v}^{(3)}$ so that
-\begin{align} \label{eq:complete-vertices}
-    V(K_{v}^{(3)}) &= \{0, 1, 2, \ldots, n-1\} \cup \{\infty_1, \ldots, \infty_{v-n}\}, \\
-    \label{eq:complete-permutation}
-    \pi &= (0\;1\;2\;\cdots\;n-1)(\infty_1)\cdots(\infty_{v-n}).
-\end{align}
-Equivalently, we identify $\pi$ with the action of $\Z_n$, including at most two fixed points, denoted $\infty_1$ and $\infty_2$.
-Then, $|X| = {v \choose 3}/(|E(H)| \cdot n)$, and it only remains to find a suitable set $X$ of base blocks.
+Given $H$ and $v$, let $n = |\pi| \in \{v-2, v-1, v\}$ such that $n$ divides ${v \choose 3}/|E(H)|$. WLOG, we can label the vertices of $K_{v}^{(3)}$ so that
+\begin{equation} \label{eq:complete-vertices}
+    V(K_{v}^{(3)}) = \{0, 1, 2, \ldots, n-1\} \cup I,
+\end{equation}
+where $I = \emptyset$ if $n = v$, $I = \{\infty_1\}$ if $n = v-1$, and $I = \{\infty_1, \infty_2\}$ if $n = v-2$. Then, let
+\begin{equation} \label{eq:complete-permutation}
+    \pi =
+    \begin{cases}
+        (0\; 1\; 2\; \cdots\; n-1) & \text{if } n = v \\
+        (0\; 1\; 2\; \cdots\; n-1) (\infty_1) & \text{if } n = v-1 \\
+        (0\; 1\; 2\; \cdots\; n-1) (\infty_1) (\infty_2) & \text{if } n = v-2 \\
+    \end{cases}
+\end{equation}
+So it only remains to find a suitable set $X$ of base blocks, where $|X| = {v \choose 3}/(|E(H)| \cdot n)$.
 
 \begin{definition} \label{def:admissible-orbits}
-Let $H$ be a $3$-uniform hypergraph, $v \geq 3$, and $\pi$ acting on $V(K_{v}^{(3)})$ be given by \eqref{eq:complete-permutation}.
+Let $H$ be a $3$-uniform hypergraph, $v \geq 3$, and let $\pi$ be given by \eqref{eq:complete-permutation}.
 Consider the orbit of each edge of $K_{v}^{(3)}$ under $\pi$, of which there are ${v \choose 3}/n$ distinct orbits.
 
 For a set $B$ containing $|E(H)|$ of these orbits, say that $B$ is {\em admissible} if there exists a hypergraph $H' \simeq H$ such that $E(H')$ is a system of distinct representatives of $B$. Equivalently, $B$ is admissible if there exists a hypergraph $H'$ isomorphic to $H$ such that $B = \{\mathcal{O}_\pi(e) \mid e \in E(H')\}$.
@@ -49,63 +43,65 @@ If $B$ is an admissible set of edge orbits, then any hypergraph $H'$ satisfying 
 \qed
 \end{definition}
 
-Hence, if we can partition $E(K_{v}^{(3)})$ into parts of size $|E(H)|$ such that every part is admissible, then such a partition will give rise to a set $X$ such that $\mathcal{D}$ given by \eqref{eq:complete-decomposition-orbit} is an $H$-decomposition of $K_{v}^{(3)}$. In particular, $X$ can be given by a set of hypergraphs corresponding to each part in the partition.
+Hence, if we can partition $E(K_{v}^{(3)})$ into parts of size $|E(H)|$ such that every part is admissible, then such a partition will give rise to a set $X$ such that $\mathcal{D}$ given by \eqref{eq:decomposition-orbit} is an $H$-decomposition of $K_{v}^{(3)}$. In particular, $X$ can be described as a set of hypergraphs corresponding to each part in the partition.
 
 It then remains to describe the orbits of edges in $K_{v}^{(3)}$; we shall introduce the following definitions:
 
 \begin{definition} \label{def:diff-triple}
 Given a positive integer $n \geq 3$, let $A$ be the set of ordered triples $(a, b, c)$, where $1 \leq a, b, c \leq \floor{\frac{n}{2}}$, that are solutions to either
 \[
-    a + b \equiv c \quad \text{or} \quad a + b + c \equiv 0 \mod n.
+    a + b = c \quad \text{or} \quad a + b + c = n.
 \]
+(Note that these conditions will both hold if $n$ is even and $c = \frac{n}{2}$.)
+
 Define an equivalence relation $\sim$ on $A$ where $(a, b, c) \sim (x, y, z)$ if and only if $(a, b, c) = (x, y, z)$, or $(a, b, c) = (y, z, x)$, or $(a, b, c) = (z, x, y)$. That is, $\sim$ is equivalence up to a cyclic rearrangement of $(a, b, c)$.
 
-The set of {\em difference triples} modulo $n$ is defined to be the set of equivalence classes $A/\sim$. We shall use the notation $(a, b, c)$ to refer to the equivalence class containing $(a, b, c)$.
+A {\em difference triple} modulo $n$ is defined to be an equivalence class of $A$ under $\sim$, and we shall use the notation $(a, b, c)$ to refer to the equivalence class containing $(a, b, c)$.
+%That is, difference triples $(a, b, c)$ and $(x, y, z)$ are considered equal if $(a, b, c) \sim (x, y, z)$.
 \qed
 \end{definition}
 
 \begin{definition} \label{def:orbit-types}
-Let $\pi$ act on $K_{v}^{(3)}$, given by \eqref{eq:complete-permutation}, and consider the orbit of each edge of $K_{v}^{(3)}$ under $\pi$. We define {\em types} of orbits as follows:
+Let $\pi$ be given by \eqref{eq:complete-permutation}, and consider the orbit of each edge of $K_{v}^{(3)}$ under $\pi$.
+We define {\em types} of orbits as follows:
 
 \begin{itemize}
     \item The orbit containing all edges of the form $\{\infty_1, \infty_2, i\}$ for $i \in \Z_n$ is of type $(\infty_1, \infty_2)$;
-    \item For each $1 \leq d \leq \floor{\frac{n}{2}}$ and $a \in \{1, 2\}$, the orbit containing all edges of the form $\{\infty_a, i, i+d\}$ for $i \in \Z_n$ is of type $(\infty_a, d)$;
+    \item For each $1 \leq d \leq \floor{\frac{n}{2}}$ and $k \in \{1, 2\}$, the orbit containing all edges of the form $\{\infty_k, i, i+d\}$ for $i \in \Z_n$ is of type $(\infty_k, d)$;
     \item For each difference triple $(a, b, c)$ modulo $n$, the orbit containing all edges of the form $\{i, i+a, i+a+b\}$ for $i \in \Z_n$ is of type $(a, b, c)$.
 \end{itemize}
-
-This classifies all orbits of edges $K_{v}^{(3)}$.
 \qed
 \end{definition}
 
-% TODO: proof?
-
+It is clear that the orbit of every edge of $K_{v}^{(3)}$ falls into precisely one of the types of Definition \ref{def:orbit-types}.
 In order to generate difference triples modulo $n$, we use the following lemma:
 
 \begin{lemma} \label{lem:diff-triple-existence}
-Let $(a, b, c)$ be a difference triple modulo $n$.
-It holds that $a + b \equiv c$ if and only if $a + b \leq \floor{\frac{n}{2}}$, and $a + b + c \equiv 0$ (mod $n$) if and only if $a + b \geq \ceil{\frac{n}{2}}$.
-
-Moreover, $(b, c, a)$ and $(c, a, b)$ are difference triples equal to $(a, b, c)$ if and only if $a + b + c \equiv 0$ (mod $n$).
+Let $1 \leq a,b \leq \floor{\frac{n}{2}}$ be integers.
+There exists a unique (up to equivalence) difference triple of the form $(a, b, c)$, where
+$a + b = c$ if and only if $a + b \leq \floor{\frac{n}{2}}$, and $a + b + c = n$ if and only if $a + b \geq \ceil{\frac{n}{2}}$.
+Moreover, $(b, c, a)$ and $(c, a, b)$ are difference triples equivalent to $(a, b, c)$ if and only if $a + b + c = n$.
 \end{lemma}
 
 \begin{proof}
-Recall that $0 \leq a, b, c \leq \floor{\frac{n}{2}}$.
+If $(a, b, c)$ is a difference triple, recall that $1 \leq a,b,c \leq \floor{\frac{n}{2}}$.
 
-If $a + b \equiv c$ (mod $n$), then $a + b = c \leq \floor{\frac{n}{2}}$.
-If $a + b + c \equiv 0$ (mod $n$), then $a + b = n-c \geq n-\floor{\frac{n}{2}} = \ceil{\frac{n}{2}}$.
-The converse is then immediate, except in the case that $n$ is even and $a + b = \frac{n}{2}$. But in this case, we also have $a + b + \frac{n}{2} = n \equiv 0$ (mod $n$), so we must have $c = \frac{n}{2}$.
+Let $1 \leq a,b \leq \floor{\frac{n}{2}}$ be integers.
+It is then immediate that $(a, b, a+b)$ is a difference triple if and only if $a + b \leq \floor{\frac{n}{2}}$.
+Let $c = n-a-b$, then $(a, b, c)$ is a difference triple with $a + b + c = n$ if and only if $c = n - a - b \leq \floor{\frac{n}{2}}$, which holds if and only if $a + b \geq n - \floor{\frac{n}{2}} = \ceil{\frac{n}{2}}$.
 
-Next, if $a + b + c \equiv 0$ (mod $n$), then clearly $(b, c, a)$ and $(c, a, b)$ are difference triples equal to $(a, b, c)$. Conversely, if $a + b + c \not\equiv 0$ (mod $n$), then $a + b = c < \frac{n}{2}$, so $2 \leq 2a, 2b < n$, so $b + c = a + 2b \not\equiv a$ and $c + a = 2a + b \not\equiv b$, therefore $(b, c, a)$ and $(c, a, b)$ are not difference triples.
+If $a + b + c = n$, then clearly $(b, c, a)$ and $(c, a, b)$ are difference triples equivalent to $(a, b, c)$.
+Conversely, if $a + b + c \neq n$, then $a + b = c$, and since $1 \leq a,b$, $b + c = a + 2b \neq a$ and $c + a = 2a + b \neq b$, therefore $(b, c, a)$ and $(c, a, b)$ are not difference triples.
 \end{proof}
 
-Given a $3$-uniform hypergraph $H$, and $v \geq 3$, we can now describe a method of generating a $H$-decomposition of $K_{v}^{(3)}$ of the form \eqref{eq:complete-decomposition-orbit}:
+Given a $3$-uniform hypergraph $H$, and $v \geq 3$, we can now describe a method of generating an $H$-decomposition of $K_{v}^{(3)}$ of the form \eqref{eq:decomposition-orbit}.
 
-First, given $v$ and $n = |\pi| \in \{v-2, v-1, v\}$, Algorithm \ref{alg:get-orbits} below will compute the set of all orbit types of $\pi$ acting on $K_{v}^{(3)}$, as given in Definition \ref{def:orbit-types}.
-As a result of Lemma \ref{lem:diff-triple-existence}, we see that we have indeed generated all difference triples.
+First, given $v$ and $n = |\pi| \in \{v-2, v-1, v\}$, Algorithm \ref{alg:get-complete-types} below computes the set $\mathcal{O}$ of all orbit types of $\pi$ acting on $K_{v}^{(3)}$, as given in Definition \ref{def:orbit-types}.
+Lemma \ref{lem:diff-triple-existence} ensures that we have indeed generated all orbit types.
 
 \begin{algorithm}
-\KwIn{$v \geq 3$, $n \in \{v-2, v-1, v\}$}
-\KwOut{The set of all orbit representations for a cyclic permutation of length $n$ on $K_v^{(3)}$, as described above.}
+\KwIn{$K_{v}^{(3)}$ with vertex set given by \eqref{eq:complete-vertices}, where $v \geq 3$, $n \in \{v-2, v-1, v\}$}
+\KwOut{The set of all orbit types for a cyclic permutation of length $n$ on $K_v^{(3)}$, as given by Definition \ref{def:orbit-types}}
 
 $\mathcal{O} \gets \emptyset$\;
 
@@ -113,13 +109,14 @@ $\mathcal{O} \gets \emptyset$\;
     \For{$b = 1$ \KwTo $\floor{\frac{n}{2}}$}{
 %        \tcc{Two cases: $a + b = c$ and $a + b + c = n$.}
         \uIf{$a + b < \ceil{\frac{n}{2}}$}{
-            \tcc{$a + b + c \not\equiv 0$ (mod $n$)}
+            \tcc{We have $a + b + c \neq n$.}
             $c \gets a + b$\;
             $\mathcal{O} \gets \mathcal{O} \cup \{(a, b, c)\}$\;
-        }\uElse{
+        }\Else{
+            \tcc{We have $a + b + c = n$.}
             $c \gets n - (a + b)$\;
             \tcc{We have $(a, b, c) \sim (b, c, a) \sim (c, a, b)$. WLOG, take the lexicographically smallest one.}
-            \If{$(a, b, c) \leq (b, c, a) \land (a, b, c) \leq (c, a, b)$}{
+            \If{$(a, b, c) \leq (b, c, a)$ {\rm and} $(a, b, c) \leq (c, a, b)$}{
                 $\mathcal{O} \gets \mathcal{O} \cup \{(a, b, c)\}$\;
             }
         }
@@ -128,8 +125,8 @@ $\mathcal{O} \gets \emptyset$\;
 
 \If{$n \leq v-1$}{
     \For{$d = 1$ \KwTo $\floor{\frac{n}{2}}$}{
-        \For{$a = 1$ \KwTo $v-n$}{
-            $\mathcal{O} \gets \mathcal{O} \cup \{(\infty_a, d)\}$\;
+        \For{$k = 1$ \KwTo $v-n$}{
+            $\mathcal{O} \gets \mathcal{O} \cup \{(\infty_k, d)\}$\;
         }
     }
 }
@@ -140,65 +137,100 @@ $\mathcal{O} \gets \emptyset$\;
 
 \KwRet{$\mathcal{O}$}\;
 
-\caption{Find orbit types of $K_v^{(3)}$ under a cyclic permutation.} \label{alg:get-orbits}
+\caption{Find orbit types of $K_v^{(3)}$ under a cyclic permutation.} \label{alg:get-complete-types}
 \end{algorithm}
 
-Next, recall that in order to generate the set of base blocks $X$, we require a mapping from admissible sets of edge orbits $B$ to hypergraphs $H'$ which correspond to $B$. Algorithm \ref{alg:get-possible-blocks} below constructs such a mapping.
+Next, recall that in order to generate the set of base blocks $X$, we require a mapping from admissible sets of orbit types $B$ to their corresponding hypergraphs $H'$.
+Algorithm \ref{alg:get-possible-blocks} below constructs a function $c$ such that for every admissible set $B$, $c(B)$ is a hypergraph corresponding to $B$.
+
+To achieve this, we begin by letting $c$ be the `empty function', i.e. the function with domain $\Dom(c) = \emptyset$. %\footnote{For the purposes of this discussion, we will allow functions to have an empty domain.}
+We consider every subhypergraph $H'$ of $K_{v}^{(3)}$ isomorphic to
+$H$,\footnote{To find a subhypergraph of $K_{v}^{(3)}$ isomorphic to $H$, fix an ordering of $V(H)$, then let an $V$ be an ordered selection of $|V(H)|$ elements from $V(K_{v}^{(3)})$. Since $V(H)$ and $V$ are ordered sets of equal size, there is a natural map $\varphi: V(H) \to V$, then $\varphi(H)$ is a subhypergraph of $K_{v}^{(3)}$. Repeating this for all ordered selections $V \subseteq V(K_{v}^{(3)})$ of size $|V(H)|$ gives all subhypergraphs of $K_{v}^{(3)}$.}
+and find the set $B$ consisting of the orbit types of edges in $H'$, using Algorithm \ref{alg:complete-hypergraph-type}.
+If each edge of $H'$ has a different orbit, then $B$ is admissible; and if $B$ is not in the domain of $c$, then we add $B$ to the domain and set $c(B) = H'$.
 
 \begin{algorithm}
-\KwIn{$3$-uniform hypergraph $H$; $v \geq 3$; $n \in \{v-2, v-1, v\}$}
-\KwOut{A mapping $c$ from admissible sets of orbits to one of the corresponding hypergraphs}
+\KwIn{A subhypergraph $H'$ of $K_{v}^{(3)}$, where $V(K_{v}^{(3)})$ is given by \eqref{eq:complete-vertices}}
+\KwOut{A set $B$ consisting of the types of orbits of edges in $H'$
+%(Hence if each edge of $H'$ has a different orbit, then $B$ will be admissible and $H'$ will correspond to $B$.)
+}
+$B \gets \emptyset$\;
+\For{$e \in E(H')$} {
+    \uIf{$e = \{u, v, w\}$: $u, v, w \in \Z_n$, $u < v < w$} {
+        %$a \gets \min\{v-u, n-(v-u)\}$\;
+        %$b \gets \min\{w-v, n-(w-v)\}$\;
+        %$c \gets \min\{w-u, n-(w-u)\}$\;
+        %\uIf{$a + b + c = n$} {
+        %    $t \gets \min\{(a,b,c), (b,c,a), (c,a,b)\}$ \tcc*{where $\min$ gives the lexicographically smallest ordered tuple}
+        %} \uElseIf {$a + b = c$} {
+        %    $t \gets (a, b, c)$\;
+        %} \uElseIf {$b + c = a$} {
+        %    $t \gets (b, c, a)$\;
+        %} \ElseIf {$c + a = b$} {
+        %    $t \gets (c, a, b)$\;
+        %}
+        $t \gets$ $(a, b, c)$ such that $e=\{x,x+a,x+a+b\}$ for some $x \in \Z_n$\;
+        $B \gets B \cup \{t\}$\;
+    } \uElseIf{$e = \{\infty_k, v, w\}$: $k \in \{1,2\}$, $v, w \in \Z_n$, $v < w$} {
+        $d \gets \min \{w-v, n-(w-v)\}$\;
+        $B \gets B \cup \{(\infty_k, d)\}$ \;
+    } \ElseIf{$e = \{\infty_1, \infty_2, w\}$: $w \in \Z_n$} {
+        $B \gets B \cup \{(\infty_1, \infty_2)\}$\;
+    }
+}
+\KwRet{$B$}\;
+\caption{Finding the set of orbit types described by a subhypergraph $H'$ of $K_{v}^{(3)}$.} \label{alg:complete-hypergraph-type}
+\end{algorithm}
+
+
+\begin{algorithm}
+\KwIn{$3$-uniform hypergraphs $H$ and $K$, where $K$ is isomorphic to one of $K_{v}^{(3)}$, $L_{v,v,[w]}^{(3)}$, $K_{v,v,v}^{(3)}$ for some $v, w$}
+\KwOut{A function $c$ which maps admissible sets of orbits to one of their corresponding hypergraphs}
+\SetKwFunction{getorbits}{get\_orbits}
+\SetKwFunction{isomcopy}{copy}
 
 $c \gets$ empty mapping\;
-$V_{all} = \{0, 1, \ldots, n-1\} \cup \{\infty_{1}, \ldots \infty_{v-n}\}$\;
-\For{{\rm each ordered selection} $V$ {\rm of} $|V(H)|$ {\rm elements from} $V_{all}$}{
-    \tcc{}
-    $H' \gets$ {\tt copy}($H$, $V$) \tcc*{Isomorphic copy of $H$ on $V$}
-    $B \gets \emptyset$\;
-    \For{$e \in E(H')$} {
-        \uIf{$e = \{u, v, w\}$: $u, v, w \in \Z_n$} {
-            $t \gets$ $(a, b, c)$ such that $e=\{x,x+a,x+a+b\}$ for some $x$\;
-            $B \gets B \cup \{t\}$\;
-        } \uElseIf{$e = \{\infty_a, v, w\}$: $a \in \{1,2\}$, $v, w \in \Z_n$, $v < w$} {
-            $d \gets \min \{w-v, n-(w-v)\}$\;
-            $B \gets B \cup \{(\infty_a, d)\}$ \;
-        } \uElseIf{$e = \{\infty_1, \infty_2, w\}$: $w \in \Z_n$} {
-            $B \gets B \cup \{(\infty_1, \infty_2)\}$\;
+\For{{\rm each ordered selection} $V$ {\rm of} $|V(H)|$ {\rm elements from} $V(K)$}{
+    $H' \gets \isomcopy{H, V}$ \tcc*{Isomorphic copy of $H$ on $V$}
+    \If{$H'$ {\rm is a subhypergraph of} $K$} {
+        $B \gets \getorbits{H'}$
+        \tcc*{Algorithms \ref{alg:complete-hypergraph-type}, \ref{alg:candelabra-hypergraph-type}, \ref{alg:gdd-hypergraph-type}} % TODO refs
+        %\tcc{If there are $|E(H)|$ distinct orbit types in $B$, and we haven't already found a corresponding hypergraph $c(B)$, then modify $c$ to map $B \mapsto H'$.}
+        \If{$|B| = |E(H)|$ {\rm and} $B \not\in \Dom(c)$} {
+            Define $c(B) = H'$\;
         }
-    }
-    \If{$|B| = |E(H)|$ {\rm and} $c(B)$ {\rm is undefined}} {
-        Let $c(B) = H'$\;
     }
 }
 \KwRet{$c$}\;
 
-% TODO caption
-\caption{Finding a mapping between admissible sets of orbits and corresponding $H$-blocks} \label{alg:get-possible-blocks}
+\caption{Finding a mapping between admissible sets of orbits and corresponding $H$-blocks.} \label{alg:get-possible-blocks}
 \end{algorithm}
 
-Finally, Algorithm \ref{alg:decompose-complete} describes a method for finding an $H$-decomposition of $K_{v}^{(3)}$ of the form \eqref{eq:complete-decomposition-orbit}, if one exists.
+Finally, Algorithm \ref{alg:decompose} describes a method for finding an $H$-decomposition of $K_{v}^{(3)}$ of the form \eqref{eq:decomposition-orbit}, if one exists. It does so by employing a recursive procedure {\tt find\_partition}, which takes a set of orbit types $\mathcal{O}$, the function $c$ above, and $e = |E(H)|$.
+
+Note that we will reuse Algorithms \ref{alg:get-possible-blocks} and \ref{alg:decompose} in Sections \ref{sec:methods/candelabra} and \ref{sec:methods/gdd} to find decompositions of $L_{v,v,[w]}^{(3)}$ and $K_{v,v,v}^{(3)}$ respectively, so the algorithms also accept a parameter $K$, the hypergraph we wish to find a decomposition of.
 
 \begin{algorithm}
-\KwIn{$3$-uniform hypergraph $H$; $v \geq 3$}
+\KwIn{$3$-uniform hypergraphs $H$ and $K$, where $K$ is isomorphic to one of $K_{v}^{(3)}$, $L_{v,v,[w]}^{(3)}$, $K_{v,v,v}^{(3)}$ for some $v, w$}
 \KwOut{The order $n$ of the cyclic permutation $\pi$, and a set $X$ of base blocks}
-\SetKwFunction{getorbits}{get\_orbits}
+\SetKwFunction{gettypes}{get\_types}
 \SetKwFunction{getadmissible}{get\_admissible}
 \SetKwFunction{findpartition}{find\_partition}
 \SetKwProg{procedure}{Procedure}{}{}
 
-$n \gets \max(\{n \in \{v-2, v-1, v\} : n \mid {v \choose 3}/|E(H)|\})$\;
-$\mathcal{O} \gets$ \getorbits{$v$, $n$} \tcc*{Algorithm \ref{alg:get-orbits}}
-$c \gets$ \getadmissible{$H$, $v$, $n$} \tcc*{Algorithm \ref{alg:get-possible-blocks}}
-$X \gets$ \findpartition{$\mathcal{O}$, $c$, $|E(H)|$} \tcc*{See below}
+%$n \gets \max(\{n \in \{v-2, v-1, v\} : n \mid {v \choose 3}/|E(H)|\})$\;
+$\mathcal{O} \gets$ \gettypes{$K$} \tcc*{Algorithms \ref{alg:get-complete-types}, \ref{alg:get-candelabra-types}, \ref{alg:get-gdd-types}}
+$c \gets$ \getadmissible{$H$, $K$} \tcc*{Algorithm \ref{alg:get-possible-blocks}}
+$X \gets$ \findpartition{$\mathcal{O}$, $c$, $e|E(H)|$} \tcc*{See below}
 \KwRet{$n$, $X$}
 
 \procedure{\findpartition{$\mathcal{O}$, $c$, $e$}}{
-  \tcc{This recursive procedure will attempt to find a partition of $\mathcal{O}$ into admissible parts}
+  \tcc{This recursive procedure will attempt to find a partition of $\mathcal{O}$ into admissible parts.}
   \If{$\mathcal{O} = \emptyset$}{
     \KwRet{$\emptyset$}\;
   }
   \For{{\rm each} $B \subseteq \mathcal{O}$, $|B| = e$}{
-    \If{$c(B)$ {\rm is defined}}{
+    \If{$B \in \Dom(c)$}{
         $X \gets$ \findpartition{$\mathcal{O} \setminus B$, $c$, $e$} \;
         \If{$X \neq$ ``No Solution''}{
             $X \gets X \cup \{c(B)\}$ \;
@@ -209,10 +241,11 @@ $X \gets$ \findpartition{$\mathcal{O}$, $c$, $|E(H)|$} \tcc*{See below}
   \KwRet{``No Solution''}\;
 }
 
-\caption{Finding $H$-decompositions of $K_{v}^{(3)}$} \label{alg:decompose-complete}
+\caption{Finding $H$-decompositions of a hypergraph $K$} \label{alg:decompose}
 
 \end{algorithm}
 
-These three algorithms have been implemented in Appendix \ref{appendix:code}, and were used to construct Examples \ref{eg:H_3i-9}, \ref{eg:H_3i-10}, and \ref{eg:H_3i-11}.
+% TODO relocate this.
+% These three algorithms have been implemented in Appendix \ref{appendix:code}, and were used to construct Examples \ref{eg:H_3i-9}, \ref{eg:H_3i-10}, and \ref{eg:H_3i-11}.
 
 \newpage
