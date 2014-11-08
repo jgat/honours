@@ -1,43 +1,69 @@
-\section{Decompositions of $K_{v,v,v}^{(3)}$}
+\section{Decompositions of $K_{m,m,m}^{(3)}$}
 \label{sec:methods/gdd}
 
-TODO. Outline:
+Let $H$ be a $3$-uniform hypergraph, and let $m \geq 1$ be an integer such that $K_{m,m,m}^{(3)}$ is $H$-divisible. We would like to fix an automorphism $\pi$ of $K_{m,m,m}^{(3)}$, and then find an $H$-decomposition of $K_{m,m,m}^{(3)}$ of the form \eqref{eq:decomposition-orbit}.
 
-\begin{itemize}
-    \item Describe the structure of the decomposition: vertex set is $\{u_i, v_i, w_i \mid i \in \Z_v\}$. Orbits under the action of $\Z_v$.
-    \item Describe the `orbit types': $\{u_i, v_{i+a}, w_{i+b}\} \leftrightarrow (a, b)$
-    \item Again, give analogues of Algorithm 3.1 and 3.2, and state that 3.3 is practical identical.
-\end{itemize}
+WLOG, we can identify $K_{m,m,m}^{(3)}$ with $K_{U,V,W}^{(3)}$ where $U$, $V$, and $W$ are pairwise disjoint sets given by
+\begin{align}
+    U &= \{ u_0, u_1, \ldots, u_{m-1} \}, \nonumber \\
+    V &= \{ v_0, v_1, \ldots, v_{m-1} \}, \nonumber \\
+    W &= \{ w_0, w_1, \ldots, w_{m-1} \}, \nonumber
+\end{align}
+where the vertices in each of $U, V, W$ are indexed by $\Z_m$. Then,
+\begin{equation} \label{eq:gdd-edges}
+    E(K_{m,m,m}^{(3)}) = \big\{ \{u_i, v_j, w_k\} : i,j,k \in \Z_m \big\}.
+\end{equation}
+Let $\pi$ be the automorphism of $K_{m,m,m}^{(3)}$ which maps $u_i \mapsto u_{i+1}$, $v_i \mapsto v_{i+1}$, and $w_{i} \mapsto w_{i+1}$ for each $u_i \in U$, $v_i \in V$, $w_i \in W$ (where addition is performed in $\Z_m$).
+We shall use $\pi$ to find an $H$-decomposition of $K_{m,m,m}^{(3)}$ the form \eqref{eq:decomposition-orbit}.
+
+It remains to classify the orbits of edges in $K_{m,m,m}^{(3)}$ under $\pi$ (cf. Definition \ref{def:complete-orbit-types}), and present methods analagous to Algorithms \ref{alg:get-complete-types} and \ref{alg:complete-hypergraph-type}.
+
+\begin{definition} \label{def:gdd-orbit-types}
+Let $\pi$ be the automorphism of $K_{m,m,m}^{(3)}$ defined above, and consider the orbit of each edge of $K_{m,m,m}^{(3)}$ under $\pi$.
+
+For every pair of integers $a, b \in \Z_m$, we say that the orbit containing edges of the form $\{u_i, v_{i+a}, w_{i+b}\}$ for $i \in \Z_m$ is of {\em type} $(a, b)$.
+\qed
+\end{definition}
+
+It is clear that Definition \ref{def:gdd-orbit-types} classifies every edge of $K_{m,m,m}^{(3)}$ into precisely one type.
+
+For an integer $m$, Algorithm \ref{alg:get-gdd-types} below will generate the set $\mathcal{O}$ of all orbit types of $K_{m,m,m}^{(3)}$, similar to Algorithm \ref{alg:get-complete-types}.
+Given a subhypergraph $H'$ of $K_{m,m,m}^{(3)}$, Algorithm \ref{alg:gdd-hypergraph-type} below will generate the set $B$ consisting of orbit types for each edge in $H'$ under the permutation $\pi$, similar to Algorithm \ref{alg:complete-hypergraph-type}.
+
+With these two procedures defined, Algorithm \ref{alg:decompose} can be used to construct an $H$-decomposition of $K_{m,m,m}^{(3)}$, if one exists.
+
 
 \begin{algorithm}
-\KwIn{$K_{v,v,v}^{(3)}$ with vertex set given by \eqref{eq:gdd-vertices}}
-\KwOut{The set of all orbit types of $K_{v,v,v}^{(3)}$, as given by Definition \ref{def:gdd-orbit-types}}
+\KwIn{$K_{m,m,m}^{(3)}$ with edge set given by \eqref{eq:gdd-edges}}
+\KwOut{The set of all orbit types of $K_{m,m,m}^{(3)}$, as given by Definition \ref{def:gdd-orbit-types}}
 
 $\mathcal{O} \gets \emptyset$\;
 
-\For{$a = 0$ \KwTo $v-1$}{
-    \For{$b = 0$ \KwTo $v-1$}{
+\For{$a = 0$ \KwTo $m-1$}{
+    \For{$b = 0$ \KwTo $m-1$}{
         $\mathcal{O} \gets \mathcal{O} \cup \{(a, b)\}$\;
     }
 }
 
 \KwRet{$\mathcal{O}$}\;
 
-\caption{Find orbit types of $K_{v,v,v}^{(3)}$.} \label{alg:get-gdd-types}
+\caption{Find orbit types of $K_{m,m,m}^{(3)}$.} \label{alg:get-gdd-types}
 \end{algorithm}
 
 \begin{algorithm}
-\KwIn{A subhypergraph $H'$ of $K_{v,v,v}^{(3)}$, where $V(K_{v,v,v}^{(3)})$ is given by \eqref{eq:gdd-vertices}}
+\KwIn{A subhypergraph $H'$ of $K_{m,m,m}^{(3)}$, where $V(K_{m,m,m}^{(3)})$ is given by \eqref{eq:gdd-edges}}
 \KwOut{A set $B$ consisting of the types of orbits of edges in $H'$
 %(Hence if each edge of $H'$ has a different orbit, then $B$ will be admissible and $H'$ will correspond to $B$.)
 }
 $B \gets \emptyset$\;
 \For{$e = \{(u_i, v_j, w_k\} \in E(H')$} {
-    $a \gets j-i$ (mod $v$)\;
-    $b \gets k-i$ (mod $v$)\;
+    $a \gets j-i$ (mod $m$)\;
+    $b \gets k-i$ (mod $m$)\;
     $B \gets B \cup \{(a, b)\}$\;
     % TODO
 }
 \KwRet{$B$}\;
-\caption{Finding the set of orbit types described by a subhypergraph $H'$ of $K_{v,v,v}^{(3)}$.} \label{alg:gdd-hypergraph-type}
+\caption{Finding the set of orbit types described by a subhypergraph $H'$ of $K_{m,m,m}^{(3)}$.} \label{alg:gdd-hypergraph-type}
 \end{algorithm}
+
+\newpage

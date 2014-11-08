@@ -34,10 +34,10 @@ where $I = \emptyset$ if $n = v$, $I = \{\infty_1\}$ if $n = v-1$, and $I = \{\i
 So it only remains to find a suitable set $X$ of base blocks, where $|X| = {v \choose 3}/(|E(H)| \cdot n)$.
 
 \begin{definition} \label{def:admissible-orbits}
-Let $H$ be a $3$-uniform hypergraph, $v \geq 3$, and let $\pi$ be given by \eqref{eq:complete-permutation}.
-Consider the orbit of each edge of $K_{v}^{(3)}$ under $\pi$, of which there are ${v \choose 3}/n$ distinct orbits.
+Let $H$ and $K$ be $3$-uniform hypergraphs, and let $\pi$ be an automorphism of $K$.
+Consider the orbit of each edge of $K$ under $\pi$.
 
-For a set $B$ containing $|E(H)|$ of these orbits, say that $B$ is {\em admissible} if there exists a hypergraph $H' \simeq H$ such that $E(H')$ is a system of distinct representatives of $B$. Equivalently, $B$ is admissible if there exists a hypergraph $H'$ isomorphic to $H$ such that $B = \{\mathcal{O}_\pi(e) \mid e \in E(H')\}$.
+For a set $B$ containing $|E(H)|$ of these orbits, say that $B$ is {\em admissible} if there exists a subhypergraph $H'$ of $K$ such that $H' \simeq H$ and $E(H')$ is a system of distinct representatives of $B$. Equivalently, $B$ is admissible if there exists a hypergraph $H'$ isomorphic to $H$ such that $B = \{\mathcal{O}_\pi(e) \mid e \in E(H')\}$.
 
 If $B$ is an admissible set of edge orbits, then any hypergraph $H'$ satisfying the above conditions is said to be a hypergraph {\em corresponding to} $B$. Note that $H'$ is not necessarily unique.
 \qed
@@ -61,7 +61,7 @@ A {\em difference triple} modulo $n$ is defined to be an equivalence class of $A
 \qed
 \end{definition}
 
-\begin{definition} \label{def:orbit-types}
+\begin{definition} \label{def:complete-orbit-types}
 Let $\pi$ be given by \eqref{eq:complete-permutation}, and consider the orbit of each edge of $K_{v}^{(3)}$ under $\pi$.
 We define {\em types} of orbits as follows:
 
@@ -73,7 +73,7 @@ We define {\em types} of orbits as follows:
 \qed
 \end{definition}
 
-It is clear that the orbit of every edge of $K_{v}^{(3)}$ falls into precisely one of the types of Definition \ref{def:orbit-types}.
+It is clear that the orbit of every edge of $K_{v}^{(3)}$ falls into precisely one of the types of Definition \ref{def:complete-orbit-types}.
 In order to generate difference triples modulo $n$, we use the following lemma:
 
 \begin{lemma} \label{lem:diff-triple-existence}
@@ -96,12 +96,12 @@ Conversely, if $a + b + c \neq n$, then $a + b = c$, and since $1 \leq a,b$, $b 
 
 Given a $3$-uniform hypergraph $H$, and $v \geq 3$, we can now describe a method of generating an $H$-decomposition of $K_{v}^{(3)}$ of the form \eqref{eq:decomposition-orbit}.
 
-First, given $v$ and $n = |\pi| \in \{v-2, v-1, v\}$, Algorithm \ref{alg:get-complete-types} below computes the set $\mathcal{O}$ of all orbit types of $\pi$ acting on $K_{v}^{(3)}$, as given in Definition \ref{def:orbit-types}.
+First, given $v$ and $n = |\pi| \in \{v-2, v-1, v\}$, Algorithm \ref{alg:get-complete-types} below computes the set $\mathcal{O}$ of all orbit types of $\pi$ acting on $K_{v}^{(3)}$, as given in Definition \ref{def:complete-orbit-types}.
 Lemma \ref{lem:diff-triple-existence} ensures that we have indeed generated all orbit types.
 
 \begin{algorithm}
 \KwIn{$K_{v}^{(3)}$ with vertex set given by \eqref{eq:complete-vertices}, where $v \geq 3$, $n \in \{v-2, v-1, v\}$}
-\KwOut{The set of all orbit types for a cyclic permutation of length $n$ on $K_v^{(3)}$, as given by Definition \ref{def:orbit-types}}
+\KwOut{The set of all orbit types for a cyclic permutation of length $n$ on $K_v^{(3)}$, as given by Definition \ref{def:complete-orbit-types}}
 
 $\mathcal{O} \gets \emptyset$\;
 
@@ -184,7 +184,7 @@ $B \gets \emptyset$\;
 
 
 \begin{algorithm}
-\KwIn{$3$-uniform hypergraphs $H$ and $K$, where $K$ is isomorphic to one of $K_{v}^{(3)}$, $L_{v,v,[w]}^{(3)}$, $K_{v,v,v}^{(3)}$ for some $v, w$}
+\KwIn{$3$-uniform hypergraphs $H$ and $K$, where $K$ is isomorphic to one of $K_{v}^{(3)}$, $L_{m,m,[\epsilon]}^{(3)}$, or $K_{m,m,m}^{(3)}$}
 \KwOut{A function $c$ which maps admissible sets of orbits to one of their corresponding hypergraphs}
 \SetKwFunction{getorbits}{get\_orbits}
 \SetKwFunction{isomcopy}{copy}
@@ -208,10 +208,10 @@ $c \gets$ empty mapping\;
 
 Finally, Algorithm \ref{alg:decompose} describes a method for finding an $H$-decomposition of $K_{v}^{(3)}$ of the form \eqref{eq:decomposition-orbit}, if one exists. It does so by employing a recursive procedure {\tt find\_partition}, which takes a set of orbit types $\mathcal{O}$, the function $c$ above, and $e = |E(H)|$.
 
-Note that we will reuse Algorithms \ref{alg:get-possible-blocks} and \ref{alg:decompose} in Sections \ref{sec:methods/candelabra} and \ref{sec:methods/gdd} to find decompositions of $L_{v,v,[w]}^{(3)}$ and $K_{v,v,v}^{(3)}$ respectively, so the algorithms also accept a parameter $K$, the hypergraph we wish to find a decomposition of.
+Note that we will reuse Algorithms \ref{alg:get-possible-blocks} and \ref{alg:decompose} in Sections \ref{sec:methods/candelabra} and \ref{sec:methods/gdd} to find decompositions of $L_{m,m,[\epsilon]}^{(3)}$ and $K_{m,m,m}^{(3)}$ respectively, so the algorithms also accept a parameter $K$, the hypergraph we wish to find a decomposition of.
 
 \begin{algorithm}
-\KwIn{$3$-uniform hypergraphs $H$ and $K$, where $K$ is isomorphic to one of $K_{v}^{(3)}$, $L_{v,v,[w]}^{(3)}$, $K_{v,v,v}^{(3)}$ for some $v, w$}
+\KwIn{$3$-uniform hypergraphs $H$ and $K$, where $K$ is isomorphic to one of $K_{v}^{(3)}$, $L_{m,m,[\epsilon]}^{(3)}$, or $K_{m,m,m}^{(3)}$}
 \KwOut{The order $n$ of the cyclic permutation $\pi$, and a set $X$ of base blocks}
 \SetKwFunction{gettypes}{get\_types}
 \SetKwFunction{getadmissible}{get\_admissible}

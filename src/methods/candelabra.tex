@@ -1,32 +1,67 @@
-\section{Decompositions of $L_{v,v,[w]}^{(3)}$}
+\section{Decompositions of $L_{m,m,[\epsilon]}^{(3)}$}
 \label{sec:methods/candelabra}
 
-TODO. Outline:
+Let $H$ be a $3$-uniform hypergraph, and let $m \geq 1$, $\epsilon \geq 0$ be integers such that $L_{m,m,[\epsilon]}^{(3)}$ is $H$-divisible.
+We would like to fix an automorphism $\pi$ of $L_{m,m,[\epsilon]}^{(3)}$, and then find an $H$-decomposition of $L_{m,m,[\epsilon]}^{(3)}$ of the form \eqref{eq:decomposition-orbit}, if one exists.
 
+WLOG, we can identify $L_{m,m,[\epsilon]}^{(3)}$ with $L_{U,V,[W]}^{(3)}$ where
+$U$, $V$, and $W$ are three pairwise disjoint sets given by
+\begin{align}
+%    \label{eq:candelabra-vertices}
+    U &= \{ u_0, u_1, \ldots, u_{m-1} \}, \nonumber \\
+    V &= \{ v_0, v_1, \ldots, v_{m-1} \}, \nonumber \\
+    W &= \{ \infty_1, \infty_2, \ldots, \infty_\epsilon \}, \nonumber
+\end{align}
+where the verticesa in $U$ and $V$ are indexed by $\Z_m$, and $W$ is possibly empty. Then,
+\begin{align}
+    \label{eq:candelabra-edges}
+    E(L_{m,m,[\epsilon]}^{(3)})
+    &= \big\{ \{u_i, u_j, v_k\}, \{u_i, v_j, v_k\} : i,j,k \in \Z_m \big\} \\
+    & \quad \quad
+    \cup \big\{ \{u_i, u_j, \infty_k\} : i,j \in \Z_m; 1 \leq k < \epsilon \big\}.
+    \nonumber 
+\end{align}
+Let $\pi$ to be the automorphism which maps $u_i \mapsto u_{i+1}$ for each $u_i \in U$,
+$v_i \mapsto v_{i+1}$ for each $v_i \in V$ (with addition being performed in $\Z_m$), and
+$\infty_k \mapsto \infty_k$ for each $\infty_k \in W$.
+We shall use $\pi$ to find an $H$-decomposition of $L_{m,m,[\epsilon]}^{(3)}$ the form \eqref{eq:decomposition-orbit}.
+
+It remains to classify the orbits of edges in $L_{m,m,[\epsilon]}^{(3)}$ under $\pi$ (cf. Definition \ref{def:complete-orbit-types}), and present methods analagous to Algorithms \ref{alg:get-complete-types} and \ref{alg:complete-hypergraph-type}.
+Then, Algorithms \ref{alg:get-possible-blocks} and \ref{alg:decompose} can be applied to find $H$-decompositions of $L_{m,m,[\epsilon]}^{(3)}$.
+
+\begin{definition} \label{def:candelabra-orbit-types}
+Let $\pi$ be the automorphism of $L_{m,m,[\epsilon]}^{(3)}$ given above, and consider the orbit of each edge of $L_{m,m,[\epsilon]}^{(3)}$ under $\pi$. We define {\em types} of orbits as follows:
 \begin{itemize}
-    \item Describe the structure of the decomposition: $U = \{u_i \mid i \in \Z_u\}$, $V = \{v_i \mid i \in \Z_u\}$, $W = \{\infty_1, \ldots, \infty_w\}$, where $u = |U| = |V|$ and $w = |W|$. Orbits under the action of $\Z_u$ and $\infty_k \mapsto \infty_k$.
-    \item Describe the `orbit types': $\{u_i, v_{i+d}, \infty_k\} \leftrightarrow (\infty_a, d)$; $\{v_i, u_{i+a}, u_{i+b}\} \leftrightarrow (u, a, b)$; $\{u_i, v_{i+a}, v_{i+b}\} \leftrightarrow (v, a, b)$
-    \item Give analogues of Algorithm 3.1 and 3.2. Would I need to redefine `admissible' sets of orbits (cf. Definition 3.2.2)? The definition would be identical, except that $K_{v}^{(3)}$ would be replaced with $L_{U,V}^{(3)} \cup K_{U,V,W}^{(3)}$.
-
-    The analogue of algorithm 3.3 is practically identical that it's probably not worth including (I'd simply state that the algorithm is analagous to Algorithm 3.3). Another option would be to tweak the content of Algorithm 3.3 to apply in the general case - i.e. instead of finding decompositions of $K_{v}^{(3)}$, change the wording so that it takes an arbitrary hypergraph $K$.
+    \item For every pair of integers $a, b \in \Z_m$ with $a < b$, the orbit containing all edges of the form $\{v_i, u_{i+a}, u_{i+b}\}$ for $i \in \Z_m$ is of type $({\tt u}, a, b)$, where {\tt u} is an arbitrary symbol. The orbit containing all edges of the form $\{u_i, v_{i+a}, v_{i+b}\}$ for $i \in \Z_m$ is of type $({\tt v}, a, b)$, where {\tt v} is an arbitrary symbol.\footnote{Note that we distinguish the symbols {\tt u} and {\tt v} from $u$ and $v$, which are used to denote elements of $U$ and $V$.}
+    \item If $\epsilon > 0$, then for every integer $d \in \Z_m$ and every integer $1 \leq k \leq \epsilon$, the orbit containing every edge of the form $\{u_i, v_{i+d}, \infty_k\}$ for $i \in \Z_m$ is of type $(\infty_k, d)$.
 \end{itemize}
+\qed
+\end{definition}
+
+It is clear that every edge of $L_{m,m,[\epsilon]}^{(3)}$, given by \eqref{eq:candelabra-edges}, falls into precisely one of the orbit types given in Definition \ref{def:candelabra-orbit-types}.
+
+For integers $m, \epsilon$, Algorithm \ref{alg:get-candelabra-types} below will generate the set $\mathcal{O}$ of all orbit types of $L_{m,m,[\epsilon]}^{(3)}$, similar to Algorithm \ref{alg:get-complete-types}.
+Given a subhypergraph $H'$ of $L_{m,m,[\epsilon]}^{(3)}$, Algorithm \ref{alg:candelabra-hypergraph-type} below will generate the set $B$ consisting of orbit types for each edge in $H'$ under the permutation $\pi$, similar to Algorithm \ref{alg:complete-hypergraph-type}.
+
+With these two procedures defined, Algorithm \ref{alg:decompose} can be used to construct an $H$-decomposition of $L_{m,m,[\epsilon]}^{(3)}$, if one exists.
+
 
 \begin{algorithm}
-\KwIn{$L_{v,v,[w]}^{(3)}$ with vertex set given by \eqref{eq:candelabra-vertices}}
-\KwOut{The set of all orbit types of $L_{v,v,[w]}^{(3)}$, as given by Definition \ref{def:candelabra-orbit-types}}
+\KwIn{$L_{m,m,[\epsilon]}^{(3)}$ with edge set given by \eqref{eq:candelabra-edges}}
+\KwOut{The set of all orbit types of $L_{m,m,[\epsilon]}^{(3)}$, as given by Definition \ref{def:candelabra-orbit-types}}
 
 $\mathcal{O} \gets \emptyset$\;
 
-\For{$a = 0$ \KwTo $v-2$}{
-    \For{$b = a+1$ \KwTo $v-1$}{
+\For{$a = 0$ \KwTo $m-2$}{
+    \For{$b = a+1$ \KwTo $m-1$}{
         $\mathcal{O} \gets \mathcal{O} \cup \{({\tt u}, a, b)\}$\;
         $\mathcal{O} \gets \mathcal{O} \cup \{({\tt v}, a, b)\}$\;
     }
 }
 
-\If{$w \geq 1$}{
-    \For{$d = 0$ \KwTo $v-1$}{
-        \For{$k = 1$ \KwTo $w$}{
+\If{$\epsilon \geq 1$}{
+    \For{$d = 0$ \KwTo $m-1$}{
+        \For{$k = 1$ \KwTo $\epsilon$}{
             $\mathcal{O} \gets \mathcal{O} \cup \{(\infty_k, d)\}$\;
         }
     }
@@ -34,27 +69,31 @@ $\mathcal{O} \gets \emptyset$\;
 
 \KwRet{$\mathcal{O}$}\;
 
-\caption{Find orbit types of $L_{v,v,[w]}^{(3)}$.} \label{alg:get-candelabra-types}
+\caption{Find orbit types of $L_{m,m,[\epsilon]}^{(3)}$.} \label{alg:get-candelabra-types}
 \end{algorithm}
 
 \begin{algorithm}
-\KwIn{A subhypergraph $H'$ of $L_{v,v,[w]}^{(3)}$, where $V(L_{v,v,[w]}^{(3)})$ is given by \eqref{eq:candelabra-vertices}}
+\KwIn{A subhypergraph $H'$ of $L_{m,m,[\epsilon]}^{(3)}$, where $E(L_{m,m,[\epsilon]}^{(3)})$ is given by \eqref{eq:candelabra-edges}}
 \KwOut{A set $B$ consisting of the types of orbits of edges in $H'$
 %(Hence if each edge of $H'$ has a different orbit, then $B$ will be admissible and $H'$ will correspond to $B$.)
 }
 $B \gets \emptyset$\;
 \For{$e \in E(H')$} {
-    \uIf{$e = \{u_i, u_j, v_k\}$: $i,j,k \in \Z_v$} {
-        $t \gets ({\tt u}, a, b)$ such that $a < b$ and $\{i, j\} = \{k+a, k+b\}$ (with addition performed in $\Z_v$)\;
-        $B \gets B \cup \{ t \}$ \;
-    } \uElseIf{$e = \{u_i, v_j, v_k\}$: $i,j,k \in \Z_v$} {
-        $t \gets ({\tt v}, a, b)$ such that $a < b$ and $\{j, k\} = \{i+a, i+b\}$ (with addition performed in $\Z_v$)\;
-        $B \gets B \cup \{ t \}$ \;
-    } \ElseIf{$e = \{\infty_k, u_i, v_j\}$: $i, j \in \Z_v$, $k \in \{1,2,\ldots,w\}$} {
+    \uIf{$e = \{u_i, u_j, v_k\}$: $i,j,k \in \Z_m$} {
+        $a \gets \min\{ i-k, j-k \}$ (with subtraction performed in $\Z_m$)\;
+        $b \gets \max\{ i-k, j-k \}$ (subtraction in $\Z_m$)\;
+        $B \gets B \cup \{ ({\tt u}, a, b) \}$ \;
+    } \uElseIf{$e = \{u_i, v_j, v_k\}$: $i,j,k \in \Z_m$} {
+        $a \gets \min\{ j-i, k-i \}$ (subtraction in $\Z_m$)\;
+        $b \gets \max\{ j-i, k-i \}$ (subtraction in $\Z_m$)\;
+        $B \gets B \cup \{ ({\tt u}, a, b) \}$ \;
+    } \ElseIf{$e = \{u_i, v_j, \infty_k\}$: $i, j \in \Z_m$, $k \in \{1,2,\ldots,\epsilon\}$} {
         $d \gets j-i$ (mod $v$)\;
         $B \gets B \cup \{ (\infty_k, d) \}$ \;
     }
 }
 \KwRet{$B$}\;
-\caption{Finding the set of orbit types described by a subhypergraph $H'$ of $L_{v,v,[w]}^{(3)}$.} \label{alg:candelabra-hypergraph-type}
+\caption{Finding the set of orbit types described by a subhypergraph $H'$ of $L_{m,m,[\epsilon]}^{(3)}$.} \label{alg:candelabra-hypergraph-type}
 \end{algorithm}
+
+\newpage
