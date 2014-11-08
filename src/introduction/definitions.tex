@@ -2,23 +2,28 @@
 
 % TODO introductory sentence/paragraph?
 
-\begin{definition}
-A {\em decomposition} of a graph $G$ is a set $\{G_1, G_2, \ldots, G_d\}$ of
-pairwise edge-disjoint subgraphs of $G$ such that $\bigcup_{i=1}^d E(G_i) = E(G)$.
-If $\Gamma$ is a family of graphs such that each $G_i$ is isomorphic to some
-member of $\Gamma$, then the decomposition is said to be a $\Gamma$-decomposition of $G$.
-If $\Gamma$ contains one element $H$, then the decomposition is said to be an
+A {\em graph} $G$ is a pair $(V, E)$, where $V = V(H)$ is a finite set of {\em vertices}, and $E = E(H)$ is a set of $2$-element subsets of $V$, called {\em edges}.
+A {\em subgraph} of $G$ is a graph $H$ where $V(H) \subseteq V(G)$ and $E(H) \subseteq E(G)$.
+
+Two graphs $G$ and $H$ are {\em isomorphic} if there is a bijection $\varphi : V(G) \to V(H)$ such that for every edge $\{u, v\} \in E(G)$, $\{\varphi(u), \varphi(v)\} \in E(H)$, and for every edge $\{x, y\} \in E(H)$, $\{\varphi^{-1}(x), \varphi^{-1}(y)\} \in E(G)$. The map $\varphi$ is called an {\em isomorphism} from $G$ to $H$.
+
+%(Note that in order for $H$ to be a well-defined graph, we must also have $e \subseteq V(H)$ for each edge $e \in E(H)$.)
+
+A {\em multigraph} $G$ is a pair $(V, E)$ where $V = V(G)$ is a finite set of vertices, and $E = E(G)$ is a finite multiset of $2$-element subsets of $V$, called edges. That is, we allow for edges to occur multiple times in the
+edge set, but only finitely many copies of each edge.
+
+A {\em decomposition} of a graph or multigraph $G$ is a set $\mathcal{D} = \{G_1, G_2, \ldots, G_d\}$ of
+subgraphs of $G$ such that $\bigcup_{i=1}^d E(G_i) = E(G)$ (hence, if $G$ is not a multigraph, then the $G_i$ are pairwise edge-disjoint).
+If $\Gamma$ is a family of graphs such that each $G_i \in \mathcal{D}$ is isomorphic to some
+member of $\Gamma$, then $\mathcal{D}$ is said to be a $\Gamma$-decomposition of $G$.
+If $\Gamma$ contains one element $H$, then $\mathcal{D}$ is said to be an
 {\em $H$-decomposition} of $G$.
-\qed
-\end{definition}
 
 The reader is referred to \cite{bryant-graph} for a discussion on known results
 in graph decompositions.
 
 If we observe that each edge of a graph is merely a 2-element subset of the
-vertex set, it leads to a natural generalisation:
-
-\begin{definition}
+vertex set, it leads to a natural generalisation.
 A {\em hypergraph} $H$ is a pair $(V, E)$, where $V = V(H)$ is a finite set of
 {\em vertices}, and $E = E(H)$ is a set of subsets of $V$, called {\em
 hyperedges} or {\em edges}.
@@ -29,21 +34,17 @@ Let $S \subseteq V(H)$ be a set of vertices in $H$. The {\em degree} of $S$,
 denoted $\deg_H(S)$, is $|\{e \in E(H) : S \subseteq e\}|$, that is, the number
 of edges which contain $S$.
 For any vertex $x \in V(H)$, the degree of $x$ is $\deg_H(x) = \deg_H(\{x\})$.
-\qed
-\end{definition}
-
 For example, a $2$-uniform hypergraph is a graph, and in this case the notions
 of the degree of a vertex $x$ coincide. Note that $\deg_H(\emptyset) = |E(H)|$.
 
-\begin{definition}
-Let $H$ be a hypergraph. A {\em subhypergraph} of $H$ is a hypergraph $K$ where
-$V(K) \subseteq V(H)$ and $E(K) \subseteq E(H)$. (Note that in order for $K$
-to be a well-defined hypergraph, we must also have $\bigcup_{e \in E(K)} e
-\subseteq V(K)$.) The subhypergraph $K$ is {\em spanning} if $V(K) = V(H)$.
-\qed
-\end{definition}
+A {\em subhypergraph} of $H$ is a hypergraph $K$ where $V(K) \subseteq V(H)$ and $E(K) \subseteq E(H)$. The subhypergraph $K$ is {\em spanning} if $V(K) = V(H)$.
 
-If $H$ and $K$ are hypergraphs, the {\em union} of $H$ and $K$, denoted
+Two hypergraphs $H$ and $K$ are {\em isomorphic} if there is a bijection
+$\varphi : V(H) \to V(K)$ such that for every edge $e \in E(H)$,
+$\varphi(e) = \{\varphi(x) : x \in e\} \in E(K)$, and for every
+$f \in E(K)$, $\varphi^{-1}(f) \in E(H)$. The map $\varphi$ is called an {\em isomorphism} from $H$ to $K$.
+
+The {\em union} of hypergraphs $H$ and $K$, denoted
 $H \cup K$, is the hypergraph with $V(H \cup K) = V(H) \cup V(K)$ and
 $E(H \cup K) = E(H) \cup E(K)$.
 
@@ -51,56 +52,36 @@ If $K$ is a subhypergraph of $H$, then their {\em difference}
 is the hypergraph $H \setminus K$ with $V(H \setminus K) = V(H)$ and
 $E(H \setminus K) = E(H) \setminus E(K)$.
 
-\begin{definition}
-Two hypergraphs $H$ and $K$ are {\em isomorphic} if there is a bijection
-$\varphi : V(H) \to V(K)$ such that for every edge $e \in E(H)$,
-$\varphi(e) = \{\varphi(x) : x \in e\} \in E(K)$, and for every
-$f \in E(K)$, $\varphi^{-1}(f) \in E(H)$.
-\qed
-\end{definition}
-
-\begin{definition}
 A {\em multihypergraph} $H$ is a pair $(V, E)$ where $V = V(H)$ is a finite set
 of vertices, and $E = E(H)$ is a finite multiset of subsets of $V$, called
-hyperedges or edges. That is, we allow for edges to occur multiple times in the
-edge set, but only finitely many copies of each edge.
-\qed
-\end{definition}
+hyperedges or edges.
 
-\begin{definition}
-Given a hypergraph $K$, a {\em decomposition} of $K$ is a set $\{K_1,
-K_2, \ldots, K_d\}$ of pairwise edge-disjoint subhypergraphs of $K$ such that
-$\bigcup_{i=1}^d E(K_i) = E(K)$. If each $K_i$ is isomorphic to some member
+A {\em decomposition} of a hypergraph or multihypergraph $K$ is a set $\mathcal{D} = \{K_1,
+K_2, \ldots, K_d\}$ of subhypergraphs of $K$ such that
+$\bigcup_{i=1}^d E(K_i) = E(K)$, where this union respects multiplicity (hence, if $K$ is not a multihypergraph, then the $K_i$ are pairwise edge-disjoint).
+If each $K_i \in \mathcal{D}$ is isomorphic to some member
 of a family $\Gamma$ of hypergraphs, then the decomposition is a {\em
-$\Gamma$-decomposition} of $H$. If $\Gamma$ contains one member $H$, then the
+$\Gamma$-decomposition} of $K$. If $\Gamma$ contains one member $H$, then the
 decomposition is an {\em $H$-decomposition} of $K$.
-\qed
-\end{definition}
 
 \subsection{Examples of Hypergraphs}
 
-In this section, we will describe some families of hypergraphs which we will
-make extensive use of.
+In this section, we will describe some useful families of hypergraphs.
 
-\begin{definition}
-For a finite nonempty set $V$, the {\em complete $t$-uniform hypergraph on $V$}
+For a finite non-empty set $V$, the {\em complete $t$-uniform hypergraph on $V$}
 is the hypergraph $K_V^{(t)} = (V, E)$ with $E = \{e \in \mathcal{P}(V) : |e| = k\}$.
 For a positive integer $v$, the notation $K_v^{(t)}$ refers to any complete
 $t$-uniform hypergraph of order $v$.
-\qed
-\end{definition}
-
 For example, we identify $K_v^{(2)}$ with the complete graph $K_v$.
 
-For a finite nonempty set $V$ and a natural number $\lambda$, the {\em complete
+For a finite non-empty set $V$ and a natural number $\lambda$, the {\em complete
 $t$-uniform multihypergraph}, denoted $\lambda K_{V}^{(t)}$, is the
 multihypergraph on $V$ containing $\lambda$ copies of every $t$-element subset
 of $V$. For positive $v \in \Z$, the notation $\lambda K_{v}^{(t)}$ refers to
 any complete $t$-uniform multihypergraph $\lambda K_{V}^{(t)}$ where $|V| = v$.
 
-\begin{definition}
-Given a collection of $m$ finite, nonempty, pairwise disjoint sets
-$V_1, V_2 ,\ldots, V_m$, let $V = \bigcup_{i=1}^{m} V_i$.
+Given a collection of $m$ finite, non-empty, pairwise disjoint sets
+$V_1, V_2, \ldots, V_m$, let $V = \bigcup_{i=1}^{m} V_i$.
 The {\em complete $t$-uniform $m$-partite hypergraph} on $V$, denoted
 $K_{V_1, V_2, \ldots, V_m}^{(t)}$, is the $t$-uniform hypergraph $(V, E)$ having
 all edges which contain at most one element from each of $V_1, V_2, \ldots, V_m$.
@@ -113,13 +94,9 @@ For positive integers $v_1, v_2, \ldots, v_m$, the notation $K_{v_1, v_2,
 hypergraph where the partite sets have order $v_1, v_2, \ldots, v_m$
 respectively.
 %If $v_1 = v_2 = \cdots = v_m = v$, then we may write $K_{m[v]}^{(t)}$ to denote $K_{v, v, \ldots, v}^{(t)}$.
-\qed
-\end{definition}
 
 For example, we identify $K_{v_1, v_2}^{(2)}$ with the complete bipartite graph
 $K_{v_1,v_2}$.
-
-% TODO either give a name to this, or remove the 'definition' from the above.
 
 Given a collection of $m+1$ finite pairwise disjoint sets
 $V_1, V_2, \ldots, V_m, W$, where $V_i \neq \emptyset$ for each $i = 1, 2, \ldots, m$, we define
