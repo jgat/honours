@@ -179,7 +179,7 @@ $B \gets \emptyset$\;
     }
 }
 \KwRet{$B$}\;
-\caption{Finding the set of orbit types described by a subhypergraph $H'$ of $K_{v}^{(3)}$.} \label{alg:complete-hypergraph-type}
+\caption{Find the set of orbit types described by a subhypergraph $H'$ of $K_{v}^{(3)}$.} \label{alg:complete-hypergraph-type}
 \end{algorithm}
 
 
@@ -203,7 +203,7 @@ $c \gets$ empty mapping\;
 }
 \KwRet{$c$}\;
 
-\caption{Finding a mapping between admissible sets of orbits and corresponding $H$-blocks.} \label{alg:get-possible-blocks}
+\caption{Find a mapping between admissible sets of orbits and corresponding $H$-blocks.} \label{alg:get-possible-blocks}
 \end{algorithm}
 
 Finally, Algorithm \ref{alg:decompose} describes a method for finding an $H$-decomposition of $K_{v}^{(3)}$ of the form \eqref{eq:decomposition-orbit}, if one exists. It does so by employing a recursive procedure {\tt find\_partition}, which takes a set of orbit types $\mathcal{O}$, the function $c$ above, and $e = |E(H)|$.
@@ -241,7 +241,7 @@ $X \gets$ \findpartition{$\mathcal{O}$, $c$, $e|E(H)|$} \tcc*{See below}
   \KwRet{``No Solution''}\;
 }
 
-\caption{Finding $H$-decompositions of a hypergraph $K$} \label{alg:decompose}
+\caption{Find $H$-decompositions of a hypergraph $K$} \label{alg:decompose}
 
 \end{algorithm}
 
