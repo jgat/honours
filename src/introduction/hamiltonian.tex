@@ -1,18 +1,18 @@
 \section{Hamiltonian decompositions}
 
 Various attempts have been made to generalise the well-known result of Walecki
-from the 1890's that $K_v$ admits a Hamiltonian decomposition if and only if
-$v$ is odd, and a decomposition into Hamiltonian cycles plus a 1-factor if and
-only if $v$ is even, we shall discuss them here.
+from the 1890's that $K_v$ admits a decomposition into Hamiltonian cycles if and only if
+$v$ is odd, and a decomposition into $\frac{v-1}{2}$ Hamiltonian cycles and one $1$-factor if and
+only if $v$ is even; we shall discuss them here.
 
 First, it must be made clear what is meant by a Hamiltonian cycle of a
 hypergraph, and particularly, of $K_v^{(t)}$. The following definition,
 given by Berge in \cite{berge}, extends naturally from the definition of a
-Hamiltonian cycle on a graph:
+Hamiltonian cycle on a graph.
 
 \begin{definition}
 Let $H$ be a hypergraph containing $v$ vertices, with vertex set
-$V(H) = \{x_0, x_1, \ldots, x_{n-1}\}$. A {\em Berge type Hamiltonian cycle}
+$V(H) = \{x_0, x_1, \ldots, x_{v-1}\}$. A {\em Berge type Hamiltonian cycle}
 in $H$ is a sequence of alternating vertices and edges $(x_0, e_0, x_1, e_1,
 \ldots, x_{v-1}, e_{v-1}, x_0)$ where $x_i \neq x_j$ if $i \neq j$, and such
 that $e_i \in E(H)$ contains $x_i$ and $x_{i+1}$ for each $i = 0,1,\ldots,v-1$
@@ -26,7 +26,7 @@ a {\em Berge type Hamiltonian decomposition}.
 In 2-uniform graphs, one can drop the edges from the sequence and consider only the
 sequence of vertices, note that this cannot be done here.
 
-The existence problem for Hamiltonian decompositions of Berge type for
+The existence problem for Berge type Hamiltonian decompositions of
 $K_{v}^{(3)}$ was solved in \cite{verall}, completing work in \cite{bermond-al}:
 
 \begin{theorem} \label{berge-hamilton}
@@ -43,12 +43,12 @@ that this obvious necessary condition is sufficient for all $v$ and $t$, and in
 \cite{kuhn-osthus}, the authors prove this for $v \geq 30$:
 
 \begin{theorem} \label{berge-hamilton2}
-Suppose that $v \geq 30$, $4 \leq t < v$, and that $v \mid {v \choose t}$. Then
+Suppose that $v \geq 30$, $4 \leq t < v$, and $v \mid {v \choose t}$. Then
 $K_v^{(t)}$ has a Berge type Hamiltonian decomposition.
 \end{theorem}
 
 This is a clear analogue of Walecki's result for 2-uniform (hyper)graphs.
-Hence, the problem remains open for $4 \leq t < n < 30$.
+Hence, the problem remains open for $4 \leq t < v < 30$.
 
 A stronger definition for a Hamiltonian cycle of a $t$-uniform hypergraph $H$ of
 order $v$ is given by Katona and Kierstead in \cite{kato-kier}:
@@ -71,7 +71,7 @@ $H$ into Katona-Kierstead type Hamiltonian cycles.
 In \cite{bail-stev}, the authors conjecture that the obvious necessary
 condition is also sufficient for Katona-Kierstead Hamiltonian decompositions:
 
-\begin{conjecture} \label{bailey-stevens} (\cite{bail-stev})
+\begin{conjecture}[\cite{bail-stev}] \label{bailey-stevens}
 For $v \geq 5$ and $2 \leq t \leq v-2$, there exists a Katona-Kierstead type
 Hamiltonian decomposition of $K_{v}^{(t)}$ iff $v \mid {v \choose t}$.
 \end{conjecture}
@@ -85,17 +85,17 @@ The following are also open conjectures about Hamiltonian decompositions of
 Katona-Kierstead type, which are discussed in \cite{mesz-rosa} and
 \cite{kuhl-schr}:
 
-\begin{conjecture} (\cite{mesz-rosa})
+\begin{conjecture}[\cite{mesz-rosa}]
 For all $v \equiv 0$ (mod $3$), there exists a Katona-Kierstead type
 Hamiltonian decomposition of $K_v^{(3)} \setminus T$, where $T$ is a 1-factor.
 \end{conjecture}
 
 The authors also establish this conjecture for $v \leq 12$. This conjecture is a
 clear analogue of Theorem \ref{berge-hamilton}, and of Walecki's result. The
-following conjecture extends the Bailey-Stevens conjecture (Conjecture
-\ref{bailey-stevens}) to complete $3$-uniform multihypergraphs of index $\lambda$:
+following conjecture extends Conjecture
+\ref{bailey-stevens} to complete $3$-uniform multihypergraphs $\lambda K_v^{(3)}$.
 
-\begin{conjecture} (\cite{mesz-rosa})
+\begin{conjecture}[\cite{mesz-rosa}]
 For $v \geq 4$, a (Katona-Kierstead type) Hamiltonian decomposition of
 $\lambda K_v^{(3)}$ exists iff $\lambda \equiv 0$ (mod $3$) or $v \equiv 1, 2$
 (mod $3$) when $\lambda \equiv 1,2$ (mod $3$).
@@ -106,12 +106,12 @@ Hamiltonian decompositions of bipartite graphs, whereby $K_{v,v}$ has a
 Hamiltonian decomposition iff $v$ is even, and if $T$ is a 1-factor,
 $K_{v,v} \setminus T$ has a decomposition iff $v$ is odd:
 
-\begin{conjecture} (\cite{kuhl-schr})
+\begin{conjecture}[\cite{kuhl-schr}]
 For $v, t \geq 2$, the complete $t$-uniform $t$-partite hypergraph
-$K_{t[v]}^{(t)}$ has a (Katona-Kierstead type) Hamiltonian decomposition iff
+$K_{v,v,\ldots,v}^{(t)}$ has a (Katona-Kierstead type) Hamiltonian decomposition iff
 $t \mid v^{t-1}$.
 \end{conjecture}
 
-The authors also show this conjecture holds for $t = 4$ and $t \mid v$, and
-also show that $K_{3[v]}^{(3)} \setminus T$ has a Hamiltonian decomposition
+The authors of \cite{kuhl-schr} show this conjecture holds for $t = 4$ and $t \mid v$, and
+also show that $K_{v,v,v}^{(3)} \setminus T$ has a Katona-Kierstead type Hamiltonian decomposition
 whenever $3 \nmid v$ and $v \neq 4$.

@@ -5,7 +5,9 @@
 A {\em graph} $G$ is a pair $(V, E)$, where $V = V(H)$ is a finite set of {\em vertices}, and $E = E(H)$ is a set of $2$-element subsets of $V$, called {\em edges}.
 A {\em subgraph} of $G$ is a graph $H$ where $V(H) \subseteq V(G)$ and $E(H) \subseteq E(G)$.
 
-Two graphs $G$ and $H$ are {\em isomorphic} if there is a bijection $\varphi : V(G) \to V(H)$ such that for every edge $\{u, v\} \in E(G)$, $\{\varphi(u), \varphi(v)\} \in E(H)$, and for every edge $\{x, y\} \in E(H)$, $\{\varphi^{-1}(x), \varphi^{-1}(y)\} \in E(G)$. The map $\varphi$ is called an {\em isomorphism} from $G$ to $H$.
+Two graphs $G$ and $H$ are {\em isomorphic} if there is a bijection $\varphi : V(G) \to V(H)$ such that for every edge $\{u, v\} \in E(G)$, $\{\varphi(u), \varphi(v)\} \in E(H)$, and for every edge $\{x, y\} \in E(H)$, $\{\varphi^{-1}(x), \varphi^{-1}(y)\} \in E(G)$.
+We write $G \simeq H$ to indicate that $G$ is isomorphic to $H$.
+The map $\varphi$ is called an {\em isomorphism} from $G$ to $H$.
 
 %(Note that in order for $H$ to be a well-defined graph, we must also have $e \subseteq V(H)$ for each edge $e \in E(H)$.)
 
@@ -34,6 +36,8 @@ Let $S \subseteq V(H)$ be a set of vertices in $H$. The {\em degree} of $S$,
 denoted $\deg_H(S)$, is $|\{e \in E(H) : S \subseteq e\}|$, that is, the number
 of edges which contain $S$.
 For any vertex $x \in V(H)$, the degree of $x$ is $\deg_H(x) = \deg_H(\{x\})$.
+If every vertex $x \in V(H)$ has degree $d$, then $H$ is said to be {\em $d$-regular}, or {\em regular of degree $d$}.
+
 For example, a $2$-uniform hypergraph is a graph, and in this case the notions
 of the degree of a vertex $x$ coincide. Note that $\deg_H(\emptyset) = |E(H)|$.
 
@@ -42,7 +46,9 @@ A {\em subhypergraph} of $H$ is a hypergraph $K$ where $V(K) \subseteq V(H)$ and
 Two hypergraphs $H$ and $K$ are {\em isomorphic} if there is a bijection
 $\varphi : V(H) \to V(K)$ such that for every edge $e \in E(H)$,
 $\varphi(e) = \{\varphi(x) : x \in e\} \in E(K)$, and for every
-$f \in E(K)$, $\varphi^{-1}(f) \in E(H)$. The map $\varphi$ is called an {\em isomorphism} from $H$ to $K$.
+$f \in E(K)$, $\varphi^{-1}(f) \in E(H)$.
+We write $H \simeq K$ to indicate that $H$ is isomorphic to $K$.
+The map $\varphi$ is called an {\em isomorphism} from $H$ to $K$.
 
 The {\em union} of hypergraphs $H$ and $K$, denoted
 $H \cup K$, is the hypergraph with $V(H \cup K) = V(H) \cup V(K)$ and
@@ -111,8 +117,8 @@ If $W = \emptyset$, we may use the notation $L_{V_1, V_2, \ldots, V_m}^{(t)} = L
 
 %If $v_1 = v_2 = \cdots = v_m = v$, then we may write $L_{m[v]}^{(t)}$ to denote $L_{v, v, \ldots, v}^{(t)}$.
 
-Given a $t$-uniform hypergraph $H$, a {\em $d$-factor} of $H$ is a spanning
-subhypergraph $K$ where each vertex of $K$ has degree $d$. For example, a
+Given a $t$-uniform hypergraph $H$, a {\em $d$-factor} of $H$ is a spanning $d$-regular subhypergraph $K$.
+For example, a
 1-factor consists of $\frac{|V(H)|}{t}$ pairwise disjoint edges from $H$. An
 obvious necessary condition then for the existence of a 1-factor of $H$ is that
 $t$ divides $|V(H)|$.
