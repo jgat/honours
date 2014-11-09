@@ -39,68 +39,34 @@ If $H$ is a $t$-uniform hypergraph, the {\em complete $H$-design of order $v$} i
 %We must show that each edge of $K_{v}^{(t)}$ occurs in $\lambda$ subhypergraphs which are isomorphic to $H$.
 %\end{proof}
 
-If there exists a $(v, H, \lambda)$-design, then there are certain necessary divisiblity conditions to be satisfied.
-The following proof is from \cite{bryant}:
+The following definitions of group-divisible $t$-designs and candelabra $t$-systems are given by Moh\`{a}scy and Ray-Chaudhuri in \cite{mohascy}, where they are used to construct $S(3, k, v)$ Steiner systems.
+Both of these can be considered generalisations of group divisible designs (as defined in \cite{mull-gron}) to $t \geq 3$.
 
-\begin{lemma}[\cite{bryant}] \label{obv-necessary-1}
-Let $H$ and $K$ be hypergraphs. Suppose there exists an $H$-decomposition of $K$.
-Then, for any subset $R$ of $V(K)$ with $|R| \leq |V(H)|$,
-$\gcd(\{\deg_H(S) : S \subseteq V(H), |S| = |R|\})$ divides $\deg_K(R)$.
-\end{lemma}
+\begin{definition}[\cite{mohascy}]
+A {\em group-divisible $t$-design}, or $t$-GDD of order $v$, index $\lambda$, and block sizes from $K$ is a triple $(X, \mathcal{G}, \mathcal{B})$ where $X$ is a set of $v$ {\em points}, $\mathcal{G}$ is a partition of $X$ into {\em groups}, and $\mathcal{B}$ is a collection of subsets of $X$, called {\em blocks}, such that:
+\begin{enumerate}
+    \item[(1)] for each $B \in \mathcal{B}$, $|B| \in K$;
+    \item[(2)] for each block $B \in \mathcal{B}$ and each group $G \in \mathcal{G}$, $|B \cap G| \leq 1$; and
+    \item[(3)] every $t$-subset of $X$ taken from $t$ distinct groups is contained in exactly $\lambda$ blocks.
+\end{enumerate}
+\qed
+\end{definition}
 
-(If necessary, we define $\gcd(\{0\}) = 0$ in the above lemma.)
+Let $(X, \mathcal{G}, \mathcal{B})$ be a group-divisible $t$-design of index $1$, where every block has size $k$, and denote the groups of the design by $\mathcal{G} = \{G_1, G_2, \ldots, G_m\}$.
+This design corresponds to a $K_{k}^{(t)}$-decomposition of $K_{G_1, G_2, \ldots, G_m}^{(t)}$, where each block $B \in \mathcal{B}$ corresponds to the block $K_{B}^{(t)}$ of the decomposition.
+%Conversely, every $K_{k}^{(t)}$-decomposition of $K_{v_1, v_2, \ldots, v_m}^{(t)}$ corresponds to a group-divisible $t$-design in the same way.
+Hence, decompositions of $K_{v_1, v_2, \ldots, v_m}^{(t)}$ can be considered generalisations of group divisible $t$-designs.
 
-\begin{proof}
-Let $\mathcal{D}$ be an $H$-decomposition of $K$, $R \subseteq V(K)$, and suppose that $|R| \leq |V(H)|$.
-The $H$-blocks in $\mathcal{D}$ whose vertex sets contain $R$ partition the edges of $K$ which contain $R$, so
-\begin{equation} \label{eq:degree-sum}
-    \deg_K(R) = \sum_{\substack{G \in \mathcal{D} \\ R \subseteq V(G)}} \deg_G(R).
-\end{equation}
-For each $G \in \mathcal{D}$ with $R \subseteq V(G)$, we have
-\[
-    \deg_G(R) \in \{\deg_H(S) : S \subseteq V(H), |S| = |R|\}.
-\]
-Therefore $\gcd(\{\deg_H(S) : S \subseteq V(H), |S| = |R|\})$ divides $\deg_K(R)$, by B\'{e}zout's identity.
-\end{proof}
+\begin{definition}[\cite{mohascy}]
+A {\em candelabra $t$-system}, or $t$-CS of order $v$, index $\lambda$ and block sizes from $K$ is an ordered tuple $(X, S, \mathcal{G}, \mathcal{B})$ where $X$ is a set of $v$ {\em points}, $S \subseteq X$ is the {\em stem} of the candelabra, $\mathcal{G}$ is a partition of $X \setminus S$ into {\em groups}, and $\mathcal{B}$ is a collection of subsets of $X$, called {\em blocks} such that
+\begin{enumerate}
+    \item[(1)] for each $B \in \mathcal{B}$, $|B| \in K$; and
+    \item[(2)] every $t$-subset of $X$ which is not a subset of $S \cup G$ for any $G \in \mathcal{G}$ is contained in some block, and for every $G \in \mathcal{G}$, no $t$-subset of $S \cup G$ is contained in any block.
+\end{enumerate}
+\qed
+\end{definition}
 
-Informally, for any set $R$ of vertices in $K$, there are $\deg_K(R)$ edges incident with $R$,
-but each of these edges must occur precisely once in the design $\mathcal{D}$.
-Hence, for every $G \in \mathcal{D}$ which contains $R$, the isomorphism $G \simeq H$
-carries $R$ into some $S \subseteq V(H)$ with $|S| = |R|$, and so $G$ contains
-$\deg_H(S)$ of the $\deg_K(R)$ edges incident with $R$.
-Therefore, $\deg_K(R)$ must be given by a sum of elements in $\{\deg_H(S) : S \subseteq V(H), |S| = |R|\}$.
-So, if $\deg_H(S)$ is divisible by some $d$ for all such $S$, then $\deg_K(R)$ must also be divisible by $d$.
-
-Note that if $|R| > |V(H)|$, then there are no $G \in \mathcal{D}$ with $R \subseteq V(G)$,
-so \eqref{eq:degree-sum} is the empty sum (and so $\deg_K(R) = 0$), and the statement following holds vacuously.
-However, $\gcd(\{\deg_H(S) : S \subseteq V(H), |S| = |R|\}) = \gcd(\emptyset)$ is not defined,
-so the conclusion does not follow.
-
-If we take $K = \lambda K_v^{(t)}$, then we have:
-
-\begin{lemma} \label{obv-necessary}
-Let $H$ be a $t$-uniform hypergraph.
-If there exists a $(v, H, \lambda)$-design, then for each $0 \leq i < t$,
-  $\gcd(\{ \deg_H(S) : S \subseteq V(H), |S| = i \})$ divides $\lambda {v-i \choose t-i}$.
-\end{lemma}
-
-\begin{proof}
-Apply Lemma \ref{obv-necessary-1} with $K = \lambda K_v^{(t)}$;
-  note that for any $R \subseteq V(K)$ with $|R| = i$, $\deg_K(R) = \lambda {v-i \choose t-i}$.
-\end{proof}
-
-For example, if we take $H = K_k^{(t)}$, then we have the usual necessary divisibility conditions for $t$-designs: for each $0 \leq i < t$, ${k-i \choose t-i}$ divides $\lambda {v-i \choose t-i}$.
-
-If $v < t$, then $\lambda K_v^{(t)}$ contains no edges, and we will consider the empty set to be an $H$-decomposition of $\lambda K_v^{(t)}$, and therefore a $(v, H, \lambda)$-design, for any $H$ and $\lambda$. Otherwise, if $v \geq t$ and $\mathcal{D} \neq \emptyset$ is a $H$-design, then it is necessary that there is a subgraph of $\lambda K_v^{(t)}$ isomorphic to $H$, so $|V(H)| \leq |V(\lambda K_v^{(t)})|$, hence:
-
-\begin{lemma} \label{obv-order}
-Let $H$ be a $t$-uniform hypergraph. If $\mathcal{D}$ is a $(v, H, \lambda)$-design, then either $v < t$ and $\mathcal{D} = \emptyset$ or $v \geq |V(H)|$ and $\mathcal{D} \neq \emptyset$.
-\end{lemma}
-
-Since $v < t$ is trivial, we shall assume $v \geq t$ unless otherwise stated.
-
-The following necessary and sufficient condition follows immediately from Baranyai's Theorem in \cite{baran}. The necessary condition is immediate from Lemmas \ref{obv-necessary} and \ref{obv-order}, and Baranyai shows it is sufficient.
-
-\begin{theorem}[\cite{baran}] \label{baranyai}
-Let $H$ be the simple $t$-uniform hypergraph consisting of $m$ pairwise disjoint edges. There is an $H$-design of order $v$ if and only if $m$ divides ${v \choose t}$ and $mt \leq v$.
-\end{theorem}
+Let $(X, S, \mathcal{G}, \mathcal{B})$ be a candelabra $t$-system of index $1$, where every block has size $k$, and denote the groups of the system by $\mathcal{G} = \{G_1, \ldots, G_m\}$.
+This design corresponds to a $K_{k}^{(t)}$-decomposition of $L_{G_1,\ldots,G_m,[S]}^{(t)}$, where each block $B \in \mathcal{B}$ corresponds to the block $K_{B}^{(t)}$ of the decomposition.
+%Conversely, every $K_{k}^{(t)}$-decomposition of $L_{v_1, v_2, \ldots, v_m,[w]}^{(t)}$ corresponds to a group-divisible $t$-design in the same way.
+Hence, decompositions of $L_{v_1, \ldots, v_m,[w]}^{(t)}$ can be considered generalisations of candelabra $t$-systems.

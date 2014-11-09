@@ -1,0 +1,65 @@
+\section{Initial results}
+
+If there exists a $(v, H, \lambda)$-design, then there are certain necessary divisiblity conditions to be satisfied.
+The following lemma is from \cite{bryant}; if necessary, we define $\gcd(\{0\}) = 0$.
+
+\begin{lemma}[\cite{bryant}] \label{obv-necessary-1}
+Let $H$ and $K$ be hypergraphs. Suppose there exists an $H$-decomposition of $K$.
+Then, for any subset $R$ of $V(K)$ with $|R| \leq |V(H)|$,
+$\gcd(\{\deg_H(S) : S \subseteq V(H), |S| = |R|\})$ divides $\deg_K(R)$.
+\end{lemma}
+
+\begin{proof}
+Let $\mathcal{D}$ be an $H$-decomposition of $K$, $R \subseteq V(K)$, and suppose that $|R| \leq |V(H)|$.
+The $H$-blocks in $\mathcal{D}$ whose vertex sets contain $R$ partition the edges of $K$ which contain $R$, so
+\begin{equation} \label{eq:degree-sum}
+    \deg_K(R) = \sum_{\substack{G \in \mathcal{D} \\ R \subseteq V(G)}} \deg_G(R).
+\end{equation}
+For each $G \in \mathcal{D}$ with $R \subseteq V(G)$, we have
+\[
+    \deg_G(R) \in \{\deg_H(S) : S \subseteq V(H), |S| = |R|\}.
+\]
+Therefore $\gcd(\{\deg_H(S) : S \subseteq V(H), |S| = |R|\})$ divides $\deg_K(R)$.
+\end{proof}
+
+Informally, for any set $R$ of vertices in $K$, there are $\deg_K(R)$ edges incident with $R$,
+but each of these edges must occur precisely once in the design $\mathcal{D}$.
+Hence, for every $G \in \mathcal{D}$ which contains $R$, the isomorphism $G \simeq H$
+carries $R$ into some $S \subseteq V(H)$ with $|S| = |R|$, and so $G$ contains
+$\deg_H(S)$ of the $\deg_K(R)$ edges incident with $R$.
+Therefore, $\deg_K(R)$ must be given by a sum of elements in $\{\deg_H(S) : S \subseteq V(H), |S| = |R|\}$.
+So, if $\deg_H(S)$ is divisible by some $d$ for all such $S$, then $\deg_K(R)$ must also be divisible by $d$.
+
+Note that if $|R| > |V(H)|$, then there are no $G \in \mathcal{D}$ with $R \subseteq V(G)$,
+so \eqref{eq:degree-sum} is the empty sum (and so $\deg_K(R) = 0$), and the statement following holds vacuously.
+However, $\gcd(\{\deg_H(S) : S \subseteq V(H), |S| = |R|\}) = \gcd(\emptyset)$ is not defined,
+so the conclusion does not follow.
+
+If we take $K = \lambda K_v^{(t)}$, then we have:
+
+\begin{lemma} \label{obv-necessary}
+Let $H$ be a $t$-uniform hypergraph.
+If there exists a $(v, H, \lambda)$-design, then for each $0 \leq i < t$,
+  $\gcd(\{ \deg_H(S) : S \subseteq V(H), |S| = i \})$ divides $\lambda {v-i \choose t-i}$.
+\end{lemma}
+
+\begin{proof}
+Apply Lemma \ref{obv-necessary-1} with $K = \lambda K_v^{(t)}$;
+  note that for any $R \subseteq V(K)$ with $|R| = i$, $\deg_K(R) = \lambda {v-i \choose t-i}$.
+\end{proof}
+
+For example, if we take $H = K_k^{(t)}$, then we have the usual necessary divisibility conditions for $t$-designs: for each $0 \leq i < t$, ${k-i \choose t-i}$ divides $\lambda {v-i \choose t-i}$.
+
+If $v < t$, then $\lambda K_v^{(t)}$ contains no edges, and we will consider the empty set to be an $H$-decomposition of $\lambda K_v^{(t)}$, and therefore a $(v, H, \lambda)$-design, for any $H$ and $\lambda$. Otherwise, if $v \geq t$ and $\mathcal{D} \neq \emptyset$ is a $H$-design, then it is necessary that there is a subgraph of $\lambda K_v^{(t)}$ isomorphic to $H$, so $|V(H)| \leq |V(\lambda K_v^{(t)})|$, hence:
+
+\begin{lemma} \label{obv-order}
+Let $H$ be a $t$-uniform hypergraph. If $\mathcal{D}$ is a $(v, H, \lambda)$-design, then either $v < t$ and $\mathcal{D} = \emptyset$ or $v \geq |V(H)|$ and $\mathcal{D} \neq \emptyset$.
+\end{lemma}
+
+Since $v < t$ is trivial, we shall assume $v \geq t$ unless otherwise stated.
+
+The following necessary and sufficient condition follows immediately from Baranyai's Theorem in \cite{baran}. The necessary condition is immediate from Lemmas \ref{obv-necessary} and \ref{obv-order}, and Baranyai shows it is sufficient.
+
+\begin{theorem}[\cite{baran}] \label{baranyai}
+Let $H$ be the simple $t$-uniform hypergraph consisting of $m$ pairwise disjoint edges. There is an $H$-design of order $v$ if and only if $m$ divides ${v \choose t}$ and $mt \leq v$.
+\end{theorem}
