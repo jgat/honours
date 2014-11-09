@@ -15,7 +15,8 @@ A {\em multigraph} $G$ is a pair $(V, E)$ where $V = V(G)$ is a finite set of ve
 edge set, but only finitely many copies of each edge.
 
 A {\em decomposition} of a graph or multigraph $G$ is a set $\mathcal{D} = \{G_1, G_2, \ldots, G_d\}$ of
-subgraphs of $G$ such that $\bigcup_{i=1}^d E(G_i) = E(G)$ (hence, if $G$ is not a multigraph, then the $G_i$ are pairwise edge-disjoint).
+subgraphs of $G$ whose edge sets partition $E(H)$.
+%That is, $\bigcup_{i=1}^d E(G_i) = E(G)$ (hence, if $G$ is not a multigraph, then the $G_i$ are pairwise edge-disjoint).
 If $\Gamma$ is a family of graphs such that each $G_i \in \mathcal{D}$ is isomorphic to some
 member of $\Gamma$, then $\mathcal{D}$ is said to be a $\Gamma$-decomposition of $G$.
 If $\Gamma$ contains one element $H$, then $\mathcal{D}$ is said to be an
@@ -62,10 +63,9 @@ A {\em multihypergraph} $H$ is a pair $(V, E)$ where $V = V(H)$ is a finite set
 of vertices, and $E = E(H)$ is a finite multiset of subsets of $V$, called
 hyperedges or edges.
 
-A {\em decomposition} of a hypergraph or multihypergraph $K$ is a set $\mathcal{D} = \{K_1,
-K_2, \ldots, K_d\}$ of subhypergraphs of $K$ such that
-$\bigcup_{i=1}^d E(K_i) = E(K)$, where this union respects multiplicity (hence, if $K$ is not a multihypergraph, then the $K_i$ are pairwise edge-disjoint).
-If each $K_i \in \mathcal{D}$ is isomorphic to some member
+A {\em decomposition} of a hypergraph or multihypergraph $K$ is a set $\mathcal{D} = \{K_1, K_2, \ldots, K_d\}$ of subhypergraphs of $K$, called {\em blocks}, whose edge sets partition $E(K)$.
+%That is, $\bigcup_{i=1}^d E(K_i) = E(K)$, where this union respects multiplicity (hence, if $K$ is not a multihypergraph, then the blocks are pairwise edge-disjoint).
+If each block $K_i \in \mathcal{D}$ is isomorphic to some member
 of a family $\Gamma$ of hypergraphs, then the decomposition is a {\em
 $\Gamma$-decomposition} of $K$. If $\Gamma$ contains one member $H$, then the
 decomposition is an {\em $H$-decomposition} of $K$.
