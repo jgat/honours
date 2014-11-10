@@ -1,0 +1,765 @@
+\mode<presentation>
+{
+\usetheme{Frankfurt}
+\usecolortheme{beaver}
+
+%\setbeamercovered{transparent}
+}
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+
+% font definitions, try \usepackage{ae} instead of the following
+% three lines if you don't like this look
+\usepackage{mathptmx}
+\usepackage[scaled=.90]{helvet}
+\usepackage{courier}
+
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{thmtools}
+
+\usepackage{tikz}
+\usetikzlibrary[topaths]
+\tikzstyle{every node}=[circle, draw, %fill=black!50,
+                        inner sep=0pt, minimum width=12pt]
+% A counter, since TikZ is not clever enough (yet) to handle
+% arbitrary angle systems.
+\newcount\mycount
+
+\usepackage{wasysym}
+
+\let\problem\relax
+\declaretheorem[style=definition]{problem}
+\theoremstyle{definition}
+\newtheorem{question}[theorem]{\translate{Question}}
+
+\newcommand{\floor}[1]{\left \lfloor #1 \right \rfloor}
+
+\title{Decomposing Complete Hypergraphs}
+
+%\subtitle{}
+
+\author{Jackson Gatenby \\ \vspace{0.3cm} Supervisor: Barbara Maenhaut}
+
+\date{17 October 2014}
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+%\AtBeginSubsection[]
+%{
+%\begin{frame}<beamer>
+%\frametitle{Outline}
+%\tableofcontents[currentsection,currentsubsection]
+%\end{frame}
+%}
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command:
+
+%\beamerdefaultoverlayspecification{<+->}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\section{Steiner Triple Systems}
+\subsection{}
+
+\begin{frame}
+\begin{problem}[Steiner, 1853]
+Given a set of $v$ elements, take subsets of size $3$ so that every pair of
+elements occurs in precisely one of the subsets.
+\end{problem}
+
+\pause
+
+Example: every pair of elements from $\{0, 1, 2, 3, 4, 5, 6\}$ occurs in
+exactly one of the following triples:
+\begin{align*}
+    \{0, 1, 3\} \quad &\{1, 2, 4\} \quad \{2, 3, 5\} \\
+    \{3, 4, 6\} \quad &\{0, 4, 5\} \quad \{1, 5, 6\} \\
+    &\{0, 2, 6\}
+\end{align*}
+
+\pause
+
+\begin{definition}
+A {\em Steiner Triple System} of order $v$, denoted $STS(v)$, is a
+set $V$ of $v$ {\em points} with a collection $\mathcal{B}$ of 3-element
+subsets of $V$, called {\em blocks}, so that every 2-element subset of $V$ is
+contained in exactly one block.
+\end{definition}
+
+\end{frame}
+
+\begin{frame}
+
+%How can we visualise this?
+
+\begin{center}
+\begin{tikzpicture}[thick,scale=0.8]
+  \foreach \number in {0,...,6}{
+      % Compute angle:
+        \mycount=\number
+        \multiply\mycount by -360
+        \divide\mycount by 7
+        \advance\mycount by 90
+      \node[draw,circle] (N-\number) at (\the\mycount:3cm) {\number};
+    }
+
+  \onslide*<2,9>{
+      \draw (N-0) edge[-,red] (N-1);
+      \draw (N-1) edge[-,blue] (N-3);
+      \draw (N-3) edge[-,green] (N-0);
+  }
+
+  \onslide*<3,9>{
+      \draw (N-1) edge[-,red] (N-2);
+      \draw (N-2) edge[-,blue] (N-4);
+      \draw (N-4) edge[-,green] (N-1);
+  }
+
+  \onslide*<4,9>{
+      \draw (N-2) edge[-,red] (N-3);
+      \draw (N-3) edge[-,blue] (N-5);
+      \draw (N-5) edge[-,green] (N-2);
+  }
+
+  \onslide*<5,9>{
+      \draw (N-3) edge[-,red] (N-4);
+      \draw (N-4) edge[-,blue] (N-6);
+      \draw (N-6) edge[-,green] (N-3);
+  }
+
+  \onslide*<6,9>{
+      \draw (N-4) edge[-,red] (N-5);
+      \draw (N-5) edge[-,blue] (N-0);
+      \draw (N-0) edge[-,green] (N-4);
+  }
+
+  \onslide*<7,9>{
+      \draw (N-5) edge[-,red] (N-6);
+      \draw (N-6) edge[-,blue] (N-1);
+      \draw (N-1) edge[-,green] (N-5);
+  }
+
+  \onslide*<8,9>{
+      \draw (N-6) edge[-,red] (N-0);
+      \draw (N-0) edge[-,blue] (N-2);
+      \draw (N-2) edge[-,green] (N-6);
+  }
+\end{tikzpicture}
+\end{center}
+
+\onslide+<9>{$\Rightarrow$ We can draw the complete graph $K_7$ as
+a number of copies of $K_3$.}
+
+%\begin{problem}
+%Construct a set of graphs isomorphic to $K_3$ whose edges partition the edge
+%set of the complete graph $K_v$.
+%\end{problem}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{definition}
+Let $G, H$ be graphs. A $G$-decomposition of $H$ is a collection of graphs
+isomorphic to $G$ whose edges partition $E(H)$.
+\end{definition}
+
+%\pause
+
+\begin{lemma}
+An $STS(v)$ is equivalent to a $K_3$-decomposition of $K_v$.
+\end{lemma}
+
+\end{frame}
+
+\begin{frame}
+
+An $STS(9)$, expressed as a $K_3$-decomposition of $K_{9}$:
+
+\begin{center}
+\begin{tikzpicture}[thick,scale=0.8]
+  \foreach \number in {0,...,7}{
+      % Compute angle:
+        \mycount=\number
+        \multiply\mycount by -360
+        \divide\mycount by 8
+        \advance\mycount by 90
+      \node[draw,circle] (N-\number) at (\the\mycount:2cm) {\number};
+    }
+  \node[draw,circle] (infty) at (0:0cm) {$\infty$};
+
+      \draw (N-0) edge[-,red] (N-1);
+      \draw (N-1) edge[-,blue] (N-3);
+      \draw (N-3) edge[-,green] (N-0);
+\end{tikzpicture}
+\quad \quad \quad
+\begin{tikzpicture}[thick,scale=0.8]
+  \foreach \number in {0,...,7}{
+      % Compute angle:
+        \mycount=\number
+        \multiply\mycount by -360
+        \divide\mycount by 8
+        \advance\mycount by 90
+      \node[draw,circle] (N-\number) at (\the\mycount:2cm) {\number};
+    }
+  \node[draw,circle] (infty) at (0:0cm) {$\infty$};
+
+      \draw (N-0) edge[-,orange,bend left] (N-4);
+      \draw (N-4) edge[-,violet] (infty);
+      \draw (infty) edge[-,violet] (N-0);
+\end{tikzpicture}
+\end{center}
+
+%\pause
+$\{0, 1, 3\}$, $\{1, 2, 4\}$, $\{2, 3, 5\}$, \ldots
+\hspace{1cm}% \pause
+$\{0,4,\infty\}$, $\{1, 5, \infty\}$, \ldots
+
+\end{frame}
+
+\begin{frame}
+
+We also have necessary conditions for the existence of a $K_3$-decomposition of $K_v$:
+
+\begin{enumerate}
+    \pause
+    \item $K_v$ has ${v \choose 2}$ edges, which are partitioned
+    into parts of size $|E(K_3)| = 3$, so $3$ must divide ${v \choose 2} = \frac{v(v-1)}{2}$.
+    \pause
+    \item Consider a vertex $x \in V(K_v)$. Whenever $x$ appears in a copy of
+    $K_3$, there are 2 edges incident with $x$. There are a total of
+    $\deg_{K_v}(x) = v-1$ edges incident with $x$, so $2$ must divide $v-1$.
+\end{enumerate}
+\pause
+
+\begin{theorem}[Kirkman, 1847]
+An $STS(v)$ exists iff $v \equiv 1$ or $3$ (mod $6$).
+\end{theorem}
+
+%\pause
+
+\begin{proof}
+($\Rightarrow$) Obvious necessary conditions above.
+
+($\Leftarrow$) Generalise the constructions shown before.
+\end{proof}
+
+\end{frame}
+
+\section{Steiner Systems}
+\subsection{}
+
+\begin{frame}
+
+We can generalise ``$3$-element blocks'' to ``$k$-element blocks'', and
+from ``covering every pair of points'' to ``covering every $t$-set of points'':
+
+\pause
+
+\begin{definition}
+A {\em Steiner system}, denoted $S(t, k, v)$, consists of a set of $v$ points,
+and sets of $k$ points ({\em blocks}), so that every set of $t$ points occurs
+in precisely one block.
+\end{definition}
+
+\pause
+
+\begin{problem}
+Given $k$ and $t$, for which $v$ does there exist an $S(t, k, v)$?
+\end{problem}
+
+\pause
+We would like to form an equivalent `graph theoretic' question.
+%We need a `graph' which contains one edge for every {\em $t$-set}
+%of points.
+
+\end{frame}
+
+\begin{frame}
+
+%The following definition removes the restriction that edges of a graph need
+%exactly two endpoints:
+%\pause
+
+\begin{definition}
+A {\em hypergraph} is a pair $(V, E)$, where $V$ is a set of {\em vertices}
+and $E$ is a set of nonempty subsets of $V$ called {\em hyperedges} (or
+{\em edges}).
+
+%\pause
+A hypergraph is {\em $t$-uniform} if every edge has size $t$.
+
+%\pause
+The {\em complete $t$-uniform hypergraph of order $v$}, denoted $K_v^{(t)}$,
+consists of $v$ vertices and edges given by every $t$-set of vertices.
+\end{definition}
+
+\pause
+
+%For example, a $2$-uniform hypergraph is a graph, and $K_v = K_v^{(2)}$.
+
+Example: $K_4^{(3)}$:
+
+\pause
+
+\begin{center}
+\begin{tikzpicture}[thick,scale=0.8]
+  \foreach \number in {0,...,3}{
+      % Compute angle:
+        \mycount=\number
+        \multiply\mycount by -360
+        \divide\mycount by 4
+        \advance\mycount by 135
+      \node[draw,circle] (N-\number) at (\the\mycount:2cm) {};
+    }
+
+  \draw (N-0) edge[-,red,bend left=8] (N-1);
+  \draw (N-1) edge[-,red,bend left=8] (N-2);
+  \draw (N-2) edge[-,red,bend left=8] (N-0);
+
+  \pause
+  \draw (N-0) edge[-,blue,bend right=8] (N-1);
+  \draw (N-1) edge[-,blue,bend right=8] (N-3);
+  \draw (N-3) edge[-,blue,bend right=8] (N-0);
+
+  \pause
+  \draw (N-0) edge[-,green,bend left=8] (N-2);
+  \draw (N-2) edge[-,green,bend left=8] (N-3);
+  \draw (N-3) edge[-,green,bend left=8] (N-0);
+
+  \pause
+  \draw (N-1) edge[-,brown,bend right=8] (N-2);
+  \draw (N-2) edge[-,brown,bend right=8] (N-3);
+  \draw (N-3) edge[-,brown,bend right=8] (N-1);
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}
+
+\begin{lemma}
+An $S(t, k, v)$ is a $K_{k}^{(t)}$-decomposition of $K_{v}^{(t)}$.
+\end{lemma}
+
+\pause
+
+The necessary divisibility conditions for the existence of an $S(t, k, v)$ are:
+
+\begin{enumerate}
+    \item $|E(K_k^{(t)})| = {k \choose t}$ divides $|E(K_v^{(t)})| = {v \choose t}$
+    \pause
+    \item For $x \in V(K_v^{(t)})$: $\deg_{K_k^{(t)}}(x) = {k-1 \choose t-1}$
+    divides $\deg_{K_v^{(t)}}(x) = {v-1 \choose t-1}$
+    \pause
+    \item For $x, y$: $\deg_{K_k^{(t)}}(\{x, y\}) = {k-2 \choose t-2}$
+    divides $\deg_{K_v^{(t)}}(\{x, y\}) = {v-2 \choose t-2}$
+    \pause
+    \item \ldots
+\end{enumerate}
+
+\pause
+In summary:
+
+For $i \geq 0$, ${k-i \choose t-i}$ must divide ${v-i \choose t-i}$.
+
+\end{frame}
+
+\section{Hypergraph Decompositions}
+\subsection{}
+
+\begin{frame}
+\begin{problem}
+Given a $t$-uniform hypergraph $H$, for which $v$ does there exist an
+$H$-decomposition of $K_v^{(t)}$?
+\end{problem}
+
+These can also be referred to as {\em $H$-designs of order $v$}.
+
+\pause
+
+Example: for the hypergraph $H$ below, does there exist an $H$-decomposition of
+$K_{6}^{(3)}$?
+
+\begin{center}
+\begin{tikzpicture}[thick,scale=0.8]
+  \foreach \number in {0,...,5}{
+      % Compute angle:
+        \mycount=\number
+        \multiply\mycount by -360
+        \divide\mycount by 6
+        \advance\mycount by 90
+      \node[draw,circle] (N-\number) at (\the\mycount:2cm) {};
+    }
+
+  \draw (N-0) edge[-,red,bend right=8] (N-1);
+  \draw (N-1) edge[-,red,bend right=8] (N-5);
+  \draw (N-5) edge[-,red,bend right=8] (N-0);
+
+  \draw (N-0) edge[-,blue,bend right=8] (N-2);
+  \draw (N-2) edge[-,blue,bend right=8] (N-4);
+  \draw (N-4) edge[-,blue,bend right=8] (N-0);
+
+  \draw (N-1) edge[-,green,bend right=8] (N-3);
+  \draw (N-3) edge[-,green,bend right=8] (N-5);
+  \draw (N-5) edge[-,green,bend right=8] (N-1);
+
+  \draw (N-2) edge[-,brown,bend right=8] (N-3);
+  \draw (N-3) edge[-,brown,bend right=8] (N-4);
+  \draw (N-4) edge[-,brown,bend right=8] (N-2);
+\end{tikzpicture}
+\end{center}
+
+%\vspace{5cm}
+
+%\pause
+%\vspace{1cm}
+%{\em TODO: draw an $H$-design of order 6 where $E(H) = \{\{1,2,3\},\{1,5,6\},\{2,3,4\},\{4,5,6\}\}$
+%(the regular $3$-uniform hypergraph on 4 edges which I solved the existence problem for).
+
+%During the talk, I would also draw a copy of $H$ on a whiteboard, so I can refer to it
+%in later slides without drawing it in every single slide.}
+% TODO Example: {}-design of order 6 - the one with the four edges.
+\end{frame}
+
+\begin{frame}
+
+\begin{center}
+\begin{tikzpicture}[thick,scale=0.8]
+  \foreach \number in {0,...,4}{
+      % Compute angle:
+        \mycount=\number
+        \multiply\mycount by -360
+        \divide\mycount by 5
+        \advance\mycount by 90
+      \node[draw,circle] (N-\number) at (\the\mycount:3cm) {\number};
+    }
+  \node[draw,circle] (infty) at (0:0cm) {$\infty$};
+
+  \onslide*<1>{
+      \draw (N-4) edge[-,red,bend right=8] (N-0);
+      \draw (N-0) edge[-,red,bend right=8] (N-1);
+      \draw (N-1) edge[-,red,bend right=8] (N-4);
+
+      \draw (N-0) edge[-,blue,bend left=8] (N-2);
+      \draw (N-2) edge[-,blue,bend left=8] (N-3);
+      \draw (N-3) edge[-,blue,bend left=8] (N-0);
+
+      \draw (N-4) edge[-,green,bend right=8] (N-1);
+      \draw (N-1) edge[-,green,bend left=8] (infty);
+      \draw (infty) edge[-,green,bend left=8] (N-4);
+
+      \draw (N-2) edge[-,brown,bend right=8] (N-3);
+      \draw (N-3) edge[-,brown,bend right=8] (infty);
+      \draw (infty) edge[-,brown,bend right=8] (N-2);
+  }
+
+  \onslide*<2>{
+      \draw (N-0) edge[-,red,bend right=8] (N-1);
+      \draw (N-1) edge[-,red,bend right=8] (N-2);
+      \draw (N-2) edge[-,red,bend right=8] (N-0);
+
+      \draw (N-1) edge[-,blue,bend left=8] (N-3);
+      \draw (N-3) edge[-,blue,bend left=8] (N-4);
+      \draw (N-4) edge[-,blue,bend left=8] (N-1);
+
+      \draw (N-0) edge[-,green,bend right=8] (N-2);
+      \draw (N-2) edge[-,green,bend left=8] (infty);
+      \draw (infty) edge[-,green,bend left=8] (N-0);
+
+      \draw (N-3) edge[-,brown,bend right=8] (N-4);
+      \draw (N-4) edge[-,brown,bend right=8] (infty);
+      \draw (infty) edge[-,brown,bend right=8] (N-3);
+  }
+
+  \onslide*<3>{
+      \draw (N-1) edge[-,red,bend right=8] (N-2);
+      \draw (N-2) edge[-,red,bend right=8] (N-3);
+      \draw (N-3) edge[-,red,bend right=8] (N-1);
+
+      \draw (N-2) edge[-,blue,bend left=8] (N-4);
+      \draw (N-4) edge[-,blue,bend left=8] (N-0);
+      \draw (N-0) edge[-,blue,bend left=8] (N-2);
+
+      \draw (N-1) edge[-,green,bend right=8] (N-3);
+      \draw (N-3) edge[-,green,bend left=8] (infty);
+      \draw (infty) edge[-,green,bend left=8] (N-1);
+
+      \draw (N-4) edge[-,brown,bend right=8] (N-0);
+      \draw (N-0) edge[-,brown,bend right=8] (infty);
+      \draw (infty) edge[-,brown,bend right=8] (N-4);
+  }
+
+  \onslide*<4>{
+      \draw (N-2) edge[-,red,bend right=8] (N-3);
+      \draw (N-3) edge[-,red,bend right=8] (N-4);
+      \draw (N-4) edge[-,red,bend right=8] (N-2);
+
+      \draw (N-3) edge[-,blue,bend left=8] (N-0);
+      \draw (N-0) edge[-,blue,bend left=8] (N-1);
+      \draw (N-1) edge[-,blue,bend left=8] (N-3);
+
+      \draw (N-2) edge[-,green,bend right=8] (N-4);
+      \draw (N-4) edge[-,green,bend left=8] (infty);
+      \draw (infty) edge[-,green,bend left=8] (N-2);
+
+      \draw (N-0) edge[-,brown,bend right=8] (N-1);
+      \draw (N-1) edge[-,brown,bend right=8] (infty);
+      \draw (infty) edge[-,brown,bend right=8] (N-0);
+  }
+
+  \onslide*<5>{
+      \draw (N-3) edge[-,red,bend right=8] (N-4);
+      \draw (N-4) edge[-,red,bend right=8] (N-0);
+      \draw (N-0) edge[-,red,bend right=8] (N-3);
+
+      \draw (N-4) edge[-,blue,bend left=8] (N-1);
+      \draw (N-1) edge[-,blue,bend left=8] (N-2);
+      \draw (N-2) edge[-,blue,bend left=8] (N-4);
+
+      \draw (N-3) edge[-,green,bend right=8] (N-0);
+      \draw (N-0) edge[-,green,bend left=8] (infty);
+      \draw (infty) edge[-,green,bend left=8] (N-3);
+
+      \draw (N-1) edge[-,brown,bend right=8] (N-2);
+      \draw (N-2) edge[-,brown,bend right=8] (infty);
+      \draw (infty) edge[-,brown,bend right=8] (N-1);
+  }
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+\begin{frame}
+
+
+%For $S \subseteq V(H)$, let $\deg_H(S) = |\{e \in E(H) : S \subseteq e\}|$.
+%For example, $\deg_H(\{x\}) = \deg_H(x)$.
+
+The necessary divisibility conditions for $H$-decompositions of $K_v^{(t)}$
+are:
+For all $i \geq 0$, $\gcd \left( \{\deg_H(S) : S \subseteq V(H), |S| = i\}
+\right)$ must divide ${v-i \choose t-i}$.
+
+\pause
+\begin{example}
+If $H$ is as before, and there is a $H$-design of order $v$, then
+\begin{enumerate}
+    \item $\deg_H(\emptyset) = |E(H)| = 4$ divides ${v \choose 3}$
+    \pause
+    \item For all $x \in V(H)$, $\deg_H(x) = 2$. So $2$ divides ${v-1 \choose 2}$
+    \pause
+    \item $\{\deg_H(\{x, y\}) : x, y \in V(H), x \neq y\} = \{1, 2\}$.
+    So $\gcd(\{1, 2\}) = 1$ divides ${v-2 \choose 1} = v-2$.
+\end{enumerate}
+\pause
+These conditions are equivalent to $v \equiv 1$, $2$ or $6$ (mod $8$).
+\end{example}
+
+Does there always exist an $H$-design for these values of $v$?
+
+\end{frame}
+
+%\section{Constructions}
+%\subsection{}
+
+\begin{frame}
+If $v \equiv 1$ (mod $8$), then we need $n$ sets of 8 points, plus one extra
+point:
+
+\begin{center}
+\tikzstyle{every node}=[]
+\begin{tikzpicture}[thick,scale=0.8]
+  \draw[semithick] (0,0) ellipse (1 and 2.5);
+  \draw[semithick] (3,0) ellipse (1 and 2.5);
+  \draw[semithick] (6,0) ellipse (1 and 2.5);
+  \node at (8,0) {$\cdots$};
+  \draw[semithick] (10,0) ellipse (1 and 2.5);
+\tikzstyle{every node}=[circle, draw, fill=black!50, inner sep=0pt, minimum width=3pt]
+  \node (infty) at (5,-4) {};
+
+  \foreach \n in {0,3,6,10}{
+    \node (\n-0) at (\n,1.75) {};
+    \node (\n-1) at (\n,1.25) {};
+    \node (\n-2) at (\n,0.75) {};
+    \node (\n-3) at (\n,0.25) {};
+    \node (\n-4) at (\n,-0.25) {};
+    \node (\n-5) at (\n,-0.75) {};
+    \node (\n-6) at (\n,-1.25) {};
+    \node (\n-7) at (\n,-1.75) {};
+  }
+
+  \onslide*<2>{
+    \draw (0-0) edge[-,blue] (3-2);
+    \draw (3-2) edge[-,blue] (6-1);
+    \draw (6-1) edge[-,blue] (0-0);
+
+    \draw (3-4) edge[-,blue] (6-2);
+    \draw (6-2) edge[-,blue] (10-2);
+    \draw (10-2) edge[-,blue] (3-4);
+  }
+
+  \onslide*<3>{
+    \draw (0-4) edge[-,orange] (3-3);
+    \draw (3-3) edge[-,orange] (3-6);
+    \draw (3-6) edge[-,orange] (0-4);
+
+    \draw (3-0) edge[-,orange] (10-3);
+    \draw (10-3) edge[-,orange] (3-1);
+    \draw (3-1) edge[-,orange] (3-0);
+
+    \draw (3-7) edge[-,orange] (6-5);
+    \draw (6-5) edge[-,orange] (infty);
+    \draw (infty) edge[-,orange] (3-7);
+  }
+
+  \onslide*<4>{
+    \draw (6-0) edge[-,violet,bend left] (6-2);
+    \draw (6-2) edge[-,violet,bend left] (6-5);
+    \draw (6-5) edge[-,violet,bend left] (6-0);
+
+    \draw (3-4) edge[-,violet] (3-6);
+    \draw (3-6) edge[-,violet] (infty);
+    \draw (infty) edge[-,violet] (3-4);
+  }
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+\begin{frame}
+
+If we can find $H$-decompositions of the following hypergraphs, then multiple
+copies of them will cover all three cases:
+
+\begin{center}
+\tikzstyle{every node}=[circle, draw, fill=black!50, inner sep=0pt, minimum width=3pt]
+\begin{tikzpicture}[thick,scale=0.8]
+  \draw[semithick] (0,0) ellipse (0.5 and 2.25);
+    \node (0) at (0,1.75) {};
+    \node (1) at (0,1.25) {};
+    \node (2) at (0,0.75) {};
+    \node (3) at (0,0.25) {};
+    \node (4) at (0,-0.25) {};
+    \node (5) at (0,-0.75) {};
+    \node (6) at (0,-1.25) {};
+    \node (7) at (0,-1.75) {};
+    \node (infty) at (0.75,-3) {};
+
+    \draw (0) edge[-,violet,bend left] (2);
+    \draw (2) edge[-,violet,bend left] (5);
+    \draw (5) edge[-,violet,bend left] (0);
+
+    \draw (6) edge[-,violet] (7);
+    \draw (7) edge[-,violet] (infty);
+    \draw (infty) edge[-,violet] (6);
+
+    %\draw (3) edge[-,violet] (4);
+    %\draw (4) edge[-,violet] (infty);
+    %\draw (infty) edge[-,violet] (3);
+\end{tikzpicture}
+\quad \quad \quad \pause
+\begin{tikzpicture}[thick,xscale=0.6,yscale=0.8]
+  \draw[semithick] (0,0) ellipse (0.666667 and 2.25);
+  \draw[semithick] (2,0) ellipse (0.666667 and 2.25);
+  \foreach \n in {0,1}{
+    \mycount=\n
+    \multiply\mycount by 2
+    \node (\n-0) at (\the\mycount,1.75) {};
+    \node (\n-1) at (\the\mycount,1.25) {};
+    \node (\n-2) at (\the\mycount,0.75) {};
+    \node (\n-3) at (\the\mycount,0.25) {};
+    \node (\n-4) at (\the\mycount,-0.25) {};
+    \node (\n-5) at (\the\mycount,-0.75) {};
+    \node (\n-6) at (\the\mycount,-1.25) {};
+    \node (\n-7) at (\the\mycount,-1.75) {};
+  }
+    \node (infty) at (1,-3) {};
+
+    \draw (0-4) edge[-,orange] (1-3);
+    \draw (1-3) edge[-,orange] (1-5);
+    \draw (1-5) edge[-,orange] (0-4);
+
+    \draw (0-0) edge[-,orange] (1-2);
+    \draw (1-2) edge[-,orange] (0-1);
+    \draw (0-1) edge[-,orange] (0-0);
+
+    \draw (0-7) edge[-,orange] (1-6);
+    \draw (1-6) edge[-,orange] (infty);
+    \draw (infty) edge[-,orange] (0-7);
+\end{tikzpicture}
+\quad \quad \quad \pause
+\begin{tikzpicture}[thick,xscale=0.6,yscale=0.8]
+  \draw[semithick] (0,0) ellipse (0.666667 and 2.25);
+  \draw[semithick] (2,0) ellipse (0.666667 and 2.25);
+  \draw[semithick] (4,0) ellipse (0.666667 and 2.25);
+  \foreach \n in {0,1,2}{
+    \mycount=\n
+    \multiply\mycount by 2
+    \node (\n-0) at (\the\mycount,1.75) {};
+    \node (\n-1) at (\the\mycount,1.25) {};
+    \node (\n-2) at (\the\mycount,0.75) {};
+    \node (\n-3) at (\the\mycount,0.25) {};
+    \node (\n-4) at (\the\mycount,-0.25) {};
+    \node (\n-5) at (\the\mycount,-0.75) {};
+    \node (\n-6) at (\the\mycount,-1.25) {};
+    \node (\n-7) at (\the\mycount,-1.75) {};
+  }
+    \tikzstyle{every node}=[]
+    \node (infty) at (2,-3) {};
+
+    \draw (0-0) edge[-,blue] (1-2);
+    \draw (1-2) edge[-,blue] (2-1);
+    \draw (2-1) edge[-,blue] (0-0);
+
+    \draw (1-4) edge[-,blue] (2-5);
+    \draw (2-5) edge[-,blue] (0-5);
+    \draw (0-5) edge[-,blue] (1-4);
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+\begin{frame}
+
+It can be shown that all of these exist, so $H$-designs of order $v$ exist for
+all $v \equiv 1$ (mod $8$). Similarly for $v \equiv 2$ and $6$, so
+
+\pause
+
+\begin{theorem}
+For the hypergraph $H$ given before, there is an $H$-design of order $v$
+($H$-decomposition of $K_v^{(3)}$) iff $v \equiv 1$, $2$, or $6$ (mod $8$).
+\end{theorem}
+
+\pause
+
+\begin{proof}
+$(\Rightarrow)$ Necessary divisibility conditions.
+
+$(\Leftarrow)$ Divide into three cases: $1$, $2$, $6$ (mod $8$).
+
+Find $H$-decompositions of certain small hypergraphs.
+
+Combine copies of these decompositions as necessary.
+\end{proof}
+
+%Similarly, the existence of $H$-designs has been solved for:
+%\begin{enumerate}
+%    \item All 3-uniform hypergraphs on at most 3 edges.
+%    \item The two regular 3-uniform hypergraphs on 4 edges.
+%\end{enumerate}
+
+\end{frame}
+
+\end{document}

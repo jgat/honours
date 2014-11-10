@@ -1,14 +1,14 @@
 .PHONY: full clean
 
-all: thesis.pdf ch1.pdf ch2.pdf ch3.pdf
+all: thesis.pdf ch1.pdf ch2.pdf ch3.pdf talk.pdf handout.pdf
 
 full:
-	$(MAKE) -B thesis.pdf ch1.pdf ch2.pdf ch3.pdf
-	$(MAKE) -B thesis.pdf ch1.pdf ch2.pdf ch3.pdf
-	$(MAKE) -B thesis.pdf ch1.pdf ch2.pdf ch3.pdf
+	$(MAKE) -B thesis.pdf ch1.pdf ch2.pdf ch3.pdf talk.pdf handout.pdf
+	$(MAKE) -B thesis.pdf ch1.pdf ch2.pdf ch3.pdf talk.pdf handout.pdf
+	$(MAKE) -B ch1.pdf ch2.pdf ch3.pdf
 
 clean:
-	rm *.log *.toc *.pdf *.aux */*.aux
+	rm *.log *.toc *.pdf *.aux */*.aux *.nav *.out *.snm
 	rm src/appendix/{hypergraphs,check,decompositions}.tex
 
 thesis.pdf: thesis.tex src/*.tex src/*/*.tex src/appendix/hypergraphs.tex src/appendix/check.tex src/appendix/decompositions.tex
@@ -37,3 +37,9 @@ src/appendix/decompositions.tex: code/decompositions.py
 	echo '\\begin{verbatim}' > src/appendix/decompositions.tex
 	cat code/decompositions.py >> src/appendix/decompositions.tex
 	echo '\\end{verbatim}' >> src/appendix/decompositions.tex
+
+talk.pdf: src/talk.tex src/slides.tex
+	pdflatex src/talk.tex
+
+handout.pdf: src/handout.tex src/slides.tex
+	pdflatex src/handout.tex
