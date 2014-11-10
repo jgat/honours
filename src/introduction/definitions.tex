@@ -1,7 +1,5 @@
 \section{Definitions}
 
-% TODO introductory sentence/paragraph?
-
 A {\em graph} $G$ is a pair $(V, E)$, where $V = V(H)$ is a finite set of {\em vertices}, and $E = E(H)$ is a set of $2$-element subsets of $V$, called {\em edges}.
 A {\em subgraph} of $G$ is a graph $H$ where $V(H) \subseteq V(G)$ and $E(H) \subseteq E(G)$.
 
@@ -75,19 +73,19 @@ decomposition is an {\em $H$-decomposition} of $K$.
 In this section, we will describe some useful families of hypergraphs.
 
 For a finite non-empty set $V$, the {\em complete $t$-uniform hypergraph on $V$}
-is the hypergraph $K_V^{(t)} = (V, E)$ with $E = \{e \in \mathcal{P}(V) : |e| = k\}$.
+is the hypergraph $K_V^{(t)} = (V, E)$ with $E = \{e \in \mathcal{P}(V) : |e| = t\}$.
 For a positive integer $v$, the notation $K_v^{(t)}$ refers to any complete
 $t$-uniform hypergraph of order $v$.
 For example, we identify $K_v^{(2)}$ with the complete graph $K_v$.
 
 For a finite non-empty set $V$ and a natural number $\lambda$, the {\em complete
 $t$-uniform multihypergraph}, denoted $\lambda K_{V}^{(t)}$, is the
-multihypergraph on $V$ consisting of $\lambda$ copies of every $t$-element subset
+multihypergraph with vertex set $V$ consisting of $\lambda$ copies of every $t$-element subset
 of $V$. For positive $v \in \Z$, the notation $\lambda K_{v}^{(t)}$ refers to
 any complete $t$-uniform multihypergraph $\lambda K_{V}^{(t)}$ where $|V| = v$.
 
 Given a collection of $m$ finite, non-empty, pairwise disjoint sets
-$V_1, V_2, \ldots, V_m$, let $V = \bigcup_{i=1}^{m} V_i$.
+$V_1, \ldots, V_m$, let $V = \bigcup_{i=1}^{m} V_i$.
 The {\em complete $t$-uniform $m$-partite hypergraph} on $V$, denoted
 $K_{V_1, V_2, \ldots, V_m}^{(t)}$, is the $t$-uniform hypergraph $(V, E)$ having
 all edges which contain at most one element from each of $V_1, V_2, \ldots, V_m$.

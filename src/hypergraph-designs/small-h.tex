@@ -1,19 +1,19 @@
 \section{Small $3$-uniform hypergraphs} \label{section:small-h}
 
-A central problem in the study of hypergraph decompositions is the existence of
-$H$-designs; namely: given a $t$-uniform hypergraph $H$, for which positive
+One key problem in the study of hypergraph decompositions is the existence question for
+$H$-designs, namely: given a $t$-uniform hypergraph $H$, for which positive
 integers $v$ does there exist a $(v, H, \lambda)$-design?
 
-In this section, we will consider this question for $3$-uniform hypergraphs $H$ of bounded size and index $\lambda = 1$.
-If we apply the obvious necessary conditions (Lemmas \ref{obv-necessary} and \ref{obv-order}) with $t = 3$, then we have:
+In this section, we will consider this question for $3$-uniform hypergraphs $H$ of bounded size and index $1$.
+If we apply the obvious necessary conditions (Lemmas \ref{obv-necessary} and \ref{obv-order}) with $t = 3$ and $\lambda = 1$, then we have:
 
 \begin{lemma}[\cite{bryant}] \label{necessary-3-uniform}
 Let $H$ be a $3$-uniform hypergraph.
-An integer $v \geq 3$ is admissible if and only if the following conditions are satisfied:$v \geq |V(H)|$ and the following conditions are satisfied:
+An integer $v \geq 3$ is admissible if and only if the following conditions are satisfied:
 \begin{enumerate}
     \item[(1)] $v \geq |V(H)|$,
     \item[(2)] $|E(H)|$ divides ${v \choose 3}$,
-    \item[(3)] $\gcd(\{\deg_H(x) : x \in V(H)\})$ divides ${v-1 \choose 2}$,
+    \item[(3)] $\gcd(\{\deg_H(x) : x \in V(H)\})$ divides ${v-1 \choose 2}$, and
     \item[(4)] $\gcd(\{\deg_H(\{x,y\}) : x, y \in V(H), x \neq y\})$ divides $v-2$.
 \end{enumerate}
 \end{lemma}
@@ -36,9 +36,10 @@ The notation for the other rows is similar.
 \begin{table}[h]
 \centering
 \scriptsize
+\renewcommand{\arraystretch}{1.2}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
-$H_{1,1}$ & $[1,2,3]_{H_{1,1}}$            & $V=\{1,2,3\}$            & $E=\{\{1,2,3\}\}$ & \ref{baranyai} \\ \hline % TODO [6pt]
+$H_{1,1}$ & $[1,2,3]_{H_{1,1}}$            & $V=\{1,2,3\}$            & $E=\{\{1,2,3\}\}$ & \ref{baranyai} \\ \hline
 $H_{2,1}$ & $[1,2,3,4,5,6]_{H_{2,1}}$      & $V=\{1,2,3,4,5,6\}$      & $E=\{\{1,2,3\},\{4,5,6\}\}$ & \ref{baranyai} \\ \hline
 $H_{2,2}$ & $[1,2,3,4,5]_{H_{2,2}}$        & $V=\{1,2,3,4,5\}$        & $E=\{\{1,2,3\},\{1,4,5\}\}$ & \ref{thm:H_22,H_23} \\ \hline
 $H_{2,3}$ & $[1,2,3,4]_{H_{2,3}}$          & $V=\{1,2,3,4\}$          & $E=\{\{1,2,3\},\{1,2,4\}\}$ & \ref{thm:H_22,H_23} \\ \hline
@@ -99,11 +100,12 @@ Therefore,
     \cup \left( \bigcup_{1 \leq i < j \leq n} L_{V_i,V_j,[I_\epsilon]}^{(3)} \right)
     \cup \left( \bigcup_{1 \leq i < j < k \leq n} K_{V_i,V_j,V_k}^{(3)} \right)
 \]
-is a $\Gamma_\epsilon$-decomposition of $K$, where
+describes a $\Gamma_\epsilon$-decomposition of $K$, where
 \[
     \Gamma_\epsilon = \left\{ K_{4+\epsilon}^{(3)}, L_{4,4,[\epsilon]}^{(3)}, K_{4,4,4}^{(3)} \right\}.
 \]
 Hence, if we can find an $H$-decomposition of each $G \in \Gamma_\epsilon$, this can be extended to an $H$-decomposition of $K$, as required.
+
 Examples of $H$-decompositions of $G$ for each $H \in \left\{ H_{2,2}, H_{2,3} \right\}$
 and $G \in \left\{ K_{4}^{(3)}, K_{5}^{(3)}, K_{6}^{(3)}, L_{4,4}^{(3)}, L_{4,4,[1]}^{(3)}, L_{4,4,[2]}^{(3)}, K_{4,4,4}^{(3)} \right\}$
 are given in \cite{bryant}, except when $H \simeq H_{2,2}$ and $G \simeq K_{4}^{(3)}$,
@@ -135,12 +137,11 @@ so it remains to prove the result when $H \simeq H_{3,2}$, $H_{3,3}$, $H_{3,4}$,
 
 \begin{proof}
 Suppose that $H$ is isomorphic to one of $H_{3,2}$, $H_{3,3}$, $H_{3,4}$, or $H_{3,5}$.
-From Lemma \ref{necessary-3-uniform}, if an $H$-design of order $v$ exists, then $v \equiv 0$, $1$, or $2$ (mod $9$), it remains to show this is sufficient.
+From Lemma \ref{necessary-3-uniform}, $v$ is admissible if and only if $v \equiv 0$, $1$, or $2$ (mod $9$), it remains to show this is sufficient.
 
 Suppose that $v = 9n + \epsilon$ for $n \geq 1$ and $\epsilon \in \{0,1,2\}$.
-Construct $n$ pairwise disjoint sets $V_1, \ldots, V_n$ of size 9,
-and let $\infty_1, \infty_2$ be two distinct points, neither of which is in $\bigcup_{i=1}^{n} V_i$.
-Let $I_0 = \emptyset$, $I_1 = \{\infty_1\}$ and $I_2 = \{\infty_1, \infty_2\}$.
+Construct $n$ pairwise disjoint sets $V_1, \ldots, V_n$ of size 9, let $\infty_1, \infty_2$ be two distinct points, neither of which is in $\bigcup_{i=1}^{n} V_i$, and 
+let $I_0 = \emptyset$, $I_1 = \{\infty_1\}$ and $I_2 = \{\infty_1, \infty_2\}$.
 
 For each $1 \leq i \leq n$ and $\epsilon \in \{0,1,2\}$, let $\mathcal{D}_i^{\epsilon}$ be an $H$-decomposition of $K_{V_i \cup I_\epsilon}^{(3)}$,
 which exists by Examples \ref{eg:H_3i-9}, \ref{eg:H_3i-10}, and \ref{eg:H_3i-11} for $\epsilon = 0$, $1$, and $2$ respectively.
@@ -176,7 +177,7 @@ Instead, the authors of \cite{bryant} aim to find a $\Gamma_\epsilon$-decomposit
 \]
 where $U$, $V$, $W$, $I_\epsilon$ are pairwise disjoint sets with $|U| = |V| = |W| = 9$ and $|I_\epsilon| = \epsilon$.
 
-To do this, define $K_{\{1,\ldots,n\}}^{(2,3)} = K_{\{1,\ldots,n\}}^{(2)} \cup K_{\{1,\ldots,n\}}^{(3)}$; that is, $V(K_{\{1,\ldots,n\}}^{(2,3)}) = \{1,2,\ldots,n\}$ and $e$ is an edge iff $|e| \in \{2,3\}$.
+To do this, define $K_{\{1,\ldots,n\}}^{(2,3)} = K_{\{1,\ldots,n\}}^{(2)} \cup K_{\{1,\ldots,n\}}^{(3)}$; that is, $K_{\{1,\ldots,n\}}^{(2,3)}$ has vertex set $V = \{1,2,\ldots,n\}$, and edge set consisting of all $2$-element and $3$-element subsets of $V$.
 It can be shown that there exists a $\Lambda$-decomposition $\mathcal{D}'$ of $K_{\{1,\ldots,n\}}^{(2,3)}$,
 where $\Lambda = \left\{ K_{2}^{(2)}, [1,2,3]_A, K_{4}^{(3)} \right\}$, and where $[1,2,3]_A$ is the hypergraph $(\{1,2,3\}, \{\{1,2\},\{1,2,3\}\})$.
 So, $\mathcal{D}'$ gives rise to a $\Gamma_\epsilon$-decomposition of $K$ given by
@@ -187,12 +188,11 @@ So, $\mathcal{D}'$ gives rise to a $\Gamma_\epsilon$-decomposition of $K$ given 
     \cup \left( \bigcup_{[i,j,k]_A \in \mathcal{D}'} L_{V_i,V_j,[I_\epsilon]}^{(3)} \cup K_{V_i,V_j,V_k}^{(3)} \right)
     \cup \left( \bigcup_{K_{\{i,j,k,l\}}^{(3)} \in \mathcal{D}'} K_{V_i,V_j,V_k,V_l}^{(3)} \right),
 \end{align*}
-and simlarly for $\epsilon \in \{1,2\}$.
 Informally, $\mathcal{D}'$ describes a pattern of arranging copies of $L \in \Lambda$ to give every pair and triple of points from the set $\{1,2,\ldots,n\}$,
 so we can therefore cover every $L_{V_i, V_j, [I_\epsilon]}^{(3)}$ and every $K_{V_i, V_j, V_k}^{(3)}$ using this pattern.
 
 For each $\epsilon \in \{0,1,2\}$ and each $G \in \Gamma_\epsilon$, it can be shown that there exists an $H_{3,11}$-decomposition of $G$,
-so we can construct an $H_{3,11}$-decomposition of $K$, which completes the proof.
+so we can construct an $H_{3,11}$-decomposition of $K$.
 
 This completes the proof of Theorem \ref{thm:size-le3}. \qed
 
@@ -207,6 +207,7 @@ The remaining six are listed in Table \ref{table:regular}, using the same notati
 \begin{table}[h]
 \centering
 \scriptsize
+\renewcommand{\arraystretch}{1.2}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
 $H_{4,1}$ & $[1,2,\ldots,12]_{H_{4,1}}$ & $V=\{1,2,\ldots,12\}$ & $E=\{\{1,2,3\},\{4,5,6\},\{7,8,9\},\{10,11,12\}\}$ & \ref{baranyai} \\ \hline
@@ -263,7 +264,7 @@ Let $O$ denote the hypergraph with vertex set $\{0,1,2,3,4,5\}$ and edge set
     \{\{0,1,2\},\{0,1,5\},\{0,2,4\},\{0,4,5\},\{1,2,3\},\{1,3,5\},\{2,3,4\},\{3,4,5\}\}.
 \]
 The edges of $O$ describe the faces of an octahedron.
-There clearly exists an $H_{4,2}$-decomposition of $O$ given by \[ \left\{ [0,1,2,3,4,5]_{H_{4,2}}, [0,1,5,3,4,2]_{H_{4,2}} \right\}, \]
+It is clear that there exists an $H_{4,2}$-decomposition of $O$ given by \[ \left\{ [0,1,2,3,4,5]_{H_{4,2}}, [0,1,5,3,4,2]_{H_{4,2}} \right\}, \]
   and an $H_{4,3}$-decomposition of $O$ given by \[ \left\{[0,1,2,3,4,5]_{H_{4,3}}, [0,1,5,3,2,4]_{H_{4,3}} \right\}. \]
 In \cite{hanani}, it was shown that there exists an $O$-design of order $v$ whenever $v \equiv 2$ (mod 8),
   so there exists an $H$-design of order $v$ whenever $v \equiv 2$ (mod 8).
@@ -306,7 +307,7 @@ is an $H$-design of order $v = 8n+1$, and if $v \equiv 6$ (mod 8),
     \mathcal{D}'_{i,j} \right) \cup \left( \bigcup_{1
     \leq i < j < k \leq n} \mathcal{D}_{i,j,k} \right)
 \]
-is an $H$-design of order $v = 8n+6$. This completes the proof.
+is an $H$-design of order $v = 8n+6$.
 \end{proof}
 
 This concludes the proof of Theorem \ref{thm:regular-4}. \qed
@@ -319,7 +320,7 @@ There exists a simple $(6, H_{4,2}, \lambda)$-design if and only if $\lambda \in
 \end{theorem}
 
 \begin{proof}
-Let $V = \{0,1,2,3,4,\infty\}$, and let $G$ be the cyclic permutation group $G = \langle (0 \, 1 \, 2 \, 3 \, 4)(\infty) \rangle$.
+Let $V = \{0,1,2,3,4,\infty\}$, and let $\pi$ be the permutation $(0 \; 1 \; 2 \; 3 \; 4)(\infty)$.
 Define six $H_{4,2}$-blocks on $V$ by:
 \begin{align*}
   B_1 &= [\infty, 0, 1, 3, 2, 4]_{H_{4,2}}, \quad
@@ -332,15 +333,15 @@ Define six $H_{4,2}$-blocks on $V$ by:
 Then, let
 \begin{align*}
   \mathcal{D}_2
-  &= \mathcal{O}_G(\{B_1, B_2\}) \\
+  &= \mathcal{O}_\pi(\{B_1, B_2\}) \\
   \mathcal{D}_3
-  &= \mathcal{O}_G(\{B_1, B_4, B_5\}) \\
+  &= \mathcal{O}_\pi(\{B_1, B_4, B_5\}) \\
   \mathcal{D}_4
-  &= \mathcal{O}_G(\{B_1, B_2, B_3, B_5\}) \\
+  &= \mathcal{O}_\pi(\{B_1, B_2, B_3, B_5\}) \\
   \mathcal{D}_6
-  &= \mathcal{O}_G(\{B_1, B_2, B_3, B_4, B_5, B_6\}),
+  &= \mathcal{O}_\pi(\{B_1, B_2, B_3, B_4, B_5, B_6\}),
 \end{align*}
-where $\mathcal{O}_G(X)$ denotes the orbit of the set $X$ under $G$.
+where $\mathcal{O}_\pi(X)$ denotes the orbit of the set $X$ under $\pi$.
 Then, $\mathcal{D}_\lambda$ is a simple $(6, H_{4,2}, \lambda)$-design for each $\lambda \in \{2, 3, 4, 6\}$.
 It remains to show $\lambda \in \{2, 3, 4, 6\}$ is necessary.
 
@@ -368,8 +369,8 @@ A $(6, H_{4,2}, 1)$-design does not exist by Theorem \ref{thm:H_42,H_43}, so $\l
 
 By Theorem \ref{thm:H_42-6-simple}, there exists a $(6, H_{4,2}, 2)$-design $\mathcal{D}_2$ and a $(6, H_{4,2}, 3)$-design $\mathcal{D}_3$.
 
-For any $\lambda \geq 4$, let $x, y \in \Z_{\geq 0}$ be a solution to $\lambda = 2x + 3y$
-  (it is straightforward to see why such a solution must exist).
+For any $\lambda \geq 4$, let $x, y$ be positive integers such that $\lambda = 2x + 3y$
+  (it is straightforward to see why such integers must exist).
 Then, the collection containing $x$ copies of $\mathcal{D}_2$ and $y$ copies of $\mathcal{D}_3$ is a $(6, H_{4,2}, \lambda)$-design.
 \end{proof}
 
@@ -377,8 +378,7 @@ Then, the collection containing $x$ copies of $\mathcal{D}_2$ and $y$ copies of 
 
 
 The case $H \simeq H_{5,2}$ remains an open problem, but is discussed in \cite{mesz-rosa}.
-The necessary conditions require that $v \equiv 1, 2, 5, 7, 10$ or $11$ (mod $15$).
-However, we do have the following results:
+The necessary conditions require that $v \equiv 1, 2, 5, 7, 10$ or $11$ (mod $15$), and we have the following results:
 
 \begin{theorem}[\cite{mesz-rosa}] \label{thm:H_52}
 An $H_{5,2}$-design of order $v$ exists for all admissible $v \leq 17$, and for

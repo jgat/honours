@@ -29,20 +29,20 @@ sequence of vertices, note that this cannot be done here.
 The existence problem for Berge type Hamiltonian decompositions of
 $K_{v}^{(3)}$ was solved in \cite{verall}, completing work in \cite{bermond-al}:
 
-\begin{theorem} \label{berge-hamilton}
+\begin{theorem}[\cite{verall}] \label{berge-hamilton}
 A Berge type Hamiltonian decomposition of $K_v^{(3)}$ exists iff $v
 \equiv 1$ or $2$ (mod $3$); and if $v \equiv 0$ (mod 3), there exists a
 Berge type Hamiltonian decomposition of $K_v^{(3)} \setminus T$, where $T$ is a
-1-factor of $H$.
+1-factor of $K_{v}^{(3)}$.
 \end{theorem}
 
-Since $K_v^{(t)}$ has $v \choose t$ edges, and a (Berge type) Hamiltonian cycle
-contains $v$ edges, we must have $v \mid {v \choose t}$ for a Hamiltonian
+Since $K_v^{(t)}$ has $v \choose t$ edges, and a Berge type Hamiltonian cycle
+contains $v$ edges, we must have $v \mid {v \choose t}$ for a Berge type Hamiltonian
 decomposition of $K_v^{(t)}$ to exist. In \cite{bermond}, the authors conjecture
 that this obvious necessary condition is sufficient for all $v$ and $t$, and in
 \cite{kuhn-osthus}, the authors prove this for $v \geq 30$:
 
-\begin{theorem} \label{berge-hamilton2}
+\begin{theorem}[\cite{kuhn-osthus}] \label{berge-hamilton2}
 Suppose that $v \geq 30$, $4 \leq t < v$, and $v \mid {v \choose t}$. Then
 $K_v^{(t)}$ has a Berge type Hamiltonian decomposition.
 \end{theorem}
@@ -65,7 +65,7 @@ such that $\{x_i, x_{i+1}, \ldots, x_{i+t-1}\} \in E(H)$ for each $i =
 
 The authors define paths and cycles on a $t$-uniform hypergraph in the same
 manner.
-A Katona-Kierstead type Hamiltonian decomposition of $H$ is a decomposition of
+A \emph{Katona-Kierstead type Hamiltonian decomposition} of $H$ is a decomposition of
 $H$ into Katona-Kierstead type Hamiltonian cycles.
 
 In \cite{bail-stev}, the authors conjecture that the obvious necessary
@@ -81,8 +81,7 @@ The conjecture has been solved for $t = 2$ by Walecki, for $t=3$ with $v \leq
 \cite{mesz-rosa}, as well as the equivalent cases with $t' = v-t$, but
 the conjecture otherwise remains open.
 
-The following are also open conjectures about Hamiltonian decompositions of
-Katona-Kierstead type, which are discussed in \cite{mesz-rosa} and
+The following are also open conjectures about Katona-Kierstead type Hamiltonian decompositions, which are discussed in \cite{mesz-rosa} and
 \cite{kuhl-schr}:
 
 \begin{conjecture}[\cite{mesz-rosa}]

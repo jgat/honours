@@ -43,16 +43,16 @@ The following definitions of group-divisible $t$-designs and candelabra $t$-syst
 Both of these can be considered generalisations of group divisible designs (as defined in \cite{mull-gron}) to $t \geq 3$.
 
 \begin{definition}[\cite{mohascy}]
-A {\em group-divisible $t$-design}, or $t$-GDD of order $v$, index $\lambda$, and block sizes from $K$ is a triple $(X, \mathcal{G}, \mathcal{B})$ where $X$ is a set of $v$ {\em points}, $\mathcal{G}$ is a partition of $X$ into {\em groups}, and $\mathcal{B}$ is a collection of subsets of $X$, called {\em blocks}, such that:
+A {\em group-divisible $t$-design}, or $t$-GDD of order $v$, index $\lambda$, and block sizes from $K$ is a triple $(X, \mathcal{G}, \mathcal{B})$ where $X$ is a set of $v$ {\em points}, $\mathcal{G}$ is a partition of $X$ into {\em groups}, and $\mathcal{B}$ is a collection of subsets of $X$, called {\em blocks}, such that
 \begin{enumerate}
-    \item[(1)] for each $B \in \mathcal{B}$, $|B| \in K$;
-    \item[(2)] for each block $B \in \mathcal{B}$ and each group $G \in \mathcal{G}$, $|B \cap G| \leq 1$; and
+    \item[(1)] for each $B \in \mathcal{B}$, $|B| \in K$,
+    \item[(2)] for each block $B \in \mathcal{B}$ and each group $G \in \mathcal{G}$, $|B \cap G| \leq 1$, and
     \item[(3)] every $t$-subset of $X$ taken from $t$ distinct groups is contained in exactly $\lambda$ blocks.
 \end{enumerate}
 \qed
 \end{definition}
 
-Let $(X, \mathcal{G}, \mathcal{B})$ be a group-divisible $t$-design of index $1$, where every block has size $k$, and denote the groups of the design by $\mathcal{G} = \{G_1, G_2, \ldots, G_m\}$.
+Let $(X, \mathcal{G}, \mathcal{B})$ be a group-divisible $t$-design of index $1$ where every block has size $k$, and denote the groups of the design by $\mathcal{G} = \{G_1, G_2, \ldots, G_m\}$.
 This design corresponds to a $K_{k}^{(t)}$-decomposition of $K_{G_1, G_2, \ldots, G_m}^{(t)}$, where each block $B \in \mathcal{B}$ corresponds to the block $K_{B}^{(t)}$ of the decomposition.
 %Conversely, every $K_{k}^{(t)}$-decomposition of $K_{v_1, v_2, \ldots, v_m}^{(t)}$ corresponds to a group-divisible $t$-design in the same way.
 Hence, decompositions of $K_{v_1, v_2, \ldots, v_m}^{(t)}$ can be considered generalisations of group divisible $t$-designs.
@@ -60,13 +60,14 @@ Hence, decompositions of $K_{v_1, v_2, \ldots, v_m}^{(t)}$ can be considered gen
 \begin{definition}[\cite{mohascy}]
 A {\em candelabra $t$-system}, or $t$-CS of order $v$, index $\lambda$ and block sizes from $K$ is an ordered tuple $(X, S, \mathcal{G}, \mathcal{B})$ where $X$ is a set of $v$ {\em points}, $S \subseteq X$ is the {\em stem} of the candelabra, $\mathcal{G}$ is a partition of $X \setminus S$ into {\em groups}, and $\mathcal{B}$ is a collection of subsets of $X$, called {\em blocks} such that
 \begin{enumerate}
-    \item[(1)] for each $B \in \mathcal{B}$, $|B| \in K$; and
-    \item[(2)] every $t$-subset of $X$ which is not a subset of $S \cup G$ for any $G \in \mathcal{G}$ is contained in some block, and for every $G \in \mathcal{G}$, no $t$-subset of $S \cup G$ is contained in any block.
+    \item[(1)] for each $B \in \mathcal{B}$, $|B| \in K$,
+    \item[(2)] every $t$-subset of $X$ which is not a subset of $S \cup G$ for any $G \in \mathcal{G}$ is contained in some block, and
+    \item[(3)] for every $G \in \mathcal{G}$, no $t$-subset of $S \cup G$ is contained in any block.
 \end{enumerate}
 \qed
 \end{definition}
 
-Let $(X, S, \mathcal{G}, \mathcal{B})$ be a candelabra $t$-system of index $1$, where every block has size $k$, and denote the groups of the system by $\mathcal{G} = \{G_1, \ldots, G_m\}$.
+Let $(X, S, \mathcal{G}, \mathcal{B})$ be a candelabra $t$-system of index $1$ where every block has size $k$, and denote the groups of the system by $\mathcal{G} = \{G_1, \ldots, G_m\}$.
 This design corresponds to a $K_{k}^{(t)}$-decomposition of $L_{G_1,\ldots,G_m,[S]}^{(t)}$, where each block $B \in \mathcal{B}$ corresponds to the block $K_{B}^{(t)}$ of the decomposition.
 %Conversely, every $K_{k}^{(t)}$-decomposition of $L_{v_1, v_2, \ldots, v_m,[w]}^{(t)}$ corresponds to a group-divisible $t$-design in the same way.
 Hence, decompositions of $L_{v_1, \ldots, v_m,[w]}^{(t)}$ can be considered generalisations of candelabra $t$-systems.

@@ -22,7 +22,7 @@ For each $G \in \mathcal{D}$ with $R \subseteq V(G)$, we have
 Therefore $\gcd(\{\deg_H(S) : S \subseteq V(H), |S| = |R|\})$ divides $\deg_K(R)$.
 \end{proof}
 
-Informally, for any set $R$ of vertices in $K$, there are $\deg_K(R)$ edges incident with $R$,
+Informally, for any set $R \subseteq V(K)$, there are $\deg_K(R)$ edges incident with $R$,
 but each of these edges must occur precisely once in the design $\mathcal{D}$.
 Hence, for every $G \in \mathcal{D}$ which contains $R$, the isomorphism $G \simeq H$
 carries $R$ into some $S \subseteq V(H)$ with $|S| = |R|$, and so $G$ contains
@@ -30,7 +30,7 @@ $\deg_H(S)$ of the $\deg_K(R)$ edges incident with $R$.
 Therefore, $\deg_K(R)$ must be given by a sum of elements in $\{\deg_H(S) : S \subseteq V(H), |S| = |R|\}$.
 So, if $\deg_H(S)$ is divisible by some $d$ for all such $S$, then $\deg_K(R)$ must also be divisible by $d$.
 
-Note that if $|R| > |V(H)|$, then there are no $G \in \mathcal{D}$ with $R \subseteq V(G)$,
+Note that if $|R| > |V(H)|$, then there are no blocks $G \in \mathcal{D}$ with $R \subseteq V(G)$,
 so \eqref{eq:degree-sum} is the empty sum (and so $\deg_K(R) = 0$), and the statement following holds vacuously.
 However, $\gcd(\{\deg_H(S) : S \subseteq V(H), |S| = |R|\}) = \gcd(\emptyset)$ is not defined,
 so the conclusion does not follow.
