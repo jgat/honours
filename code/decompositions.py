@@ -211,7 +211,7 @@ def get_gdd_types(m):
 
 
 #################
-# Algorithm 3.7 #
+# Algorithm 3.8 #
 #################
 
 def get_gdd_orbits(block, m):
