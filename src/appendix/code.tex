@@ -1,14 +1,24 @@
 The attached computer program gives an implementation of the methods described in Chapter \ref{ch:methods}.
 These programs are implemented in the Python 3 programming language, which is available at \verb~http://python.org~.
 
+A soft copy of this implementation is attached, and is also available from the author's webpage \verb~http://jgat.github.io/honours/~.
+For posterity, a hard copy is included here.
+
 \section{Shared Resources}
+
+The following file, \verb~hypergraphs.py~, defines data structures and methods shared across multiple programs.
 
 {\footnotesize \input{src/appendix/hypergraphs}}
 
 \section{Generating Decompositions}
 
+The following file, \verb~decompositions.py~, implements methods defined in Chapter \ref{ch:methods} for generating decompositions of certain families of hypergraphs.
+
 {\footnotesize \input{src/appendix/decompositions}}
 
 \section{Checking Decompositions}
+
+The following file, \verb~check.py~, implements Algorithm \ref{alg:check}.
+The attached file \verb~check-cases.py~\footnote{A hard-copy of \verb~check-cases.py~ is not included due to size constraints.} uses this implementation to verify that the decompositions generated are indeed correct (both computer-generated and hand-generated decompositions are checked).
 
 {\footnotesize \input{src/appendix/check}}
