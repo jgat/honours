@@ -21,8 +21,8 @@ class Hypergraph(object):
         return Hypergraph(vertices, edges)
 
     def copy(self, vertices):
-        """Return an isomorphic copy of the graph on the given vertex list."""
-        # Explicitly construct the isomorphism, then apply it to each edge.
+        """Return an isomorphic copy of `self` on the given vertices."""
+        # Construct the isomorphism, then apply it to each edge.
         isom = dict(zip(self._vertices, vertices))
         edges = [[isom[_] for _ in e] for e in self._edges]
         return Hypergraph(vertices, edges)
@@ -43,7 +43,8 @@ class Hypergraph(object):
         return "(V = {}, E = {})".format(self.vertices, self.edges)
 
     def __repr__(self):
-        return "Hypergraph({!r}, {!r})".format(self.vertices, self.edges)
+        return "Hypergraph({!r}, {!r})".format(self.vertices,
+                                               self.edges)
 
     def __eq__(self, other):
         return (sorted(self._vertices) == sorted(other._vertices) and
@@ -51,13 +52,15 @@ class Hypergraph(object):
 
     def regular(self):
         """Return True if all vertices have the same degree."""
-        degs = {len([e for e in self._edges if x in e]) for x in self._vertices}
+        degs = {len([e for e in self._edges if x in e])
+                for x in self._vertices}
         return len(degs) == 1
 
     def isomorphic(self, other):
         """Return True if the two hypergraphs are isomorphic."""
         # This is not at all a smart way of doing it.
-        if len(self._vertices) != len(other._vertices) or len(self._edges) != len(other._edges):
+        if (len(self._vertices) != len(other._vertices) or
+            len(self._edges) != len(other._edges)):
             return False
         for f in _itertools.permutations(other.vertices):
             # Does f describe an isomorphism onto `self`?
@@ -76,9 +79,9 @@ class Hypergraph(object):
             copy = [None for i in range(length)]
 
         def agree(e, f):
-            """Return True if there is a maping  e -> f  such that for each edge
-            e' in E(H) and corresponding f' in `copy`, the mapping extends to a
-            mapping e+e' -> f+f'."""
+            """Return True if there is a maping  e -> f  such that
+            for each edge e' in E(H) and corresponding f' in `copy`,
+            the mapping extends to a mapping e+e' -> f+f'."""
             for f_order in _itertools.permutations(f):
                 e_to_f = {a: b for a, b in zip(e, f_order)}
                 f_to_e = {b: a for a, b in zip(e, f_order)}
@@ -113,7 +116,9 @@ class Hypergraph(object):
         return Hypergraph(vertices, edges)
 
     def __add__(self, other):
-        vertices = self._vertices + [v for v in other._vertices if v not in self._vertices]
+        vertices = (self._vertices +
+                    [v for v in other._vertices
+                     if v not in self._vertices])
         return Hypergraph(vertices, self._edges + other._edges)
 
     def __mul__(self, factor):
@@ -124,12 +129,13 @@ class Hypergraph(object):
 
 
 def complete_hypergraph(vertices):
-    """Return a complete 3-uniform hypergraph on a given vertex set"""
-    return Hypergraph(vertices, _itertools.combinations(vertices, 3))
+    """Construct a complete 3-uniform hypergraph."""
+    return Hypergraph(vertices,
+                      _itertools.combinations(vertices, 3))
 
 
 def multipartite(parts):
-    """Return a complete 3-uniform 3-partite hypergraph on a given set of parts"""
+    """Construct a complete 3-uniform 3-partite hypergraph."""
     vertices = sum(parts, [])
     assert len(vertices) == len(set(vertices))
     edges = _itertools.product(*parts)
@@ -137,7 +143,7 @@ def multipartite(parts):
 
 
 def candelabra(parts, stem=None):
-    """Return the 3-uniform hypergraph L_{V1,...,Vm,[W]} for given parts/stem."""
+    """Construct a 3-uniform hypergraph L_{V1,...,Vm,[W]}."""
     if stem is None:
         stem = []
 
@@ -168,10 +174,12 @@ class FixedPoint(object):
         return isinstance(other, FixedPoint) and self.num == other.num
 
     def __lt__(self, other):
-        return not isinstance(other, FixedPoint) or self.num < other.num
+        return (not isinstance(other, FixedPoint)
+                or self.num < other.num)
 
     def __le__(self, other):
-        return not isinstance(other, FixedPoint) or self.num <= other.num
+        return (not isinstance(other, FixedPoint)
+                or self.num <= other.num)
 
     def __gt__(self, other):
         return not (self <= other)

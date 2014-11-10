@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+a#!/usr/bin/env python3
 
 import itertools
 import functools
@@ -12,13 +12,8 @@ from hypergraphs import *
 #################
 
 def get_complete_types(v, n):
-    """Given K_v^3 and an orbit length n, find all edges that need to be covered.
-
-    That is, if the vertices of K_v^3 are {0, 1, ..., n-1, \infty_1, ...,
-    \infty_{v-n}}, and the permutation (0 1 2 ... n-1) is applied, return a
-    representation of the orbit of each edge, either as a difference triple,
-    or a fixed point and a difference, or as two fixed points.
-    """
+    """Return the set of all orbit types of the complete 3-uniform
+    hypergraph."""
     if not v - 2 <= n <= v:
         raise ValueError("Can't have more than two fixed points")
 
@@ -32,13 +27,13 @@ def get_complete_types(v, n):
                 orbits.add((a, b, c))
             elif a + b < n:
                 # (a, b, c) s.t. a + b + c = n
-                # Avoid repeats - (b, c, a) and (c, a, b) are also triples
-                # Take the lexicographically smallest.
+                # (b, c, a) and (c, a, b) are also triples;
+                # take the lexicographically smallest.
                 c = n - (a + b)
                 if (a, b, c) <= (b, c, a) and (a, b, c) <= (c, a, b):
                     orbits.add((a, b, c))
 
-    # Do some sanity checking to make sure we have the correct number of triples
+    # Do some sanity checking on the number of triples
     if n % 3 == 0:
         assert len(orbits) == n * (n - 3) / 6 + 1, n
     else:
@@ -63,7 +58,8 @@ def get_complete_types(v, n):
 #################
 
 def get_complete_orbits(block, v, n):
-    """For a given H-block, compute the orbit types which its edges include."""
+    """For a given H-block, compute the orbit
+    types which its edges include."""
     covered = []
 
     for e in block.edges:
@@ -111,7 +107,7 @@ def get_admissible(H, K, get_orbits, *args):
     coverings = {}
 
     for V in itertools.permutations(K.vertices, len(H.vertices)):
-        # A small optimisation to make it a lot faster on the candelabra/gdd cases.
+        # A small optimisation
         if get_orbits != get_complete_orbits and ('u', 0) not in V:
             continue
 
@@ -131,7 +127,8 @@ def get_admissible(H, K, get_orbits, *args):
 #################
 
 def find_decomposition(H, K, get_types, get_orbits, *args):
-    """Given hypergraphs H and K, find an H-decomposition of K, if one exists."""
+    """Given hypergraphs H and K, find an H-decomposition of K,
+    if one exists."""
     orbits = tuple(get_types(*args))
     possible_blocks = get_admissible(H, K, get_orbits, *args)
 
@@ -143,7 +140,8 @@ def find_decomposition(H, K, get_types, get_orbits, *args):
         for block in itertools.combinations(orbits, len(H.edges)):
             if tuple(sorted(block)) in possible_blocks:
                 print("| "*depth+"Try", block)
-                rest = find_partition(tuple(x for x in orbits if x not in block), depth+1)
+                remain = tuple(x for x in orbits if x not in block)
+                rest = find_partition(remain, depth+1)
                 if rest is not None:
                     return [(block, possible_blocks[block])] + rest
         return None
@@ -230,23 +228,26 @@ def get_gdd_orbits(block, m):
     return covered
 
 
-################################################################################
+######################################################################
 # Helper functions to run the above methods
 
 def find_complete_decomposition(H, v):
     """Find a complete decomposition of a hypergraph H of order v"""
-    # First, find the parameter `n`, the length of the orbit we're using
+    # First, find the parameter `n`, the length of the orbit
     num_edges = v * (v - 1) * (v - 2) // 6
     if num_edges % len(H.edges) != 0:
-        raise ValueError("v={}, |E(H)|={} does not satisfy obvious necessary "
-                         "conditions".format(v, len(H.edges)))
+        raise ValueError("v={}, |E(H)|={} does not satisfy "
+                         "obvious necessary conditions"
+                         .format(v, len(H.edges)))
     num_blocks = num_edges // len(H.edges)
 
     n = max(i for i in range(v-2, v+1) if num_blocks % i == 0)
 
-    K = complete_hypergraph(list(range(n)) + [FixedPoint(i+1) for i in range(v-n)])
+    K = complete_hypergraph(list(range(n)) +
+                            [FixedPoint(i+1) for i in range(v-n)])
 
-    return find_decomposition(H, K, get_complete_types, get_complete_orbits, v, n)
+    return find_decomposition(H, K, get_complete_types,
+                              get_complete_orbits, v, n)
 
 
 def find_candelabra_decomposition(H, m, epsilon):
@@ -254,8 +255,8 @@ def find_candelabra_decomposition(H, m, epsilon):
     stem = [FixedPoint(i+1) for i in range(epsilon)]
 
     K = candelabra(parts, stem)
-    return find_decomposition(H, K, get_candelabra_types, get_candelabra_orbits,
-                              m, epsilon)
+    return find_decomposition(H, K, get_candelabra_types,
+                              get_candelabra_orbits, m, epsilon)
 
 
 def find_gdd_decomposition(H, m):
@@ -264,7 +265,7 @@ def find_gdd_decomposition(H, m):
     return find_decomposition(H, K, get_gdd_types, get_gdd_orbits, m)
 
 
-################################################################################
+######################################################################
 
 
 def output(result):
@@ -274,7 +275,8 @@ def output(result):
         return
 
     for orbits, block in result:
-        print("{!r:<50}  covers orbit types {}".format(block.vertices, orbits))
+        print("{!r:<50}  covers orbit types {}"
+              .format(block.vertices, orbits))
     print()
     print()
 

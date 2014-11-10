@@ -9,8 +9,9 @@ full:
 
 clean:
 	rm *.log *.toc *.pdf *.aux */*.aux
+	rm src/appendix/{hypergraphs,check,decompositions}.tex
 
-thesis.pdf: thesis.tex src/*.tex src/*/*.tex
+thesis.pdf: thesis.tex src/*.tex src/*/*.tex src/appendix/hypergraphs.tex src/appendix/check.tex src/appendix/decompositions.tex
 	pdflatex thesis.tex
 
 ch1.pdf: thesis.tex src/introduction.tex src/introduction/*.tex
@@ -21,3 +22,18 @@ ch2.pdf: thesis.tex src/hypergraph-designs.tex src/hypergraph-designs/*.tex
 
 ch3.pdf: thesis.tex src/methods.tex src/methods/*.tex
 	pdflatex -jobname=ch3 "\includeonly{src/methods}\input{thesis}"
+
+src/appendix/hypergraphs.tex: code/hypergraphs.py
+	echo '\\begin{verbatim}' > src/appendix/hypergraphs.tex
+	cat code/hypergraphs.py >> src/appendix/hypergraphs.tex
+	echo '\\end{verbatim}' >> src/appendix/hypergraphs.tex
+
+src/appendix/check.tex: code/check.py
+	echo '\\begin{verbatim}' > src/appendix/check.tex
+	cat code/check.py >> src/appendix/check.tex
+	echo '\\end{verbatim}' >> src/appendix/check.tex
+
+src/appendix/decompositions.tex: code/decompositions.py
+	echo '\\begin{verbatim}' > src/appendix/decompositions.tex
+	cat code/decompositions.py >> src/appendix/decompositions.tex
+	echo '\\end{verbatim}' >> src/appendix/decompositions.tex

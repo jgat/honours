@@ -9,3 +9,6 @@ tmp/
 *.pdf
 
 *.pyc
+src/appendix/hypergraphs.tex
+src/appendix/check.tex
+src/appendix/decompositions.tex
