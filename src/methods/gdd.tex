@@ -1,7 +1,7 @@
 \section{Decompositions of $K_{m,m,m}^{(3)}$}
 \label{sec:methods/gdd}
 
-Let $H$ be a $3$-uniform hypergraph, and let $m \geq 1$ be an integer such that $K_{m,m,m}^{(3)}$ is $H$-divisible. We would like to fix an automorphism $\pi$ of $K_{m,m,m}^{(3)}$, and then find an $H$-decomposition of $K_{m,m,m}^{(3)}$ of the form \eqref{eq:decomposition-orbit}.
+Let $H$ be a $3$-uniform hypergraph, and let $m \geq 1$ be an integer such that $K_{m,m,m}^{(3)}$ satisfies the conditions of Lemma \ref{obv-necessary} for the existence of an $H$-decomposition of $K_{m,m,m}^{(3)}$. We would like to fix an automorphism $\pi$ of $K_{m,m,m}^{(3)}$, and then find an $H$-decomposition of $K_{m,m,m}^{(3)}$ of the form \eqref{eq:decomposition-orbit}.
 
 WLOG, we can identify $K_{m,m,m}^{(3)}$ with $K_{U,V,W}^{(3)}$ where $U$, $V$, and $W$ are pairwise disjoint sets given by
 \begin{align}
@@ -60,7 +60,6 @@ $B \gets \emptyset$\;
     $a \gets j-i$ (mod $m$)\;
     $b \gets k-i$ (mod $m$)\;
     $B \gets B \cup \{(a, b)\}$\;
-    % TODO
 }
 \KwRet{$B$}\;
 \caption{Find the set of orbit types described by a subhypergraph $H'$ of $K_{m,m,m}^{(3)}$.} \label{alg:gdd-hypergraph-type}

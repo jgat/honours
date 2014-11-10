@@ -194,7 +194,7 @@ $c \gets$ empty mapping\;
     $H' \gets \isomcopy{H, V}$ \tcc*{Isomorphic copy of $H$ on $V$}
     \If{$H'$ {\rm is a subhypergraph of} $K$} {
         $B \gets \getorbits{H'}$
-        \tcc*{Algorithms \ref{alg:complete-hypergraph-type}, \ref{alg:candelabra-hypergraph-type}, \ref{alg:gdd-hypergraph-type}} % TODO refs
+        \tcc*{Algorithms \ref{alg:complete-hypergraph-type}, \ref{alg:candelabra-hypergraph-type}, \ref{alg:gdd-hypergraph-type}}
         %\tcc{If there are $|E(H)|$ distinct orbit types in $B$, and we haven't already found a corresponding hypergraph $c(B)$, then modify $c$ to map $B \mapsto H'$.}
         \If{$|B| = |E(H)|$ {\rm and} $B \not\in \Dom(c)$} {
             Define $c(B) = H'$\;

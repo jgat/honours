@@ -6,15 +6,19 @@ In \cite{feng-chang2}, the authors consider a copy of $K_4^{(3)}$ with an edge r
 A $(K_4^{(3)}+e)$-design of order $v$ exists iff $v \equiv 0,1,2$ (mod $5$) and $v \neq 5$.
 \end{theorem}
 
-\vspace{0.5cm}
-TODO: discuss Keevash's result (I also need to fill in the ``sufficient'' bit into more
-formal words):
-\vspace{0.5cm}
+In \cite{keevash}, Keevash considers $K_{k}^{(t)}$-decompositions of an arbitrary $t$-uniform hypergraph $H$, and gives the following result.
 
 \begin{theorem}[\cite{keevash}]
-Let $H$ be a $t$-uniform hypergraph, and suppose that $K_{k}^{(t)}$ satisfies
-the conditions of Lemma \ref{obv-necessary-1} for a $K_{k}^{(t)}$-decomposition
-of $H$. For ``sufficient'' $H$, there exists an $K_{k}^{(t)}$-decomposition of $H$.
+Let $H$ be a $t$-uniform hypergraph on $n$ vertices, and let $k \geq t$ be an integer such that $K_{k}^{(t)}$ satisfies
+the conditions of Lemma \ref{obv-necessary-1} for the existence of a $K_{k}^{(t)}$-decomposition of $H$.
+
+Suppose that $c$ is a positive real number, and $d, h$ are integers such that $\frac{1}{n} \ll c \ll d$, $\frac{1}{h} \ll \frac{1}{k}$, and $|E(H)| > dn^t$. Suppose also that there exists some real number $p > 0$ such that for any family $\mathcal{A}$ of $(t-1)$-subsets of $V(H)$ with $|\mathcal{A}| \leq h$,
+\[
+    \left| \left\{ x \in V(H) : \forall S \in \mathcal{A}, S \cup \{x\} \in E(H) \right\} \right| = (1 \pm c) p^{|\mathcal{A}|} n.
+\]
+Then there exists an $K_{k}^{(t)}$-decomposition of $H$.
 \end{theorem}
 
-If we take $H = K_{v}^{(t)}$, then a $t$-$(v, k, 1)$ design exists for sufficiently large $v$.
+Informally, this result states that if $H$ contains sufficiently many edges and satisfies certain connectedness conditions, then the conditions of Lemma \ref{obv-necessary-1} are also sufficient for the existence of a $K_{k}^{(t)}$-decomposition of $H$.
+
+If we take $H = K_{v}^{(t)}$, then we have as an immediate corollary that for sufficiently large $v$, there exists an $S(t, k, v)$ Steiner system.

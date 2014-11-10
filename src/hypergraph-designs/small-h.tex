@@ -4,16 +4,17 @@ A central problem in the study of hypergraph decompositions is the existence of
 $H$-designs; namely: given a $t$-uniform hypergraph $H$, for which positive
 integers $v$ does there exist a $(v, H, \lambda)$-design?
 
-In this section, we will consider this question for $3$-uniform hypergraphs $H$ of bounded size.
-If we apply Lemmas \ref{obv-necessary} and \ref{obv-order} with $t = 3$, then we have:
+In this section, we will consider this question for $3$-uniform hypergraphs $H$ of bounded size and index $\lambda = 1$.
+If we apply the obvious necessary conditions (Lemmas \ref{obv-necessary} and \ref{obv-order}) with $t = 3$, then we have:
 
 \begin{lemma}[\cite{bryant}] \label{necessary-3-uniform}
 Let $H$ be a $3$-uniform hypergraph.
-If there exists an $H$-design of order $v \geq 3$, then $v \geq |V(H)|$, and the following conditions are satisfied:
+An integer $v \geq 3$ is admissible if and only if the following conditions are satisfied:$v \geq |V(H)|$ and the following conditions are satisfied:
 \begin{enumerate}
-    \item[(1)] $|E(H)|$ divides ${v \choose 3}$,
-    \item[(2)] $\gcd(\{\deg_H(x) : x \in V(H)\})$ divides ${v-1 \choose 2}$,
-    \item[(3)] $\gcd(\{\deg_H(\{x,y\}) : x, y \in V(H), x \neq y\})$ divides $v-2$.
+    \item[(1)] $v \geq |V(H)|$,
+    \item[(2)] $|E(H)|$ divides ${v \choose 3}$,
+    \item[(3)] $\gcd(\{\deg_H(x) : x \in V(H)\})$ divides ${v-1 \choose 2}$,
+    \item[(4)] $\gcd(\{\deg_H(\{x,y\}) : x, y \in V(H), x \neq y\})$ divides $v-2$.
 \end{enumerate}
 \end{lemma}
 
@@ -23,11 +24,11 @@ First, we shall consider simple $3$-uniform hypergraphs containing at most three
 In combination with results from \cite{baran, bryant, feng-chang2, hanani}, we shall prove the following result:
 
 \begin{theorem} \label{thm:size-le3}
-Let $H$ be a simple $3$-uniform hypergraph containing at most three edges.
-There exists an $H$-design of order $v \geq 3$ iff the conditions of Lemma \ref{necessary-3-uniform} are satisfied.
+Let $H$ be a simple $3$-uniform hypergraph containing at most three edges and no isolated vertices.
+There exists an $H$-design of order $v \geq 3$ iff $v$ is admissible.
 \end{theorem}
 
-Up to isomorphism, there are fifteen (simple) $3$-uniform hypergraphs with size at most 3 containing no isolated vertices.
+Up to isomorphism, there are fifteen simple $3$-uniform hypergraphs with size at most 3 containing no isolated vertices.
 These are listed in Table \ref{table:size3} below, using the following notation: in the first row, $[1, 2, 3]_{H_{1,1}}$ is used to denote the hypergraph $(V, E)$ with $V = \{1, 2, 3\}$ and $E = \{\{1, 2, 3\}\}$, and $H_{1,1}$ is used to denote any hypergraph isomorphic to $[1, 2, 3]_{H_{1,1}}$.
 The final column indicates that the existence of $H_{1,1}$-designs is proved in Theorem \ref{baranyai}.
 The notation for the other rows is similar.
@@ -58,38 +59,37 @@ $H_{3,12}$ & $[1,2,3,4]_{H_{3,12}}$        & $V=\{1,2,3,4\}$          & $E=\{\{1
 \label{table:size3}
 \end{table}
 
-It can be verified exhaustively that these are indeed all simple $3$-uniform hypergraphs of size at most 3.
-% TODO write up the program which generates them.
+It can be verified exhaustively that these are indeed all the simple $3$-uniform hypergraphs of size at most 3.
 
-If $H \simeq H_{k,1}$ for $k \in \{1, 2, 3\}$, then $H$ contains $k$ pairwise disjoint edges, so $H$-designs exist iff $v \geq 3k$ and $k$ divides ${v \choose 3}$, by Theorem \ref{baranyai}.
+If $H \simeq H_{k,1}$ for $k \in \{1, 2, 3\}$, then $H$ consists of $k$ pairwise disjoint edges, so $H$-designs exist iff $v \geq 3k$ and $k$ divides ${v \choose 3}$, by Theorem \ref{baranyai}.
 
 In \cite{feng-chang2}, the authors consider a copy of $K_4^{(3)}$ with an edge removed, denoted by $K_4^{(3)} - e$; this is isomorphic to $H_{3,12}$. They determined the following result:
 
 \begin{theorem}[\cite{feng-chang2}] \label{thm:H_3,12}
-A $(K_4^{(3)}-e)$-design of order $v$ exists iff $v \equiv 0$,$1$, or $2$ (mod $9$).
+A $(K_4^{(3)}-e)$-design of order $v$ exists iff $v \equiv 0$, $1$, or $2$ (mod $9$).
 \end{theorem}
 
-When $H$ has size $2$, the remaining cases were solved by Bryant et al., and we describe the proof below.
+When $H$ has size $2$, the existence question was solved in \cite{bryant}, and we describe the proof technique below.
 
 \begin{theorem}[\cite{bryant}] \label{thm:H_22,H_23}
 Let $H \simeq H_{2,2}$ or $H_{2,3}$.
 An $H$-design of order $v$ exists if and only if $v \equiv 0$, $1$, or $2$ (mod $4$) and $v \geq |V(H)|$.
 \end{theorem}
 
-Since each of $H_{2,2}$ and $H_{2,3}$ contains at least one vertex of degree 1, the conditions of Lemma \ref{necessary-3-uniform}
+Since each of $H_{2,2}$ and $H_{2,3}$ contains at least one vertex of degree 1, the obvious necessary conditions
 reduce to $v \geq |V(H)|$ and $|E(H)| = 2$ divides ${v \choose 3}$. This second condition is equivalent to $v \equiv 0$, $1$, or $2$ (mod $4$).
 
 To construct an $H$-design of order $v = 4n + \epsilon$, where $\epsilon \in \{0,1,2\}$ and $n \geq 1$
 (excluding the case $H \simeq H_{2,2}$ and $v = 4$), construct a collection of pairwise disjoint sets
 $V_1, V_2, \ldots, V_n$, each of size 4. Let $\infty_1, \infty_2$ be two points not contained in
 $\bigcup_{i=1}^{n} V_i$, and let $I_0 = \emptyset$, $I_1 = \{\infty_1\}$, $I_2 = \{\infty_1, \infty_2\}$.
-We then require an $H$-decomposition of $K = K_{V_1 \cup V_2 \cup \cdots \cup V_n \cup I_\epsilon}^{(3)} \simeq K_{v}^{(3)}$.
+We then aim to construct an $H$-decomposition of $K = K_{V_1 \cup V_2 \cup \cdots \cup V_n \cup I_\epsilon}^{(3)} \simeq K_{v}^{(3)}$.
 
 For each edge $e \in E(K)$, consider the sets $V_i$ which have non-empty intersection with $e$:
 \begin{itemize}
     \item If $e \subseteq V_i \cup I_\epsilon$ for some $i \in \{1,\ldots,n\}$, then $e$ is an edge of $K_{V_i \cup I_\epsilon}^{(3)} \simeq K_{4+\epsilon}^{(3)}$.
-    \item If $e \subseteq V_i \cup V_j \cup I_\epsilon$ for distinct $i, j \in \{1,\ldots,n\}$, and has at least one vertex in each of $V_i$ and $V_j$, then $e$ is an edge of $L_{V_i,V_j,[I_\epsilon]}^{(3)} \simeq L_{4,4,[\epsilon]}^{(3)}$.
-    \item If $e \subseteq V_i \cup V_j \cup V_k$ for distinct $i, j, k \in \{1,\ldots,n\}$, and has at least one vertex in each of $V_i$, $V_j$, and $V_k$, then $e$ is an edge of $K_{V_i,V_j,V_k}^{(3)} \simeq K_{4,4,4}^{(3)}$.
+    \item If $e \subseteq V_i \cup V_j \cup I_\epsilon$ for distinct $i, j \in \{1,\ldots,n\}$, and $e$ has at least one vertex in each of $V_i$ and $V_j$, then $e$ is an edge of $L_{V_i,V_j,[I_\epsilon]}^{(3)} \simeq L_{4,4,[\epsilon]}^{(3)}$.
+    \item If $e \subseteq V_i \cup V_j \cup V_k$ for distinct $i, j, k \in \{1,\ldots,n\}$, and $e$ has at least one vertex in each of $V_i$, $V_j$, and $V_k$, then $e$ is an edge of $K_{V_i,V_j,V_k}^{(3)} \simeq K_{4,4,4}^{(3)}$.
 \end{itemize}
 Therefore,
 \[
@@ -109,18 +109,18 @@ and $G \in \left\{ K_{4}^{(3)}, K_{5}^{(3)}, K_{6}^{(3)}, L_{4,4}^{(3)}, L_{4,4,
 are given in \cite{bryant}, except when $H \simeq H_{2,2}$ and $G \simeq K_{4}^{(3)}$,
 so this completes the proof aside from the case $H \simeq H_{2,2}$ and $v \equiv 0$ (mod $4$), $v \geq 8$.
 
-In this remaining case, one can similarly find a $\Gamma'$-decomposition of $K$ where
-\[
-    \Gamma' = \left\{ K_{8}^{(3)}, K_{8}^{(3)} \setminus K_{4}^{(3)}, L_{4,4}^{(3)}, K_{4,4,4}^{(3)} \right\},
-\]
-given by
+In this remaining case,
 \begin{align*}
     K &= K_{V_{n-1} \cup V_n}^{(3)}
-    \cup \left( \bigcup_{1 \leq i \leq n-1} K_{V_i \cup V_n}^{(3)} \setminus K_{V_n}^{(3)} \right) \\
+    \cup \left( \bigcup_{1 \leq i \leq n-2} K_{V_i \cup V_n}^{(3)} \setminus K_{V_n}^{(3)} \right) \\
     & \quad \quad \cup \left( \bigcup_{1 \leq i < j \leq n-1} L_{V_i, V_j}^{(3)} \right)
-    \cup \left( \bigcup_{1 \leq i < j < k \leq n} K_{V_i, V_j, V_k}^{(3)} \right).
+    \cup \left( \bigcup_{1 \leq i < j < k \leq n} K_{V_i, V_j, V_k}^{(3)} \right)
 \end{align*}
-It can be shown that there exists an $H_{2,3}$-decomposition of $G$ for each $G \in \Gamma'$, so this extends to
+describes a $\Gamma'$-decomposition of $K$, where
+\[
+    \Gamma' = \left\{ K_{8}^{(3)}, K_{8}^{(3)} \setminus K_{4}^{(3)}, L_{4,4}^{(3)}, K_{4,4,4}^{(3)} \right\}.
+\]
+It can be shown that $H_{2,3}$-decompositions of $G$ exist for each $G \in \Gamma'$, so this can be extended to
 an $H_{2,3}$-decomposition of $v = 4n$.
 
 We use a similar method to prove Theorems \ref{thm:H_3,i} and \ref{thm:H_42,H_43} below.
@@ -142,7 +142,7 @@ Construct $n$ pairwise disjoint sets $V_1, \ldots, V_n$ of size 9,
 and let $\infty_1, \infty_2$ be two distinct points, neither of which is in $\bigcup_{i=1}^{n} V_i$.
 Let $I_0 = \emptyset$, $I_1 = \{\infty_1\}$ and $I_2 = \{\infty_1, \infty_2\}$.
 
-For each $1 \leq i \leq n$ and each $\epsilon \in \{0,1,2\}$, let $\mathcal{D}_i^{\epsilon}$ be an $H$-decomposition of $K_{V_i \cup I_\epsilon}^{(3)}$,
+For each $1 \leq i \leq n$ and $\epsilon \in \{0,1,2\}$, let $\mathcal{D}_i^{\epsilon}$ be an $H$-decomposition of $K_{V_i \cup I_\epsilon}^{(3)}$,
 which exists by Examples \ref{eg:H_3i-9}, \ref{eg:H_3i-10}, and \ref{eg:H_3i-11} for $\epsilon = 0$, $1$, and $2$ respectively.
 %
 For each $1 \leq i < j \leq n$ and each $\epsilon \in \{0,1,2\}$, let $\mathcal{D}_{i,j}^{\epsilon}$ be an $H$-decomposition of $L_{V_i, V_j, [I_\epsilon]}^{(3)}$, which exists by Examples \ref{eg:H_3i-l99}, \ref{eg:H_3i-l99-k991}, and \ref{eg:H_3i-l99-k992} for $\epsilon = 0$, $1$, and $2$ respectively.
@@ -198,7 +198,7 @@ This completes the proof of Theorem \ref{thm:size-le3}. \qed
 
 \subsection{Regular $3$-uniform hypergraphs}
 
-Next, we shall consider (simple) $3$-uniform hypergraphs of larger size, but impose the restriction that the hypergraph is regular.
+Next, we shall consider simple $3$-uniform hypergraphs of larger size, but impose the restriction that the hypergraph is regular.
 Recall that a hypergraph $H$ is $d$-regular if every vertex $x \in V(H)$ has degree $d$.
 
 There are nine non-isomorphic regular $3$-uniform hypergraphs of size at most $5$, three of which are $H_{1,1}$, $H_{2,1}$ and $H_{3,1}$ from Table \ref{table:size3}.
@@ -210,7 +210,7 @@ The remaining six are listed in Table \ref{table:regular}, using the same notati
 \begin{tabular}{|c|c|c|c|c|}
 \hline
 $H_{4,1}$ & $[1,2,\ldots,12]_{H_{4,1}}$ & $V=\{1,2,\ldots,12\}$ & $E=\{\{1,2,3\},\{4,5,6\},\{7,8,9\},\{10,11,12\}\}$ & \ref{baranyai} \\ \hline
-$H_{4,2}$ & $[1,2,3,4,5,6]_{H_{4,2}}$   & $V=\{1,2,3,4,5,6\}$ & $E=\{\{1,2,3\},\{1,5,6\},\{2,4,6\},\{3,5,6\}\}$ & \ref{thm:H_42,H_43} \\ \hline
+$H_{4,2}$ & $[1,2,3,4,5,6]_{H_{4,2}}$   & $V=\{1,2,3,4,5,6\}$ & $E=\{\{1,2,3\},\{1,5,6\},\{2,4,6\},\{3,4,5\}\}$ & \ref{thm:H_42,H_43} \\ \hline
 $H_{4,3}$ & $[1,2,3,4,5,6]_{H_{4,3}}$   & $V=\{1,2,3,4,5,6\}$ & $E=\{\{1,2,3\},\{1,5,6\},\{2,3,4\},\{4,5,6\}\}$ & \ref{thm:H_42,H_43} \\ \hline
 $H_{4,4}$ & $[1,2,3,4]_{H_{4,4}}$       & $V=\{1,2,3,4\}$     & $E=\{\{1,2,3\},\{1,2,4\},\{1,3,4\},\{2,3,4\}\}$ & \ref{thm:K4^3} \\ \hline
 $H_{5,1}$ & $[1,2,\ldots,15]_{H_{5,1}}$ & $V=\{1,2,\ldots,15\}$ & {\tiny $\{\{1,2,3\},\{4,5,6\},\{7,8,9\},\{10,11,12\},\{13,14,15\}\}$ } & \ref{baranyai} \\ \hline
@@ -220,20 +220,19 @@ $H_{5,2}$ & $[1,2,3,4,5]_{H_{5,2}}$     & $V=\{1,2,3,4,5\}$   & {\tiny $E=\{\{1,
 \label{table:regular}
 \end{table}
 
-It can be easily verified that these are indeed all regular $3$-uniform hypergraphs with size at most 5. % TODO algorithm
+It can be easily verified that these are indeed all the regular $3$-uniform hypergraphs with size at most 5.
 In conjunction with existing results, we shall prove the following:
 
 \begin{theorem} \label{thm:regular-4}
 Let $H$ be a simple regular $3$-uniform hypergraph containing four edges.
-There exists an $H$-design of order $v \geq 3$ iff the conditions of Lemma \ref{necessary-3-uniform} are satisfied,
+There exists an $H$-design of order $v \geq 3$ iff $v$ is admissible,
   except that there is no $H_{4,2}$-design of order $6$.
 \end{theorem}
 
-Let $H$ be a $d$-regular $3$-uniform hypergraph on four edges.
 If $H \simeq H_{4,1}$ or $H_{5,1}$, the necessary conditions are sufficient by Theorem \ref{baranyai}.
 
 If $H \simeq H_{4,4} \simeq K_4^{(3)}$, then an $H$-design of order $v$ is an $S(3, 4, v)$ Steiner system (also called a {\em Steiner quadruple system}),
-  and it can be seen that $v$ satisfies the conditions of Lemma \ref{necessary-3-uniform} if and only if $v \equiv 2$ or $4$ (mod $6$).
+  and it can be seen that $v$ is admissible if and only if $v \equiv 2$ or $4$ (mod $6$).
 The following result by Hanani establishes that these conditions are sufficient:
 
 \begin{theorem}[\cite{hanani}] \label{thm:K4^3}
@@ -267,7 +266,7 @@ The edges of $O$ describe the faces of an octahedron.
 There clearly exists an $H_{4,2}$-decomposition of $O$ given by \[ \left\{ [0,1,2,3,4,5]_{H_{4,2}}, [0,1,5,3,4,2]_{H_{4,2}} \right\}, \]
   and an $H_{4,3}$-decomposition of $O$ given by \[ \left\{[0,1,2,3,4,5]_{H_{4,3}}, [0,1,5,3,2,4]_{H_{4,3}} \right\}. \]
 In \cite{hanani}, it was shown that there exists an $O$-design of order $v$ whenever $v \equiv 2$ (mod 8),
-  so there exists a $H$-design of order $v$ whenever $v \equiv 2$ (mod 8).
+  so there exists an $H$-design of order $v$ whenever $v \equiv 2$ (mod 8).
 
 
 In the remaining cases, we have $v = 8n + \epsilon$ for $n \geq 1$ and $\epsilon \in \{1,6\}$.
@@ -282,7 +281,7 @@ For each $1 \leq i \leq n$:
 
 Let $\mathcal{D}_\infty$ be an $H$-decomposition of $K_{V_n \cup I}^{(3)}$,
   which exists for $H_{4,2}$ by \cite{bryant}, and for $H_{4,3}$ is given by
-  the union of $\mathcal{D}'_n$ and a $H_{4,3}$-decomposition of $K_{I}^{(3)}$ (which exists by example \ref{eg:H_43-6}).
+  the union of $\mathcal{D}'_n$ and an $H_{4,3}$-decomposition of $K_{I}^{(3)}$ (which exists by example \ref{eg:H_43-6}).
 
 
 For each $1 \leq i < j \leq n$:
@@ -308,13 +307,12 @@ is an $H$-design of order $v = 8n+1$, and if $v \equiv 6$ (mod 8),
     \leq i < j < k \leq n} \mathcal{D}_{i,j,k} \right)
 \]
 is an $H$-design of order $v = 8n+6$. This completes the proof.
-
 \end{proof}
 
 This concludes the proof of Theorem \ref{thm:regular-4}. \qed
 
 Even though there is no $H_{4,2}$-design of order $6$, we can still consider the existence of $H_{4,2}$-designs of order $6$ with index $\lambda \geq 2$.
-We have the following reults:
+We have the following results:
 
 \begin{theorem} \label{thm:H_42-6-simple}
 There exists a simple $(6, H_{4,2}, \lambda)$-design if and only if $\lambda \in \{2, 3, 4, 6\}$.
@@ -325,10 +323,10 @@ Let $V = \{0,1,2,3,4,\infty\}$, and let $G$ be the cyclic permutation group $G =
 Define six $H_{4,2}$-blocks on $V$ by:
 \begin{align*}
   B_1 &= [\infty, 0, 1, 3, 2, 4]_{H_{4,2}}, \quad
-  B_2 = [\infty, 0, 1, 3, 4, 2]_{H_{4,2}}, \quad
-  B_3 = [\infty, 0, 1, 4, 2, 3]_{H_{4,2}}, \\
-  B_4 &= [\infty, 0, 1, 4, 3, 2]_{H_{4,2}}, \quad
-  B_5 =  [\infty, 0, 2, 4, 1, 3]_{H_{4,2}}, \quad
+  B_2 = [\infty, 0, 1, 3, 4, 2]_{H_{4,2}}, \\
+  B_3 &= [\infty, 0, 1, 4, 2, 3]_{H_{4,2}}, \quad
+  B_4 = [\infty, 0, 1, 4, 3, 2]_{H_{4,2}}, \\
+  B_5 &=  [\infty, 0, 2, 4, 1, 3]_{H_{4,2}}, \quad
   B_6 = [\infty, 0, 2, 4, 3, 1]_{H_{4,2}}.
 \end{align*}
 Then, let
@@ -388,7 +386,7 @@ all $v = 4^m + 1$ for $m$ a positive integer.
 \end{theorem}
 
 \begin{proof}
-There is an $H_{5,2}$-design of order $5$ on the vertex set $\{0,1,2,3,4\}$
+There exists an $H_{5,2}$-design of order $5$ on the vertex set $\{0,1,2,3,4\}$
   given by $\left\{[0,1,2,3,4]_{H_{5,2}}, [4, 0, 1, 3, 2]_{H_{5,2}} \right\}$.
 
 Hence, if there exists an $S(3, 5, v)$, then there exists an $H_{5,2}$-design of order $v$, given by replacing each block with an $H_{5,2}$-decomposition of $K_5^{(3)}$.
